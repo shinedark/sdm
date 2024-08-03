@@ -32,7 +32,7 @@ const config: Config = {
         },
       },
       animation: {
-        rotateLeft: 'rotateLeft 0.5s ease-in-out',
+        rotateLeft: 'rotateLeft 3s ease-in-out',
         rotateRight: 'rotateRight 0.5s ease-in-out',
       },
     },

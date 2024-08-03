@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@import url('https://fonts.googleapis.com/css2?family=Linefont:wdth,wght@136.6,4..1000&family=Sedgwick+Ave+Display&display=swap');
+
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -16,14 +20,11 @@
   }
 }
 
+
+/* In your global CSS file (e.g., styles/globals.css) */
+
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: "Sedgwick Ave Display";
 }
 
 @layer utilities {
