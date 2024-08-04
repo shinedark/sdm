@@ -2,7 +2,12 @@
 
 import { useState, useEffect } from 'react';
 
-const TypingEffect = ({ text }) => {
+interface TextProps {
+  text: string;
+}
+
+
+const TypingEffect: React.FC<TextProps> = ({ text }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [index, setIndex] = useState(0);
 
