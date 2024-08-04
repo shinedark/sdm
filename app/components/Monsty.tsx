@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import ImageClip from './ImageClip';
-import BinaryStatic from './BinaryStatic';
+
 
 const Monsty = ({ isAnimating }) => {
   const [showPyramid, setShowPyramid] = useState(true);
@@ -26,13 +26,12 @@ const Monsty = ({ isAnimating }) => {
             {/* Black Circle with White Mouth */}
             <div className="absolute top-[-2rem] left-1/2 w-12 h-12 bg-black rounded-full transform -translate-x-1/2 flex items-center justify-center">
               <div className="w-6 h-3 bg-white border-2 border-black border-dashed -translate-y-1/2">
-                <div className="w-2 h-2 pl-1 rounded-full bg-red-400 animate-spin"></div>
+                <div className="w-2 h-2 pl-1 rounded-full bg-red-400 animate-pulse"></div>
               </div>
-              <BinaryStatic />
             </div>
 
             {/* Top Div */}
-            <ImageClip isHovered={false} />
+            <ImageClip isAnimating={isAnimating} />
 
             {/* Bottom Divs with Rhythm Animation */}
             <div className="flex space-x-2 mt-4">

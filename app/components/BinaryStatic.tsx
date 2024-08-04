@@ -8,7 +8,7 @@ const BinaryStatic: React.FC = () => {
 
   // Create a grid of text elements
   const numRows = 30; // Number of rows
-  const numCols = 3; // Number of columns
+  const numCols = 6; // Number of columns
 
   return (
     <div className="absolute inset-0 flex items-center justify-center">
@@ -35,22 +35,20 @@ const BinaryStatic: React.FC = () => {
       <style jsx>{`
         .static-text {
           display: flex;
-          flex-direction: column;
-          width: 100%;
-          height: 100%;
+          // flex-direction: column;
+          // width: 100%;
+          // height: 100%;
           overflow: hidden;
-          position: absolute;
-          top: 0;
-          left: 0;
-          color: white;
-          font-size: 3px; /* Adjust font size for tiny letters */
-          line-height: 1;
+          // position: absolute;
+          color: black;
+          // font-size: 3px; /* Adjust font size for tiny letters */
+          // line-height: 1;
         }
         
         .static-row {
           display: flex;
           flex-direction: row;
-          width: 100%;
+          // width: 100%;
           justify-content: center;
         }
         
