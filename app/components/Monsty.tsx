@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import ImageClip from './ImageClip';
 
+interface MonstyProps {
+  isAnimating: boolean;
+}
 
-const Monsty = ({ isAnimating }) => {
+const Monsty: React.FC<MonstyProps> = ({ isAnimating }) => {
   const [showPyramid, setShowPyramid] = useState(true);
 
   const handleShapeClick = () => {
