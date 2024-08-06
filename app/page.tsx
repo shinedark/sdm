@@ -18,36 +18,30 @@ export default function Home() {
     }
   };
 
-  useEffect(() => {
-    const handleAudioPlay = () => setIsAnimating(true);
-    const handleAudioPause = () => setIsAnimating(false);
-
-    if (audioRef.current) {
-      audioRef.current.addEventListener('play', handleAudioPlay);
-      audioRef.current.addEventListener('pause', handleAudioPause);
-      audioRef.current.addEventListener('ended', handleAudioPause); // Stop animation when audio ends
-    }
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.removeEventListener('play', handleAudioPlay);
-        audioRef.current.removeEventListener('pause', handleAudioPause);
-        audioRef.current.removeEventListener('ended', handleAudioPause);
-      }
-    };
-  }, []);
-
   return (
     <main className="flex min-h-screen items-center justify-center p-0">
-                    <BinaryStatic />
-      {/* NOISE Button outside the main container */}
+      <BinaryStatic />
+      
+      {/* NOISE Button */}
       <button
         className="fixed top-4 right-4 w-24 h-12 bg-black text-white flex items-center justify-center rounded-full z-10"
         onClick={handleNoiseClick}
       >
         NOISE
       </button>
-        <Cube isAnimating={isAnimating} />
+      
+      {/* VINYL Button */}
+      <a
+        href="https://www.paypal.com/ncp/payment/RVBUJR3MTSYB2"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed top-4 left-4 w-24 h-12 bg-black text-white flex items-center justify-center rounded-full z-10"
+      >
+        VINYL
+      </a>
+
+      <Cube isAnimating={isAnimating} />
+      
       {/* Audio Element */}
       <audio ref={audioRef} src="/music/elritmo.m4a" preload="auto" />
     </main>
