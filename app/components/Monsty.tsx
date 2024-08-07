@@ -1,7 +1,8 @@
 'use client'; // Ensure this is a Client Component
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ImageClip from './ImageClip';
+import { imageUrls } from './Images'; // Import the image array
 
 interface MonstyProps {
   isAnimating: boolean;
@@ -9,6 +10,20 @@ interface MonstyProps {
 
 const Monsty: React.FC<MonstyProps> = ({ isAnimating }) => {
   const [showPyramid, setShowPyramid] = useState(true);
+  const [selectedImages, setSelectedImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    // Function to randomly select unique images
+    const selectUniqueImages = () => {
+      // Deep copy imageUrls array and shuffle it uniquely for each Monsty instance
+      const shuffledImages = [...imageUrls].sort(() => Math.random() - 0.5);
+      return shuffledImages.slice(0, 3); // Select first 3 images
+    };
+
+    // Set the selected unique images when the component mounts
+    const uniqueImages = selectUniqueImages();
+    setSelectedImages(uniqueImages);
+  }, []); // Empty dependency array means this effect runs once on mount
 
   const handleShapeClick = () => {
     setShowPyramid(false);
@@ -45,14 +60,14 @@ const Monsty: React.FC<MonstyProps> = ({ isAnimating }) => {
                     isAnimating ? 'animate-rhythm' : ''
                   }`}
                 >
-                  {isAnimating && (
-                    <video
-                      src="/music/elrit.mov" // Replace with your video file path
-                      autoPlay
-                      loop
-                      muted
+                  {isAnimating && selectedImages.length > 0 ? (
+                    <img
+                      src={selectedImages[index]}
+                      alt={`Selected image ${index}`}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
+                  ) : (
+                    <div className="absolute inset-0 w-full h-full bg-black"></div> // Black cover when not animating
                   )}
                 </div>
               ))}
@@ -71,11 +86,18 @@ const Monsty: React.FC<MonstyProps> = ({ isAnimating }) => {
       {/* Styles for animation */}
       <style jsx>{`
         @keyframes rhythm {
-          0% { transform: scale(1); }
-          25% { transform: scale(1.1); }
-          50% { transform: scale(1); }
-          75% { transform: scale(0.6); }
-          100% { transform: scale(0.9); }
+          0% {
+            transform: scale(1);
+          }
+          25% {
+            transform: scale(1.1);
+          50% {
+            transform: scale(1);
+          75% {
+            transform: scale(0.6);
+          100% {
+            transform: scale(0.9);
+          }
         }
 
         .animate-rhythm {

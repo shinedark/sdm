@@ -12,9 +12,11 @@ export default function Home() {
   const handleNoiseClick = () => {
     if (audioRef.current) {
       if (audioRef.current.paused) {
+        setIsAnimating(true)
         audioRef.current.play();
       } else {
         audioRef.current.pause();
+        setIsAnimating(false)
       }
     }
   };
@@ -41,7 +43,12 @@ export default function Home() {
         >
           VINYL
         </a>
-
+         <img
+            src="/images/6.png" // Replace with your image path
+            alt="Vinyl Icon"
+            className="mt-2 w-12 h-16 absolute top-10 left-10"
+          />
+          
         <Cube isAnimating={isAnimating} />
         
         {/* Audio Element */}

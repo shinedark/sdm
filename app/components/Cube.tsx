@@ -13,7 +13,7 @@ const Cube: React.FC<CubeProps> = ({ isAnimating }) => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [step, setStep] = useState(0); // To keep track of the rotation sequence
-
+  console.log(isAnimating)
   const handleCubeClick = () => {
     // Define the sequence of rotations
     const rotations = [
