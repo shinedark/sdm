@@ -41,6 +41,7 @@ const BinaryStatic: React.FC = () => {
           overflow: hidden;
           // position: absolute;
           color: black;
+     
           // font-size: 3px; /* Adjust font size for tiny letters */
           // line-height: 1;
         }

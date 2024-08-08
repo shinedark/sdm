@@ -3,6 +3,7 @@
     height: 200px;
     perspective: 600px;
     cursor: pointer;
+    box-shadow: 29px 57px 124px 0px rgba(0,0,0,0.75);
   }
   
   .cube {
@@ -11,6 +12,7 @@
     position: relative;
     transform-style: preserve-3d;
     transition: transform 1s ease-in-out;
+    
   }
   
   .cube__face {
@@ -24,6 +26,7 @@
     justify-content: center;
     font-size: 24px;
     font-weight: bold;
+    
   }
   
   .cube__face--front  { transform: rotateY(  0deg) translateZ(100px); }
