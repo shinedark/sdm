@@ -1,10 +1,9 @@
 'use client'; // Ensure this is a Client Component
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Cube.css'; // Import the CSS
 import Monsty from './Monsty';
 
-// Define prop types
 interface CubeProps {
   isAnimating: boolean;
 }
@@ -12,38 +11,74 @@ interface CubeProps {
 const Cube: React.FC<CubeProps> = ({ isAnimating }) => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
-  const [step, setStep] = useState(0); // To keep track of the rotation sequence
-  console.log(isAnimating)
-  const handleCubeClick = () => {
-    // Define the sequence of rotations
-    const rotations = [
-      { x: 0, y: 0 },     // Front
-      { x: 0, y: 90 },    // Right
-      { x: 0, y: 180 },   // Back
-      { x: 0, y: -90 },   // Left
-      { x: 90, y: 0 },    // Top
-      { x: -90, y: 0 },   // Bottom
-    ];
+  const [selectedFace, setSelectedFace] = useState('front');
 
-    // Get the next rotation based on the step
-    const nextRotation = rotations[step];
-
-    setRotateX(nextRotation.x);
-    setRotateY(nextRotation.y);
-
-    // Update step, reset to 0 after the last step
-    setStep((prevStep) => (prevStep + 1) % rotations.length);
+  const handleRotation = (direction: string) => {
+    switch (direction) {
+      case 'up':
+        setRotateX((prevX) => prevX - 90);
+        break;
+      case 'down':
+        setRotateX((prevX) => prevX + 90);
+        break;
+      case 'left':
+        setRotateY((prevY) => prevY - 90);
+        break;
+      case 'right':
+        setRotateY((prevY) => prevY + 90);
+        break;
+      default:
+        break;
+    }
   };
 
+  const handleKeyDown = (event: KeyboardEvent) => {
+    switch (event.key) {
+      case 'ArrowUp':
+        handleRotation('up');
+        break;
+      case 'ArrowDown':
+        handleRotation('down');
+        break;
+      case 'ArrowLeft':
+        handleRotation('left');
+        break;
+      case 'ArrowRight':
+        handleRotation('right');
+        break;
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    // Add event listener for keyboard controls
+    window.addEventListener('keydown', handleKeyDown);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
-    <div className={`scene ${isAnimating ? 'cube-bounce' : ''}`} onClick={handleCubeClick}>
-      <div className="cube" style={{ transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)` }}>
-        <div className="cube__face cube__face--front"><Monsty isAnimating={isAnimating} key={1} /></div>
-        <div className="cube__face cube__face--back"><Monsty isAnimating={isAnimating} key={2} /></div>
-        <div className="cube__face cube__face--right"><Monsty isAnimating={isAnimating} key={3} /></div>
-        <div className="cube__face cube__face--left"><Monsty isAnimating={isAnimating} key={4} /></div>
-        <div className="cube__face cube__face--top"><Monsty isAnimating={isAnimating} key={5} /></div>
-        <div className="cube__face cube__face--bottom"><Monsty isAnimating={isAnimating} key={6} /></div>
+    <div className="cube-container">
+      <div className={`scene ${isAnimating ? 'cube-bounce' : ''}`}>
+        <div className="cube" style={{ transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)` }}>
+          <div className={`cube__face cube__face--front ${selectedFace === 'front' ? 'selected' : ''}`}><Monsty isAnimating={isAnimating} key={1} /></div>
+          <div className={`cube__face cube__face--back ${selectedFace === 'back' ? 'selected' : ''}`}><Monsty isAnimating={isAnimating} key={2} /></div>
+          <div className={`cube__face cube__face--right ${selectedFace === 'right' ? 'selected' : ''}`}><Monsty isAnimating={isAnimating} key={3} /></div>
+          <div className={`cube__face cube__face--left ${selectedFace === 'left' ? 'selected' : ''}`}><Monsty isAnimating={isAnimating} key={4} /></div>
+          <div className={`cube__face cube__face--top ${selectedFace === 'top' ? 'selected' : ''}`}><Monsty isAnimating={isAnimating} key={5} /></div>
+          <div className={`cube__face cube__face--bottom ${selectedFace === 'bottom' ? 'selected' : ''}`}><Monsty isAnimating={isAnimating} key={6} /></div>
+        </div>
+      </div>
+
+      <div className="controls">
+        <button onClick={() => handleRotation('up')}>Up</button>
+        <button onClick={() => handleRotation('down')}>Down</button>
+        <button onClick={() => handleRotation('left')}>Left</button>
+        <button onClick={() => handleRotation('right')}>Right</button>
       </div>
     </div>
   );

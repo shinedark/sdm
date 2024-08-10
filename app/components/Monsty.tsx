@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import ImageClip from './ImageClip';
 import { imageUrls } from './Images'; // Import the image array
+import ExpandingAnimation from './ExpandingAnimation';
 
 interface MonstyProps {
   isAnimating: boolean;
@@ -75,10 +76,12 @@ const Monsty: React.FC<MonstyProps> = ({ isAnimating }) => {
           </div>
         ) : (
           <div
-            className="w-full h-full bg-yellow-400 border-4 border-black border-dashed flex items-center justify-center cursor-pointer"
+            className="w-full h-full bg-black border-4 border-black border-dashed flex items-center justify-center cursor-pointer"
             onClick={handleHelloClick}
           >
-            <div className="text-xs">Hello</div>
+            <div className="text-xs">
+              <ExpandingAnimation/>
+            </div>
           </div>
         )}
       </div>

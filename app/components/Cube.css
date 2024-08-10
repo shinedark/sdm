@@ -1,52 +1,79 @@
 .scene {
-    width: 200px;
-    height: 200px;
-    perspective: 600px;
-    cursor: pointer;
-    box-shadow: 29px 57px 124px 0px rgba(0,0,0,0.75);
-  }
-  
-  .cube {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 1s ease-in-out;
-    
-  }
-  
-  .cube__face {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    font-weight: bold;
-    
-  }
-  
-  .cube__face--front  { transform: rotateY(  0deg) translateZ(100px); }
-  .cube__face--back   { transform: rotateY(180deg) translateZ(100px); }
-  .cube__face--right  { transform: rotateY( 90deg) translateZ(100px); }
-  .cube__face--left   { transform: rotateY(-90deg) translateZ(100px); }
-  .cube__face--top    { transform: rotateX( 90deg) translateZ(100px); }
-  .cube__face--bottom { transform: rotateX(-90deg) translateZ(100px); }
-  
+  width: 200px;
+  height: 200px;
+  perspective: 600px;
+  cursor: pointer;
+  box-shadow: 29px 57px 124px 0px rgba(0,0,0,0.75);
+}
 
-  /* Bounce animation */
+.cube-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s ease-in-out;
+}
+
+.cube__face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.cube__face--front  { transform: rotateY(  0deg) translateZ(100px); }
+.cube__face--back   { transform: rotateY(180deg) translateZ(100px); }
+.cube__face--right  { transform: rotateY( 90deg) translateZ(100px); }
+.cube__face--left   { transform: rotateY(-90deg) translateZ(100px); }
+.cube__face--top    { transform: rotateX( 90deg) translateZ(100px); }
+.cube__face--bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+/* Bounce animation */
 @keyframes bounce {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
+  0%, 100% {
+    transform: translateY(0);
   }
-  
-  .cube-bounce {
-    animation: bounce 3s infinite;
+  50% {
+    transform: translateY(-20px);
   }
+}
+
+.cube-bounce {
+  animation: bounce 3s infinite;
+}
+
+.cube__face.selected {
+  border-color: #152767;
+}
+
+.controls {
+  top: 50px;
+  position: relative;
+}
+
+.controls button {
+  margin: 20px 5px;
+  padding: 10px 20px;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  border: 2px solid #000; /* Black border */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.controls button:hover {
+  background-color: #fff; /* White background on hover */
+  color: #000; /* Black text on hover */
+}

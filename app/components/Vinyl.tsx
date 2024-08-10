@@ -61,7 +61,7 @@ const Vinyl: React.FC<VinylProps> = ({ onClose }) => {
             <div key={track.id} className="flex flex-col items-center">
               <p className="mb-2">{track.title}</p>
               <audio controls className="w-full">
-                <source src={track.src} type="audio/mpeg" />
+                <source src={track.src} type="audio/mp4" />
                 Your browser does not support the audio element.
               </audio>
             </div>
