@@ -35,7 +35,6 @@ export default function Home() {
     <div className="flex flex-col min-h-screen relative z-0">
       <main className="flex flex-1 items-center justify-center p-0 z-10">
         <BinaryStatic />
-        
         {/* NOISE Button */}
         <button
           className="fixed top-4 right-4 w-24 h-12 bg-black text-white flex items-center justify-center rounded-full z-20"
@@ -43,7 +42,7 @@ export default function Home() {
         >
           NOISE
         </button>
-        
+
         {/* VINYL Button */}
         <button
           onClick={toggleVinylOverlay}
@@ -59,11 +58,13 @@ export default function Home() {
         />
 
         <Cube isAnimating={isAnimating} />
-        
+
         {/* Audio Element */}
         <audio ref={audioRef} src="/music/elritmo.m4a" preload="auto" />
       </main>
-
+      <div className="flex flex-1 items-center justify-center p-0 z-10">
+        <h1 className='font-bold text-black text-2xl'><a className='contact' href="mailto:shinedarkmusic@gmail.com">CONTACT US</a></h1>
+      </div>
       <Footer />
 
       {/* Vinyl Overlay */}
