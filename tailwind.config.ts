@@ -26,6 +26,10 @@ const config: Config = {
           '67%': { transform: 'rotate(-270deg)' },
           '100%': { transform: 'rotate(-360deg)' }, // Rotate left
         },
+        scroll: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(-90%)' },
+      },
         rotateRight: {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(150deg)' }, // Rotate right
@@ -34,6 +38,7 @@ const config: Config = {
       animation: {
         rotateLeft: 'rotateLeft 3s ease-in-out',
         rotateRight: 'rotateRight 0.5s ease-in-out',
+        scroll: 'scroll 9s linear infinite',
       },
     },
   },

@@ -1,0 +1,27 @@
+.transform-style-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.animate-spin-slow {
+    animation: spin 60s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+.panel {
+    backface-visibility: hidden;
+    transform-origin: center;
+}
+
+.globe {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}

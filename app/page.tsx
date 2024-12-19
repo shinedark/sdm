@@ -1,15 +1,22 @@
-'use client'; // Ensure this is a Client Component
-import React, { useState, useRef } from 'react';
+'use client';
+import React, { useState, useRef, Suspense } from 'react';
 import Cube from './components/Cube';
+import Image from 'next/image';
 import BinaryStatic from './components/BinaryStatic';
 import Footer from './components/Footer';
 import Vinyl from './components/Vinyl';
+import GlobeGallery from './components/GlobeGallery';
+
 import './globals.css';
+
+
 
 export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [showVinyl, setShowVinyl] = useState(false);
+
   const audioRef = useRef<HTMLAudioElement>(null);
+
 
   const handleNoiseClick = () => {
     if (audioRef.current) {
@@ -33,6 +40,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen relative z-0">
+      <GlobeGallery />
       <main className="flex flex-1 items-center justify-center p-0 z-10">
         <BinaryStatic />
         {/* NOISE Button */}
@@ -51,10 +59,13 @@ export default function Home() {
           VINYL
         </button>
 
-        <img
-          src="/images/6.png" // Replace with your image path
+        <Image
+          src="/images/6.png"
           alt="Vinyl Icon"
-          className="mt-2 w-12 h-16 absolute top-10 left-10"
+          width={48}
+          height={64}
+          className="mt-2 absolute top-10 left-10"
+          priority
         />
 
         <Cube isAnimating={isAnimating} />
@@ -62,8 +73,16 @@ export default function Home() {
         {/* Audio Element */}
         <audio ref={audioRef} src="/music/elritmo.m4a" preload="auto" />
       </main>
+
+      {/* Remove or comment out the existing GlobeGallery div */}
+      {/* <div className='flex flex-1 items-center justify-center mt-8'>
+        <GlobeGallery />
+      </div> */}
+
       <div className="flex flex-1 items-center justify-center p-0 z-10">
-        <h1 className='font-bold text-black text-2xl'><a className='contact' href="mailto:shinedarkmusic@gmail.com">CONTACT US</a></h1>
+        <h1 className='font-bold text-black text-2xl'>
+          <a className='contact' href="mailto:shinedarkmusic@gmail.com">CONTACT US</a>
+        </h1>
       </div>
       <Footer />
 

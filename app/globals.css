@@ -33,6 +33,9 @@ body {
   animation: contact-hover 3s ease-in-out infinite;
  }
 
+
+ 
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
