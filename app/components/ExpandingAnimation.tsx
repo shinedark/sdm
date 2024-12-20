@@ -3,7 +3,11 @@ import GlobeGallery from './GlobeGallery';
 import { imageUrls } from './Images'; // Import the image array
 import './ExpandingAnimation.css';
 
-const ExpandingAnimation: React.FC = () => {
+interface ExpandingAnimationProps {
+  isExpanded: boolean;
+}
+
+const ExpandingAnimation: React.FC<ExpandingAnimationProps> = ({ isExpanded }) => {
   // Select a random image from the array
   const randomImage = imageUrls[Math.floor(Math.random() * imageUrls.length)];
 

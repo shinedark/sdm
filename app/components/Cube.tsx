@@ -74,12 +74,14 @@ const Cube: React.FC<CubeProps> = ({ isAnimating }) => {
         </div>
       </div>
 
-      <div className="controls">
-        <button onClick={() => handleRotation('up')}>Up</button>
-        <button onClick={() => handleRotation('down')}>Down</button>
-        <button onClick={() => handleRotation('left')}>Left</button>
-        <button onClick={() => handleRotation('right')}>Right</button>
-      </div>
+      {!isAnimating && (
+        <div className="controls">
+          <button onClick={() => handleRotation('up')}>Up</button>
+          <button onClick={() => handleRotation('down')}>Down</button>
+          <button onClick={() => handleRotation('left')}>Left</button>
+          <button onClick={() => handleRotation('right')}>Right</button>
+        </div>
+      )}
     </div>
   );
 };

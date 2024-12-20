@@ -12,6 +12,7 @@ interface MonstyProps {
 const Monsty: React.FC<MonstyProps> = ({ isAnimating }) => {
   const [showPyramid, setShowPyramid] = useState(true);
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     // Function to randomly select unique images
@@ -28,10 +29,12 @@ const Monsty: React.FC<MonstyProps> = ({ isAnimating }) => {
 
   const handleShapeClick = () => {
     setShowPyramid(false);
+    setIsExpanded(true);
   };
 
   const handleHelloClick = () => {
     setShowPyramid(true);
+    setIsExpanded(false);
   };
 
   return (
@@ -57,9 +60,8 @@ const Monsty: React.FC<MonstyProps> = ({ isAnimating }) => {
               {[...Array(3)].map((_, index) => (
                 <div
                   key={index}
-                  className={`relative w-12 h-12 bg-black border-4 border-white border-solid shadow-custom ${
-                    isAnimating ? 'animate-rhythm' : ''
-                  }`}
+                  className={`relative w-12 h-12 bg-black border-4 border-white border-solid shadow-custom ${isAnimating ? 'animate-rhythm' : ''
+                    }`}
                 >
                   {isAnimating && selectedImages.length > 0 ? (
                     <img
@@ -80,7 +82,7 @@ const Monsty: React.FC<MonstyProps> = ({ isAnimating }) => {
             onClick={handleHelloClick}
           >
             <div className="text-xs">
-              <ExpandingAnimation/>
+              <ExpandingAnimation isExpanded={isExpanded} />
             </div>
           </div>
         )}
