@@ -12,7 +12,13 @@ import {
 
 const Footer: React.FC = () => {
   return (
+
     <footer className="bg-black text-white py-4 z-20">
+      <div className="flex items-center justify-center p-1 z-10">
+        <h1 className='font-bold text-white text-2xl'>
+          <a className='contact' href="mailto:shinedarkmusic@gmail.com">CONTACT US</a>
+        </h1>
+      </div>
       <div className="container mx-auto flex justify-center space-x-6">
         <a
           href="https://soundcloud.com/shinedark"

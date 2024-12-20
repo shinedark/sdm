@@ -5,7 +5,7 @@ import Image from 'next/image';
 import BinaryStatic from './components/BinaryStatic';
 import Footer from './components/Footer';
 import Vinyl from './components/Vinyl';
-import GlobeGallery from './components/GlobeGallery';
+
 
 import './globals.css';
 
@@ -40,8 +40,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen relative z-0">
-      <GlobeGallery />
-      <main className="flex flex-1 items-center justify-center p-0 z-10">
+
+      <main className="flex flex-1 items-center justify-center p-0 z-10 relative overflow-auto">
         <BinaryStatic />
         {/* NOISE Button */}
         <button
@@ -73,19 +73,7 @@ export default function Home() {
         {/* Audio Element */}
         <audio ref={audioRef} src="/music/elritmo.m4a" preload="auto" />
       </main>
-
-      {/* Remove or comment out the existing GlobeGallery div */}
-      {/* <div className='flex flex-1 items-center justify-center mt-8'>
-        <GlobeGallery />
-      </div> */}
-
-      <div className="flex flex-1 items-center justify-center p-0 z-10">
-        <h1 className='font-bold text-black text-2xl'>
-          <a className='contact' href="mailto:shinedarkmusic@gmail.com">CONTACT US</a>
-        </h1>
-      </div>
       <Footer />
-
       {/* Vinyl Overlay */}
       {showVinyl && (
         <Vinyl onClose={closeVinylOverlay} />

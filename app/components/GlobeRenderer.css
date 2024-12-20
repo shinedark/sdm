@@ -1,0 +1,175 @@
+.perspective-1000 {
+    perspective: 1000px;
+}
+
+.sphere-container {
+    transform-style: preserve-3d;
+    animation: rotate 20s infinite linear;
+}
+
+.sphere {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    transform-style: preserve-3d;
+}
+
+.sphere-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: visible;
+    border-radius: 50%;
+    object-fit: cover;
+    opacity: 0.8;
+    animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+    to {
+        transform: rotateY(360deg) rotateX(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+}
+
+/* Add hover effect */
+.sphere-container:hover {
+    animation-play-state: paused;
+}
+
+.sphere-container:hover .sphere-face {
+    opacity: 1;
+}
+
+.stage {
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    margin: 10px;
+    perspective: 600px;
+    perspective-origin: 50% 50%;
+    transform-style: preserve-3d;
+}
+
+.ball {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 50%;
+    position: relative;
+    background-size: cover;
+    transform-style: preserve-3d;
+    animation: rotate-ball 15s infinite linear;
+    transform: rotateX(23.5deg);
+}
+
+.ball-texture {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-size: 200% 100%;
+    background-position: center;
+    transform-style: preserve-3d;
+}
+
+.ball:before {
+    content: "";
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: -40px 10px 70px 10px rgba(255, 255, 255, 0.5) inset;
+    z-index: 2;
+}
+
+.ball:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    filter: blur(0);
+    opacity: 0.3;
+    background: radial-gradient(circle at 50% 80%, 
+        #81e8f6, 
+        #76deef 10%, 
+        #92979b 66%, 
+        #afb6bd 100%
+    );
+}
+
+.ball .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at 50% 50%, 
+        rgba(233, 230, 230, 0.4), 
+        rgba(151, 147, 147, 0.1) 40%, 
+        rgba(80, 79, 79, 0) 50%
+    );
+    transform: rotateX(90deg) translateZ(-150px);
+    z-index: -1;
+}
+
+@keyframes rotate-ball {
+    0% {
+        transform: rotateX(23.5deg) rotateY(0deg);
+    }
+    100% {
+        transform: rotateX(23.5deg) rotateY(360deg);
+    }
+}
+
+@keyframes move-map {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Add hover effect to pause animation */
+.stage:hover .ball,
+.stage:hover .ball-texture {
+    animation-play-state: paused;
+}
+
+/* Add responsive sizing */
+@media (min-width: 1024px) {
+    .stage {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (min-width: 1536px) {
+    .stage {
+        width: 250px;
+        height: 250px;
+    }
+} 

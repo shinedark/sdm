@@ -1,4 +1,5 @@
 import React from 'react';
+import GlobeGallery from './GlobeGallery';
 import { imageUrls } from './Images'; // Import the image array
 import './ExpandingAnimation.css';
 
@@ -11,9 +12,10 @@ const ExpandingAnimation: React.FC = () => {
       className="expanding-animation-container"
       style={{ backgroundImage: `url(${randomImage})` }}
     >
-      <div className="expanding-animation-content">
+      <GlobeGallery />
+      {/* <div className="expanding-animation-content">
         This is for no reason other than fun
-      </div>
+      </div> */}
     </div>
   );
 };
