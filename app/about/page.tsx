@@ -15,13 +15,13 @@ export default function About() {
                     <section className="space-y-6">
                         <div className="bg-white backdrop-blur-sm p-8 md:p-10 space-y-8">
                             <p className="text-gray-800 leading-relaxed text-lg">
-                                Shine Dark's battles with health have profoundly shaped his vision of what an artist can be. Inspired by his struggles, he envisions a new archetype of artist. His health challenges led him to explore self-sufficiency and the healing power of food and technology which in turn inspired him to merge these experiences into his artistic expression.
+                                Shine Dark&apos;s battles with health have profoundly shaped his vision of what an artist can be. Inspired by his struggles, he envisions a new archetype of artist. His health challenges led him to explore self-sufficiency and the healing power of food and technology which in turn inspired him to merge these experiences into his artistic expression.
                             </p>
                             <p className="text-gray-800 leading-relaxed text-lg">
                                 As a record label and artist, Shine is setting out to redefine the role of artists in society, demonstrating that creativity can extend beyond traditional mediums into the cultivation of both crops and culture. His mission is to awaken human beings through the synergy of technology and art, specifically by developing a replicable process.
                             </p>
                             <p className="text-gray-800 leading-relaxed text-lg">
-                                Over the next five years, he aims to illustrate the cost, process, and development of this vision, fostering a new culture revitalized "Made in America" both possible and affordable. Through this, Shine seeks to inspire and cultivate minds during this era of change, showing that art and agriculture can be deeply interconnected paths to personal and communal healing.
+                                Over the next five years, he aims to illustrate the cost, process, and development of this vision, fostering a new culture revitalized &ldquo;Made in America&rdquo; both possible and affordable. Through this, Shine seeks to inspire and cultivate minds during this era of change, showing that art and agriculture can be deeply interconnected paths to personal and communal healing.
                             </p>
                         </div>
                     </section>
