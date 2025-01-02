@@ -29,15 +29,32 @@ export default function About() {
                     <section className="space-y-6">
                         <div className="bg-white backdrop-blur-sm p-8 md:p-10">
                             <iframe
+                                title="Shine Dark - WHAT IS CRAZY"
                                 width="100%"
                                 height="300"
-                                loading='lazy'
+                                loading="lazy"
                                 scrolling="no"
                                 frameBorder="no"
-                                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1961782483&color=%23b0a8a4&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
-                            </iframe>
+                                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1961782483&color=%23b0a8a4&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+                            />
                             <div style={{ fontSize: '10px', color: '#cccccc', lineBreak: 'anywhere', wordBreak: 'normal', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', fontFamily: 'Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif', fontWeight: 100 }}>
-                                <a href="https://soundcloud.com/shinedark" title="Shine Dark" target="_blank" style={{ color: '#cccccc', textDecoration: 'none' }}>Shine Dark</a> · <a href="https://soundcloud.com/shinedark/what-is-crazy" title="WHAT IS CRAZY" target="_blank" style={{ color: '#cccccc', textDecoration: 'none' }}>WHAT IS CRAZY</a>
+                                <a
+                                    href="https://soundcloud.com/shinedark"
+                                    title="Shine Dark"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ color: '#cccccc', textDecoration: 'none' }}
+                                >
+                                    Shine Dark
+                                </a> · <a
+                                    href="https://soundcloud.com/shinedark/what-is-crazy"
+                                    title="WHAT IS CRAZY"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ color: '#cccccc', textDecoration: 'none' }}
+                                >
+                                    WHAT IS CRAZY
+                                </a>
                             </div>
                         </div>
                     </section>
