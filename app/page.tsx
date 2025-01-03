@@ -47,7 +47,6 @@ export default function Home() {
         >
           NOISE
         </button>
-
         {/* VINYL Button */}
         <button
           onClick={toggleVinylOverlay}

@@ -11,7 +11,16 @@ export default function About() {
                             About
                         </h1>
                     </section>
-
+                    <iframe
+                        style={{ border: '1px #FFFFFF hidden' }}
+                        src="https://shinedark.dev/"
+                        title="iFrame"
+                        width="100%"
+                        height="300px"
+                        scrolling="yes"
+                        frameBorder="no"
+                        allow=""
+                    />
                     <section className="space-y-6">
                         <div className="bg-white backdrop-blur-sm p-8 md:p-10 space-y-8">
                             <p className="text-gray-800 leading-relaxed text-lg">
