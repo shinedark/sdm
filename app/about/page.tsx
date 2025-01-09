@@ -23,14 +23,46 @@ export default function About() {
                     />
                     <section className="space-y-6">
                         <div className="bg-white backdrop-blur-sm p-8 md:p-10 space-y-8">
+                            <h2 className="text-2xl font-bold mb-4">Welcome to Shine Dark Music</h2>
                             <p className="text-gray-800 leading-relaxed text-lg">
-                                Shine Dark&apos;s battles with health have profoundly shaped his vision of what an artist can be. Inspired by his struggles, he envisions a new archetype of artist. His health challenges led him to explore self-sufficiency and the healing power of food and technology which in turn inspired him to merge these experiences into his artistic expression.
+                                Shine Dark Music is a media company with a rich catalog of 186 tracks across 47 releases. We offer our music in both digital and physical formats, with 1 active vinyl release in inventory, featuring 500 copies available at $33 each.
                             </p>
+
+                            <h2 className="text-2xl font-bold mb-4">Engaging with Our Community</h2>
                             <p className="text-gray-800 leading-relaxed text-lg">
-                                As a record label and artist, Shine is setting out to redefine the role of artists in society, demonstrating that creativity can extend beyond traditional mediums into the cultivation of both crops and culture. His mission is to awaken human beings through the synergy of technology and art, specifically by developing a replicable process.
+                                We&apos;re developing a unique mechanism to reward fans for sharing our records on social media through Opacity Network. This interaction generates a carbon footprint, which we aim to offset with our steel building farm project.
                             </p>
+
+                            <h2 className="text-2xl font-bold mb-4">Sustainability Commitment</h2>
                             <p className="text-gray-800 leading-relaxed text-lg">
-                                Over the next five years, he aims to illustrate the cost, process, and development of this vision, fostering a new culture revitalized &ldquo;Made in America&rdquo; both possible and affordable. Through this, Shine seeks to inspire and cultivate minds during this era of change, showing that art and agriculture can be deeply interconnected paths to personal and communal healing.
+                                Our commitment to sustainability is at the core of our project. By transforming a warehouse into a self-sustaining environment in Colorado, we&apos;re not only growing food hydroponically but also exploring how sounds and information affect the growth of medicinal plants, acknowledging plants as sentient beings. This project embodies our tagline: Where Music Cultivates Sustainability.
+                            </p>
+
+                            <h2 className="text-2xl font-bold mb-4">The Project Journey</h2>
+                            <p className="text-gray-800 leading-relaxed text-lg">
+                                As Shine Dark, I code and create content to document our journey of building a self-sustaining, carbon-neutral setup. This living and working space includes a modular home, areas for entertainment and work, and a hydroponic farm, all driven by the belief that Awakening Human Begins via Technology & Art.
+                            </p>
+
+                            <h2 className="text-2xl font-bold mb-4">Personal Health and Innovation</h2>
+                            <p className="text-gray-800 leading-relaxed text-lg">
+                                My health journey, requiring a strict diet and the use of medical marijuana, has deeply influenced this project. It&apos;s about merging personal health needs with sustainable living, showcasing how this integration can lead to a cultural revolution.
+                            </p>
+
+                            <h2 className="text-2xl font-bold mb-4">Social Media Integration</h2>
+                            <p className="text-gray-800 leading-relaxed text-lg">
+                                We use our media presence to promote our project on social media, driving attention to how music can foster sustainability and health. Join us in this journey, where every note plays a part in cultivating a healthier planet and person.
+                            </p>
+
+                            <h2 className="text-2xl font-bold mb-4">Join Us</h2>
+                            <p className="text-gray-800 leading-relaxed text-lg">
+                                Visit <a
+                                    href="https://shinedark.dev"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-600 hover:text-blue-800 underline"
+                                >
+                                    shinedark.dev
+                                </a> to be part of this transformative project. Let&apos;s explore together how music can cultivate sustainability and how technology and art can awaken human potential.
                             </p>
                         </div>
                     </section>
