@@ -5,9 +5,13 @@ import Image from 'next/image';
 import BinaryStatic from './components/BinaryStatic';
 import Footer from './components/Footer';
 import Vinyl from './components/Vinyl';
+import WalletBalance from './components/WalletBalance';
 
 
 import './globals.css';
+
+
+const sdmWallet = process.env.NEXT_PUBLIC_SDM_WALLET_ADDRESS || '';
 
 export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -54,7 +58,7 @@ export default function Home() {
         >
           VINYL
         </button>
-
+        <WalletBalance walletAddress={sdmWallet} goalAmount={5000} />
         <Image
           src={'/images/6.png'}
           alt="Vinyl Icon"
