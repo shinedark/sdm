@@ -11,16 +11,6 @@ export default function About() {
                             About
                         </h1>
                     </section>
-                    <iframe
-                        style={{ border: '1px #FFFFFF hidden' }}
-                        src="https://shinedark.dev/"
-                        title="iFrame"
-                        width="100%"
-                        height="300px"
-                        scrolling="yes"
-                        frameBorder="no"
-                        allow=""
-                    />
                     <section className="space-y-6">
                         <div className="bg-white backdrop-blur-sm p-8 md:p-10 space-y-8">
                             <h2 className="text-2xl font-bold mb-4">Welcome to Shine Dark Music</h2>
@@ -68,6 +58,16 @@ export default function About() {
                     </section>
 
                     <section className="space-y-6">
+                        <iframe
+                            style={{ border: '1px #FFFFFF hidden' }}
+                            src="https://shinedark.dev/"
+                            title="iFrame"
+                            width="100%"
+                            height="300px"
+                            scrolling="yes"
+                            frameBorder="no"
+                            allow=""
+                        />
                         <div className="bg-white backdrop-blur-sm p-8 md:p-10">
                             <iframe
                                 title="Shine Dark - WHAT IS CRAZY"
@@ -78,6 +78,7 @@ export default function About() {
                                 frameBorder="no"
                                 src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1961782483&color=%23b0a8a4&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
                             />
+
                             <div style={{ fontSize: '10px', color: '#cccccc', lineBreak: 'anywhere', wordBreak: 'normal', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', fontFamily: 'Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif', fontWeight: 100 }}>
                                 <a
                                     href="https://soundcloud.com/shinedark"
