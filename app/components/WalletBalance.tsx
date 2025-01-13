@@ -55,9 +55,14 @@ export default function WalletBalance({ walletAddress, goalAmount }: WalletBalan
     }
 
     return (
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl absolute top-4 left-35vw">
-            <div className="p-4">
-                <div className="space-y-2">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl 
+            absolute top-4 
+            left-4 right-4
+            md:left-[35vw] md:right-auto
+            ">
+            <div className="p-2 md:p-4">
+                {/* Desktop Version */}
+                <div className="hidden md:block space-y-2">
                     <div className="flex justify-between items-center">
                         <p className="text-sm font-medium text-gray-500">Progress to Goal</p>
                         <p className="text-sm font-medium text-gray-900">${usdBalance.toFixed(2)} / ${goalAmount.toLocaleString()}</p>
@@ -76,6 +81,22 @@ export default function WalletBalance({ walletAddress, goalAmount }: WalletBalan
                     >
                         Donate
                     </a>
+                </div>
+
+                {/* Mobile Version */}
+                <div className="md:hidden">
+                    <div className="flex flex-col items-center text-center">
+                        <p className="text-xs font-medium text-gray-500">Current Balance</p>
+                        <p className="text-lg font-bold text-gray-900">${usdBalance.toFixed(2)}</p>
+                        <a
+                            href="https://shinedark.dev"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-1 text-xs font-medium text-black hover:text-black-700 transition-colors"
+                        >
+                            Donate
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
