@@ -79,7 +79,7 @@ export default function WalletBalance({ walletAddress, goalAmount }: WalletBalan
                         rel="noopener noreferrer"
                         className="block mt-2 text-sm font-medium text-black hover:text-black-700 transition-colors"
                     >
-                        Donate
+                        Donate to continue the vision
                     </a>
                 </div>
 
@@ -94,7 +94,7 @@ export default function WalletBalance({ walletAddress, goalAmount }: WalletBalan
                             rel="noopener noreferrer"
                             className="mt-1 text-xs font-medium text-black hover:text-black-700 transition-colors"
                         >
-                            Donate
+                            Donate to continue the vision
                         </a>
                     </div>
                 </div>
