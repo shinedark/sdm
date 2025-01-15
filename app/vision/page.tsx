@@ -1,6 +1,7 @@
 'use client';
 
 import Footer from '../components/Footer';
+import Image from 'next/image';
 
 export default function Vision() {
     return (
@@ -8,17 +9,24 @@ export default function Vision() {
             <main className="flex-1 flex items-center justify-center p-8 relative z-10 bg-white">
                 <div className="text-black max-w-4xl space-y-16 mt-16 px-8 py-12 md:px-12 md:py-16 bg-white">
                     <section className="text-center mb-16">
-                        <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-900">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-900">
                             Awakening Human Being
                         </h1>
-                        <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-900">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-900">
                             Via
                         </h1>
-                        <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-900">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-900">
                             Technology & Art
                         </h1>
                     </section>
-
+                    <Image
+                        src={'/images/xpost.jpg'}
+                        alt="Vinyl Icon"
+                        width={300}
+                        height={300}
+                        className="relative mx-auto w-[200px] md:w-[250px] lg:w-[300px] h-auto"
+                        priority
+                    />
                     <section className="space-y-6">
                         <div className="bg-white backdrop-blur-sm p-8 md:p-10 space-y-8">
                             <h2 className="text-2xl font-bold mb-4">Vision</h2>
