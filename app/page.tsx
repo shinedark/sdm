@@ -60,7 +60,7 @@ export default function Home() {
         >
           VINYL
         </button>
-        <WalletBalance walletAddress={sdmWallet} goalAmount={5000} />
+        {/* <WalletBalance walletAddress={sdmWallet} goalAmount={5000} /> */}
         <Image
           src={'/images/6.png'}
           alt="Vinyl Icon"
