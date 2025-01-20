@@ -42,8 +42,8 @@ export default function About() {
                             </a>
                         </div>
                     </div>
-                    <section className="space-y-6">
-                        <div className="bg-white backdrop-blur-sm md:p-10 space-y-8">
+                    <section className="bg-white backdrop-blur-sm p-6 md:p-8 space-y-8">
+                        <div className="bg-white">
                             <h2 className="text-2xl font-bold mb-4">Welcome to Shine Dark Music</h2>
                             <p className="text-gray-800 leading-relaxed text-lg">
                                 Shine Dark Music is a media company with a rich catalog of 186 tracks across 47 releases. We offer our music in both digital and physical formats, with 1 active vinyl release in inventory.
@@ -88,7 +88,7 @@ export default function About() {
                         </div>
                     </section>
 
-                    <section className="space-y-6">
+                    <section className="bg-white backdrop-blur-sm p-6 md:p-8 space-y-8">
                         <iframe
                             style={{ border: '1px #FFFFFF hidden' }}
                             src="https://shinedark.dev/"
