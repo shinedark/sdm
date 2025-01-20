@@ -5,17 +5,17 @@ import Image from 'next/image';
 
 export default function Vision() {
     return (
-        <div className="flex flex-col min-h-screen relative">
+        <div className="flex flex-col min-h-screen relative pb-20">
             <main className="flex-1 flex items-center justify-center p-8 relative z-10 bg-white">
-                <div className="text-black max-w-4xl space-y-16 mt-16 px-8 py-12 md:px-12 md:py-16 bg-white">
-                    <section className="text-center mb-16">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-900">
+                <div className="text-black  bg-white mb-2">
+                    <section className="text-center mb-6">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-900">
                             Awakening Human Being
                         </h1>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-900">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-900">
                             Via
                         </h1>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-900">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-900">
                             Technology & Art
                         </h1>
                     </section>
@@ -28,7 +28,7 @@ export default function Vision() {
                         priority
                     />
                     <section className="space-y-6">
-                        <div className="bg-white backdrop-blur-sm p-8 md:p-10 space-y-8">
+                        <div className="bg-white backdrop-blur-sm p-6 md:p-8 space-y-8">
                             <h2 className="text-2xl font-bold mb-4">Vision</h2>
                             <p className="text-gray-800 leading-relaxed text-lg">
                                 We are on a mission to inspire anyone who wants to learn, grow, and create.
@@ -56,7 +56,7 @@ export default function Vision() {
 
 
                     <section className="space-y-6">
-                        <div className="bg-white backdrop-blur-sm p-8 md:p-10 space-y-8">
+                        <div className="bg-white backdrop-blur-sm p-6 md:p-8 space-y-8">
                             <h2 className="text-2xl font-bold mb-4">Why</h2>
                             <p className="text-gray-800 leading-relaxed text-lg">
                                 Shine Dark&apos;s vision was born from a deeply personal journey shaped by his own health challenges. Struggling to find balance and resilience, he realized the transformative power of self-awareness, creativity, and innovation. This awakening inspired him to create a platform where technology and art intersect to empower others. His mission is not only to redefine what it means to be an artist but also to develop a sustainable, collaborative culture for modern farmers and creators. By sharing his process and vision, Shine Dark hopes to inspire individuals to grow, create, and embrace a new era of self-sufficiency, health, and sustainability, showcasing how music, health, and eco-fashion can converge to cultivate a better future.

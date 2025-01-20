@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
         </a>
       </div>
       <div className="flex items-center justify-center">
-        <h1 className="font-bold text-white text-sm">
+        <h1 className="font-bold text-sm">
           <a className="contact hover:text-gray-400 transition-colors duration-300"
             href="mailto:shinedarkmusic@gmail.com">
             CONTACT US

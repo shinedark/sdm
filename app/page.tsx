@@ -5,7 +5,6 @@ import Image from 'next/image';
 import BinaryStatic from './components/BinaryStatic';
 import Footer from './components/Footer';
 import Vinyl from './components/Vinyl';
-import WalletBalance from './components/WalletBalance';
 import WeedPlant from './components/WeedPlant';
 import PlantToJeans from './components/PlantToJeans';
 
@@ -60,7 +59,6 @@ export default function Home() {
         >
           VINYL
         </button>
-        {/* <WalletBalance walletAddress={sdmWallet} goalAmount={5000} /> */}
         <Image
           src={'/images/6.png'}
           alt="Vinyl Icon"

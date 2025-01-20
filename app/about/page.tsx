@@ -3,19 +3,50 @@ import Footer from '../components/Footer';
 
 export default function About() {
     return (
-        <div className="flex flex-col min-h-screen relative">
-            <main className="flex-1 flex items-center justify-center p-8 relative z-10 bg-white">
-                <div className="text-black max-w-4xl space-y-16 mt-16 px-8 py-12 md:px-12 md:py-16 bg-white">
-                    <section className="text-center mb-16">
+        <div className="flex flex-col min-h-screen relative pb-20">
+            <main className="flex-1 flex items-center justify-center relative z-10 bg-white ">
+                <div className="text-black max-w-4xl space-y-6 px-8 py-2 md:px-12 md:py-6 bg-white">
+                    <section className="text-center">
                         <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-900">
                             About
                         </h1>
                     </section>
+                    <div className="bg-white backdrop-blur-sm md:p-10">
+                        <iframe
+                            title="Shine Dark - WHAT IS CRAZY"
+                            width="100%"
+                            height="300"
+                            loading="lazy"
+                            scrolling="no"
+                            frameBorder="no"
+                            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1961782483&color=%23b0a8a4&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+                        />
+
+                        <div style={{ fontSize: '10px', color: '#cccccc', lineBreak: 'anywhere', wordBreak: 'normal', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', fontFamily: 'Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif', fontWeight: 100 }}>
+                            <a
+                                href="https://soundcloud.com/shinedark"
+                                title="Shine Dark"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ color: '#cccccc', textDecoration: 'none' }}
+                            >
+                                Shine Dark
+                            </a> · <a
+                                href="https://soundcloud.com/shinedark/what-is-crazy"
+                                title="WHAT IS CRAZY"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ color: '#cccccc', textDecoration: 'none' }}
+                            >
+                                WHAT IS CRAZY
+                            </a>
+                        </div>
+                    </div>
                     <section className="space-y-6">
-                        <div className="bg-white backdrop-blur-sm p-8 md:p-10 space-y-8">
+                        <div className="bg-white backdrop-blur-sm md:p-10 space-y-8">
                             <h2 className="text-2xl font-bold mb-4">Welcome to Shine Dark Music</h2>
                             <p className="text-gray-800 leading-relaxed text-lg">
-                                Shine Dark Music is a media company with a rich catalog of 186 tracks across 47 releases. We offer our music in both digital and physical formats, with 1 active vinyl release in inventory, featuring 500 copies available at $33 each.
+                                Shine Dark Music is a media company with a rich catalog of 186 tracks across 47 releases. We offer our music in both digital and physical formats, with 1 active vinyl release in inventory.
                             </p>
 
                             <h2 className="text-2xl font-bold mb-4">Engaging with Our Community</h2>
@@ -68,37 +99,7 @@ export default function About() {
                             frameBorder="no"
                             allow=""
                         />
-                        <div className="bg-white backdrop-blur-sm p-8 md:p-10">
-                            <iframe
-                                title="Shine Dark - WHAT IS CRAZY"
-                                width="100%"
-                                height="300"
-                                loading="lazy"
-                                scrolling="no"
-                                frameBorder="no"
-                                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1961782483&color=%23b0a8a4&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
-                            />
 
-                            <div style={{ fontSize: '10px', color: '#cccccc', lineBreak: 'anywhere', wordBreak: 'normal', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', fontFamily: 'Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif', fontWeight: 100 }}>
-                                <a
-                                    href="https://soundcloud.com/shinedark"
-                                    title="Shine Dark"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={{ color: '#cccccc', textDecoration: 'none' }}
-                                >
-                                    Shine Dark
-                                </a> · <a
-                                    href="https://soundcloud.com/shinedark/what-is-crazy"
-                                    title="WHAT IS CRAZY"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={{ color: '#cccccc', textDecoration: 'none' }}
-                                >
-                                    WHAT IS CRAZY
-                                </a>
-                            </div>
-                        </div>
                     </section>
                 </div>
             </main>
