@@ -69,10 +69,10 @@ export default function Home() {
         />
 
         <Cube isAnimating={isAnimating} />
-        <div className="flex flex-row items-center space-around fixed w-full -z-10">
+        {/* <div className="flex flex-row items-center space-around fixed w-full -z-10">
           <WeedPlant isAnimating={isAnimating} />
           <PlantToJeans isAnimating={isAnimating} />
-        </div>
+        </div> */}
         {/* Audio Element */}
         <audio ref={audioRef} src="/music/elritmo.m4a" preload="auto" />
       </main>
