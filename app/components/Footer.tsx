@@ -14,7 +14,7 @@ import Navigation from './Navigation';
 const Footer: React.FC = () => {
   return (
     <footer className="fixed bottom-0 left-0 right-0 bg-black text-white py-1 z-40">
-      <Navigation />
+      {/* <Navigation /> */}
       <div className="container mx-auto flex justify-center gap-3 sm:gap-4 md:gap-6 overflow-x-auto py-1">
         <a
           href="https://soundcloud.com/shinedark"
