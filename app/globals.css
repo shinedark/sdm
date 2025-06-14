@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @import url('https://fonts.googleapis.com/css2?family=Linefont:wdth,wght@136.6,4..1000&family=Sedgwick+Ave+Display&display=swap');
-
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -20,21 +18,31 @@
   }
 }
 
-
-/* In your global CSS file (e.g., styles/globals.css) */
-
+/* Base styles */
 body {
-  font-family: "Sedgwick Ave Display";
+  font-family: var(--font-inter);
 }
+
+/* Food Guide styles */
+.food-guide {
+  font-family: var(--font-inter);
+}
+
+.guide-title {
+  font-family: var(--font-sedgwick);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 0.5rem;
+}
+
 .contact {
   text-shadow: -125px 25px 3px rgba(0, 0, 0, 0.56), 126px -25px 3px rgba(0, 0, 0, 0.56);
 }
- .contact:hover {
+
+.contact:hover {
   animation: contact-hover 3s ease-in-out infinite;
- }
-
-
- 
+}
 
 @layer utilities {
   .text-balance {

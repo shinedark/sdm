@@ -51,6 +51,10 @@ const config: Config = {
         static: 'static 5s steps(10) infinite',
         pulse: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
+      fontFamily: {
+        inter: ['var(--font-inter)'],
+        sedgwick: ['var(--font-sedgwick)'],
+      },
     },
   },
   plugins: [],
