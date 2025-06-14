@@ -32,7 +32,7 @@ const ExpandingAnimation: React.FC<ExpandingAnimationProps> = ({ isExpanded }) =
   <div className="text-lg text-black font-bold mb-4">
     Camilo’s Food Sensitivity &amp; Histamine Avoidance Guide
   </div>
-  <div style={{  fontStyle: 'italic', marginBottom: 8 }}>
+  <div style={{   marginBottom: 8 }}>
     (Based on IgG Test + Histamine Intolerance)
   </div>
 
