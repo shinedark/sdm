@@ -1,14 +1,17 @@
 'use client'; // Ensure this is a Client Component
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import './Cube.css'; // Import the CSS
 import Monsty from './Monsty';
 
 interface CubeProps {
   isAnimating: boolean;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  isHovered: boolean;
 }
 
-const Cube: React.FC<CubeProps> = ({ isAnimating }) => {
+const Cube = forwardRef<HTMLDivElement, CubeProps>(({ isAnimating, onMouseEnter, onMouseLeave, isHovered }, ref) => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [selectedFace, setSelectedFace] = useState('front');
@@ -62,7 +65,12 @@ const Cube: React.FC<CubeProps> = ({ isAnimating }) => {
   }, []);
 
   return (
-    <div className="cube-container">
+    <div 
+      ref={ref}
+      className="cube-container"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       <div className={`scene ${isAnimating ? 'cube-bounce' : ''}`}>
         <div className="cube" style={{ transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)` }}>
           <div className={`cube__face cube__face--front ${selectedFace === 'front' ? 'selected' : ''}`}><Monsty isAnimating={isAnimating} key={1} /></div>
@@ -74,7 +82,7 @@ const Cube: React.FC<CubeProps> = ({ isAnimating }) => {
         </div>
       </div>
 
-      {!isAnimating && (
+      {!isAnimating && !isHovered && (
         <div className="controls">
           <button onClick={() => handleRotation('up')}>Up</button>
           <button onClick={() => handleRotation('down')}>Down</button>
@@ -84,6 +92,8 @@ const Cube: React.FC<CubeProps> = ({ isAnimating }) => {
       )}
     </div>
   );
-};
+});
+
+Cube.displayName = 'Cube';
 
 export default Cube;

@@ -47,7 +47,7 @@ export function ExpandableCard({
       onClick={handleClick}
     >
       <div className="card-header">
-        <div className="header-text">IDENTIFICATION CARD</div>
+        <div className="header-text">MEDICAL ID</div>
       </div>
       
       <div className="card-content">
@@ -123,10 +123,9 @@ export function ExpandableCard({
             }}
             className="expand-button"
           >
-            <span>Additional Information</span>
-            <span className="arrow">
-              {isBottomExpanded ? '▲' : '▼'}
-            </span>
+            <h3 className="arrow">
+              FULL LIST OF FOODS
+            </h3>
           </button>
           
           <div
@@ -152,7 +151,7 @@ export function ExpandableCard({
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           pointer-events: auto;
           z-index: 1000;
-          font-family: 'Courier New', monospace;
+      
         }
 
         .card-header {
@@ -185,7 +184,7 @@ export function ExpandableCard({
           height: 0;
           padding-bottom: 120%;
           border: 1px solid #ccc;
-          background: #f8fafc;
+
                       background-image: url('/images/game.png');
           background-size: cover;
           background-position: center;
@@ -266,7 +265,13 @@ export function ExpandableCard({
         }
 
         .arrow {
-          font-size: 8px;
+          font-size: 20px;
+        
+          color: black;
+        }
+        
+        .arrow:hover {
+          color: #1a365d;
         }
 
         .expandable-content {

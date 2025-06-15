@@ -17,10 +17,11 @@ const sdmWallet = process.env.NEXT_PUBLIC_SDM_WALLET_ADDRESS || '';
 export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [showVinyl, setShowVinyl] = useState(false);
-
+  const [isHovered, setIsHovered] = useState(false);
+  const elementRef = useRef(null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-
+  console.log(isHovered);
   const handleNoiseClick = () => {
     if (audioRef.current) {
       if (audioRef.current.paused) {
@@ -68,7 +69,9 @@ export default function Home() {
           priority
         />
 
-        <Cube isAnimating={isAnimating} />
+        <Cube isAnimating={isAnimating} ref={elementRef}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(!isHovered)} isHovered={isHovered} />
         <div className="flex flex-row items-center space-around fixed w-full -z-10">
           <WeedPlant isAnimating={isAnimating} />
           <PlantToJeans isAnimating={isAnimating} />
