@@ -89,6 +89,7 @@ const FoodList = () => {
             <h3 className="block-title">Proteins</h3>
             <ul className="food-items">
               <li>Aged/Cured Meats (salami, bacon)</li>
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
               <li>Braised or Slow-Cooked Meats (e.g., short ribs)</li>
               <li>Shellfish (crab, shrimp)</li>
               <li>Canned Fish (tuna, sardines)</li>
