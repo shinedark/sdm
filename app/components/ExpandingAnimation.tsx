@@ -13,65 +13,65 @@ const FoodList = () => {
     <div className="food-guide">
       {/* IgG Sensitivities Section */}
       <section className="food-section">
-        <h2 className="section-title">🚫 IgG Sensitivities (Class 1 or Higher)</h2>
+        <h2 className="section-title">{`🚫 IgG Sensitivities (Class 1 or Higher)`}</h2>
         
         <div className="food-grid">
           <div className="food-block">
-            <h3 className="block-title">Proteins</h3>
+            <h3 className="block-title">{`Proteins`}</h3>
             <ul className="food-items">
-              <li>Beef (0.178)</li>
-              <li>Crab (0.237)</li>
-              <li>Haddock (0.210)</li>
-              <li>Egg Yolk (0.238)</li>
-              <li>Cow's Milk (0.247)</li>
-              <li>Yogurt (0.226)</li>
+              <li>{`Beef (0.178)`}</li>
+              <li>{`Crab (0.237)`}</li>
+              <li>{`Haddock (0.210)`}</li>
+              <li>{`Egg Yolk (0.238)`}</li>
+              <li>{`Cow's Milk (0.247)`}</li>
+              <li>{`Yogurt (0.226)`}</li>
             </ul>
           </div>
 
           <div className="food-block">
-            <h3 className="block-title">Grains/Starches</h3>
+            <h3 className="block-title">{`Grains/Starches`}</h3>
             <ul className="food-items">
-              <li>Gluten (0.216)</li>
-              <li>Rice (0.276)</li>
-              <li>Wheat (0.249)</li>
+              <li>{`Gluten (0.216)`}</li>
+              <li>{`Rice (0.276)`}</li>
+              <li>{`Wheat (0.249)`}</li>
             </ul>
           </div>
 
           <div className="food-block">
-            <h3 className="block-title">Legumes/Nuts/Seeds</h3>
+            <h3 className="block-title">{`Legumes/Nuts/Seeds`}</h3>
             <ul className="food-items">
-              <li>Black Bean (0.220)</li>
-              <li>Pinto Bean (0.257)</li>
-              <li>Sesame (0.235)</li>
-              <li>Sunflower Seed (0.253)</li>
-              <li>Walnut (0.213)</li>
+              <li>{`Black Bean (0.220)`}</li>
+              <li>{`Pinto Bean (0.257)`}</li>
+              <li>{`Sesame (0.235)`}</li>
+              <li>{`Sunflower Seed (0.253)`}</li>
+              <li>{`Walnut (0.213)`}</li>
             </ul>
           </div>
 
           <div className="food-block">
-            <h3 className="block-title">Vegetables</h3>
+            <h3 className="block-title">{`Vegetables`}</h3>
             <ul className="food-items">
-              <li>Broccoli (0.256)</li>
-              <li>Carrot (0.226)</li>
-              <li>Mushroom (0.222)</li>
-              <li>Potato (0.260)</li>
+              <li>{`Broccoli (0.256)`}</li>
+              <li>{`Carrot (0.226)`}</li>
+              <li>{`Mushroom (0.222)`}</li>
+              <li>{`Potato (0.260)`}</li>
             </ul>
           </div>
 
           <div className="food-block">
-            <h3 className="block-title">Fruits</h3>
+            <h3 className="block-title">{`Fruits`}</h3>
             <ul className="food-items">
-              <li>Coconut (0.259)</li>
-              <li>Grape (0.234)</li>
+              <li>{`Coconut (0.259)`}</li>
+              <li>{`Grape (0.234)`}</li>
             </ul>
           </div>
 
           <div className="food-block">
-            <h3 className="block-title">Misc</h3>
+            <h3 className="block-title">{`Misc`}</h3>
             <ul className="food-items">
-              <li>Black Tea (0.221)</li>
-              <li>Honey (0.220)</li>
-              <li>Brewer's Yeast (0.236)</li>
+              <li>{`Black Tea (0.221)`}</li>
+              <li>{`Honey (0.220)`}</li>
+              <li>{`Brewer's Yeast (0.236)`}</li>
             </ul>
           </div>
         </div>
@@ -81,60 +81,60 @@ const FoodList = () => {
 
       {/* High-Histamine Foods Section */}
       <section className="food-section">
-        <h2 className="section-title">🚫 High-Histamine Foods to Avoid</h2>
-        <p className="section-subtitle">(Due to Slow MAO/DAO Genes)</p>
+        <h2 className="section-title">{`🚫 High-Histamine Foods to Avoid`}</h2>
+        <p className="section-subtitle">{`(Due to Slow MAO/DAO Genes)`}</p>
         
         <div className="food-grid">
           <div className="food-block">
-            <h3 className="block-title">Proteins</h3>
+            <h3 className="block-title">{`Proteins`}</h3>
             <ul className="food-items">
-              <li>Aged/Cured Meats (salami, bacon)</li>
+              <li>{`Aged/Cured Meats (salami, bacon)`}</li>
               {/* eslint-disable-next-line react/no-unescaped-entities */}
-              <li>Braised or Slow-Cooked Meats (e.g., short ribs)</li>
-              <li>Shellfish (crab, shrimp)</li>
-              <li>Canned Fish (tuna, sardines)</li>
+              <li>{`Braised or Slow-Cooked Meats (e.g., short ribs)`}</li>
+              <li>{`Shellfish (crab, shrimp)`}</li>
+              <li>{`Canned Fish (tuna, sardines)`}</li>
             </ul>
           </div>
 
           <div className="food-block">
-            <h3 className="block-title">Dairy/Fermented</h3>
+            <h3 className="block-title">{`Dairy/Fermented`}</h3>
             <ul className="food-items">
-              <li>Yogurt, Kefir</li>
-              <li>Aged Cheeses (Parmesan, Gouda)</li>
+              <li>{`Yogurt, Kefir`}</li>
+              <li>{`Aged Cheeses (Parmesan, Gouda)`}</li>
             </ul>
           </div>
 
           <div className="food-block">
-            <h3 className="block-title">Vegetables</h3>
+            <h3 className="block-title">{`Vegetables`}</h3>
             <ul className="food-items">
-              <li>Spinach (despite IgG-safe score)</li>
-              <li>Eggplant</li>
-              <li>Tomatoes</li>
+              <li>{`Spinach (despite IgG-safe score)`}</li>
+              <li>{`Eggplant`}</li>
+              <li>{`Tomatoes`}</li>
             </ul>
           </div>
 
           <div className="food-block">
-            <h3 className="block-title">Fruits</h3>
+            <h3 className="block-title">{`Fruits`}</h3>
             <ul className="food-items">
-              <li>Citrus (oranges, lemons)</li>
-              <li>Strawberries</li>
-              <li>Bananas (ripe)</li>
+              <li>{`Citrus (oranges, lemons)`}</li>
+              <li>{`Strawberries`}</li>
+              <li>{`Bananas (ripe)`}</li>
             </ul>
           </div>
 
           <div className="food-block">
-            <h3 className="block-title">Condiments</h3>
+            <h3 className="block-title">{`Condiments`}</h3>
             <ul className="food-items">
-              <li>Soy Sauce</li>
-              <li>Vinegar</li>
-              <li>Fermented Foods (kimchi, sauerkraut)</li>
+              <li>{`Soy Sauce`}</li>
+              <li>{`Vinegar`}</li>
+              <li>{`Fermented Foods (kimchi, sauerkraut)`}</li>
             </ul>
           </div>
 
           <div className="food-block">
-            <h3 className="block-title">Alcohol</h3>
+            <h3 className="block-title">{`Alcohol`}</h3>
             <ul className="food-items">
-              <li>Wine, Beer, Champagne</li>
+              <li>{`Wine, Beer, Champagne`}</li>
             </ul>
           </div>
         </div>
@@ -222,16 +222,16 @@ const ExpandingAnimation: React.FC<ExpandingAnimationProps> = ({ isExpanded }) =
     >
       {/* <GlobeGallery /> */}
       <ExpandableCard
-  imageUrl="/images/6.png"
-  imageAlt="Description of the image"
-  rightContent={
-    <div>
-      <h2 className="text-2xl text-black font-bold mb-4">Title</h2>
-      <p className='text-black'>Your content here</p>
-    </div>
-  }
-  bottomContent={<FoodList />}
-/>
+        imageUrl="/images/6.png"
+        imageAlt="Description of the image"
+        rightContent={
+          <div>
+            <h2 className="text-2xl text-black font-bold mb-4">{`Title`}</h2>
+            <p className="text-black">{`Your content here`}</p>
+          </div>
+        }
+        bottomContent={<FoodList />}
+      />
       {/* <div className="expanding-animation-content">
         This is for no reason other than fun
       </div> */}
