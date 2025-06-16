@@ -3,7 +3,7 @@
 import React from 'react';
 import GlobeGallery from '../GlobeGallery';
 
-const History: React.FC = () => {
+const ElArchivo: React.FC = () => {
   return (
     <div className="w-full h-screen overflow-hidden">
       <style jsx>{`
@@ -32,4 +32,4 @@ const History: React.FC = () => {
   );
 };
 
-export default History; 
+export default ElArchivo; 

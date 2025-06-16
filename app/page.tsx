@@ -8,7 +8,7 @@ import Vinyl from './components/Vinyl';
 import WeedPlant from './components/WeedPlant';
 import PlantToJeans from './components/PlantToJeans';
 import Navigation from './components/Navigation';
-import History from './components/sections/History';
+import ElArchivo from './components/sections/ElArchivo';
 import Apps from './components/sections/Apps';
 import Projects from './components/sections/Projects';
 
@@ -84,8 +84,8 @@ export default function Home() {
             <audio ref={audioRef} src="/music/elritmo.m4a" preload="auto" />
           </>
         );
-      case 'History':
-        return <History />;
+      case 'EL ARCHIVO':
+        return <ElArchivo />;
       case 'Apps':
         return <Apps />;
       case 'Projects':

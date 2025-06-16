@@ -8,7 +8,7 @@ type BlobWithRelease = BlobResponse['blobs'][0] & {
 };
 
 type GlobeRendererProps = {
-    response: {
+    response: BlobResponse & {
         blobs: BlobWithRelease[];
     };
 }
