@@ -151,7 +151,7 @@ export function ExpandableCard({
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           pointer-events: auto;
           z-index: 1000;
-      
+      -webkit-overflow-scrolling: touch;
         }
 
         .card-header {
