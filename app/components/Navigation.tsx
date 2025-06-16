@@ -1,31 +1,31 @@
 'use client';
+
+import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
-export default function Navigation() {
-    const pathname = usePathname();
+interface NavigationProps {
+  activeSection: string;
+  onSectionChange: (section: string) => void;
+}
 
-    return (
-        <nav className="w-full">
-            <div className="flex justify-center flex-wrap gap-2 sm:gap-4 px-2 py-1">
-                {[
-                    { name: 'Home', path: '/' },
-                    { name: 'Vision', path: '/vision' },
-                    { name: 'About', path: '/about' },
-                    { name: 'Store', path: '/store' },
-                ].map(({ name, path }) => (
-                    <Link
-                        key={path}
-                        href={path}
-                        className={`w-16 sm:w-20 h-8 sm:h-10 text-sm sm:text-base flex items-center justify-center rounded-full transition-all duration-500 ease-in-out transform hover:scale-105 ${pathname === path
-                            ? 'bg-white text-black'
-                            : 'bg-black text-white hover:bg-white/20'
-                            }`}
-                    >
-                        {name}
-                    </Link>
-                ))}
-            </div>
-        </nav>
-    );
-} 
+const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange }) => {
+  return (
+    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
+      <div className="flex space-x-8">
+        {['Home', 'History', 'Apps', 'Projects'].map((section) => (
+          <button
+            key={section}
+            onClick={() => onSectionChange(section)}
+            className={`w-24 h-12 bg-black text-white flex items-center justify-center rounded-full transition-all duration-300 ${
+              activeSection === section ? 'ring-2 ring-white' : ''
+            }`}
+          >
+            {section}
+          </button>
+        ))}
+      </div>
+    </nav>
+  );
+};
+
+export default Navigation; 

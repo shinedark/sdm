@@ -33,15 +33,7 @@ export default function About() {
                                 style={{ color: '#cccccc', textDecoration: 'none' }}
                             >
                                 Shine Dark
-                            </a> · <a
-                                href="https://soundcloud.com/shinedark/what-is-crazy"
-                                title="WHAT IS CRAZY"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{ color: '#cccccc', textDecoration: 'none' }}
-                            >
-                                WHAT IS CRAZY
-                            </a>
+                            </a> 
                         </div>
                     </div>
 

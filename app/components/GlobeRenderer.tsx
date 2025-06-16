@@ -1,36 +1,42 @@
 import './GlobeRenderer.css'
+import type { list } from '@vercel/blob';
+type BlobResponse = Awaited<ReturnType<typeof list>>;
+
+type BlobWithRelease = BlobResponse['blobs'][0] & {
+    title: string;
+    date: string;
+};
+
 type GlobeRendererProps = {
     response: {
-        blobs: {
-            pathname: string;
-            url: string;
-        }[];
+        blobs: BlobWithRelease[];
     };
 }
 
 export default function GlobeRenderer({ response }: GlobeRendererProps) {
+
     return (
-        <div className="absolute inset-0 overflow-y-auto">
-            <div className="min-h-[300vh] mt-10 mb-10">
-                <div className="flex flex-wrap justify-center gap-8 p-6 m-6">
-                    {response.blobs.map((blob, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20 mb-20 ml-10 mr-10">
+            {response.blobs.map((blob) => (
+                <div
+                    key={`original-${blob.pathname}`}
+                    className="stage"
+                >
+                    <div className="ball">
                         <div
-                            key={`original-${blob.pathname}`}
-                            className="stage"
-                        >
-                            <div className="ball">
-                                <div
-                                    className="ball-texture"
-                                    style={{
-                                        backgroundImage: `url(${blob.url})`
-                                    }}
-                                />
-                                <div className="shadow" />
-                            </div>
-                        </div>
-                    ))}
+                            className="ball-texture"
+                            style={{
+                                backgroundImage: `url(${blob.url})`
+                            }}
+                        />
+                        <div className="shadow" />
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white p-2 rounded-b-lg text-center">
+                        <h3 className="text-sm font-bold">{blob.title}</h3>
+                        <p className="text-xs">{`Released: ${blob.date}`}</p>
+                    </div>
                 </div>
-            </div>
+            ))}
         </div>
     );
 } 

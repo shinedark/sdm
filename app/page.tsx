@@ -7,10 +7,12 @@ import Footer from './components/Footer';
 import Vinyl from './components/Vinyl';
 import WeedPlant from './components/WeedPlant';
 import PlantToJeans from './components/PlantToJeans';
-import { ExpandableCard } from './components/ExpandableCard';
+import Navigation from './components/Navigation';
+import History from './components/sections/History';
+import Apps from './components/sections/Apps';
+import Projects from './components/sections/Projects';
 
 import './globals.css';
-
 
 const sdmWallet = process.env.NEXT_PUBLIC_SDM_WALLET_ADDRESS || '';
 
@@ -18,10 +20,10 @@ export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [showVinyl, setShowVinyl] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [activeSection, setActiveSection] = useState('Home');
   const elementRef = useRef(null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  console.log(isHovered);
   const handleNoiseClick = () => {
     if (audioRef.current) {
       if (audioRef.current.paused) {
@@ -42,48 +44,65 @@ export default function Home() {
     setShowVinyl(false);
   };
 
+  const renderSection = () => {
+    switch (activeSection) {
+      case 'Home':
+        return (
+          <>
+            <BinaryStatic />
+            <button
+              className="fixed top-4 right-8 w-24 h-12 bg-black text-white flex items-center justify-center rounded-full z-40"
+              onClick={handleNoiseClick}
+            >
+              {`NOISE`}
+            </button>
+            <button
+              onClick={toggleVinylOverlay}
+              className="fixed top-4 left-8 w-24 h-12 bg-black text-white flex items-center justify-center rounded-full z-40"
+            >
+              {`VINYL`}
+            </button>
+            <Image
+              src={'/images/6.png'}
+              alt="Vinyl Icon"
+              width={48}
+              height={64}
+              className="fixed top-20 left-20"
+              priority
+            />
+            <Cube 
+              isAnimating={isAnimating} 
+              ref={elementRef}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)} 
+              isHovered={isHovered} 
+            />
+            <div className="flex flex-row items-center space-around fixed w-full -z-10">
+              <WeedPlant isAnimating={isAnimating} />
+              <PlantToJeans isAnimating={isAnimating} />
+            </div>
+            <audio ref={audioRef} src="/music/elritmo.m4a" preload="auto" />
+          </>
+        );
+      case 'History':
+        return <History />;
+      case 'Apps':
+        return <Apps />;
+      case 'Projects':
+        return <Projects />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen relative z-0">
+      <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
       <main className="flex flex-1 items-center justify-center p-0 z-10 relative overflow-auto">
-        <BinaryStatic />
-        {/* NOISE Button */}
-        <button
-          className="fixed top-4 right-8 w-24 h-12 bg-black text-white flex items-center justify-center rounded-full z-40"
-          onClick={handleNoiseClick}
-        >
-          NOISE
-        </button>
-        {/* VINYL Button */}
-        <button
-          onClick={toggleVinylOverlay}
-          className="fixed top-4 left-8 w-24 h-12 bg-black text-white flex items-center justify-center rounded-full z-40"
-        >
-          VINYL
-        </button>
-        <Image
-          src={'/images/6.png'}
-          alt="Vinyl Icon"
-          width={48}
-          height={64}
-          className="fixed top-20 left-20"
-          priority
-        />
-
-        <Cube isAnimating={isAnimating} ref={elementRef}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(!isHovered)} isHovered={isHovered} />
-        <div className="flex flex-row items-center space-around fixed w-full -z-10">
-          <WeedPlant isAnimating={isAnimating} />
-          <PlantToJeans isAnimating={isAnimating} />
-        </div>
-        {/* Audio Element */}
-        <audio ref={audioRef} src="/music/elritmo.m4a" preload="auto" />
+        {renderSection()}
       </main>
       <Footer />
-      {/* Vinyl Overlay */}
-      {showVinyl && (
-        <Vinyl onClose={closeVinylOverlay} />
-      )}
+      {showVinyl && <Vinyl onClose={closeVinylOverlay} />}
     </div>
   );
 }
