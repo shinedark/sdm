@@ -23,7 +23,7 @@ const FoodList = () => {
               <li>{`Crab (0.237)`}</li>
               <li>{`Haddock (0.210)`}</li>
               <li>{`Egg Yolk (0.238)`}</li>
-              <li>{`Cow's Milk (0.247)`}</li>
+              <li>{`Cow&apos;s Milk (0.247)`}</li>
               <li>{`Yogurt (0.226)`}</li>
             </ul>
           </div>
@@ -71,7 +71,7 @@ const FoodList = () => {
             <ul className="food-items">
               <li>{`Black Tea (0.221)`}</li>
               <li>{`Honey (0.220)`}</li>
-              <li>{`Brewer's Yeast (0.236)`}</li>
+              <li>{`Brewer&apos;s Yeast (0.236)`}</li>
             </ul>
           </div>
         </div>
@@ -89,7 +89,6 @@ const FoodList = () => {
             <h3 className="block-title">{`Proteins`}</h3>
             <ul className="food-items">
               <li>{`Aged/Cured Meats (salami, bacon)`}</li>
-              {/* eslint-disable-next-line react/no-unescaped-entities */}
               <li>{`Braised or Slow-Cooked Meats (e.g., short ribs)`}</li>
               <li>{`Shellfish (crab, shrimp)`}</li>
               <li>{`Canned Fish (tuna, sardines)`}</li>
