@@ -7,10 +7,12 @@ type BlobWithRelease = BlobResponse['blobs'][0] & {
     date: string;
 };
 
+type ModifiedBlobResponse = Omit<BlobResponse, 'blobs'> & {
+    blobs: BlobWithRelease[];
+};
+
 type GlobeRendererProps = {
-    response: BlobResponse & {
-        blobs: BlobWithRelease[];
-    };
+    response: ModifiedBlobResponse;
 }
 
 export default function GlobeRenderer({ response }: GlobeRendererProps) {
