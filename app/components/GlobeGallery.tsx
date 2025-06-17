@@ -76,8 +76,12 @@ type BlobWithRelease = BlobResponse['blobs'][0] & {
     title: string;
 };
 
+type ModifiedBlobResponse = Omit<BlobResponse, 'blobs'> & {
+    blobs: BlobWithRelease[];
+};
+
 export default function GlobeGallery() {
-    const [response, setResponse] = useState<BlobResponse | null>(null);
+    const [response, setResponse] = useState<ModifiedBlobResponse | null>(null);
     const [error, setError] = useState<boolean>(false);
 
     const calculateSimilarity = (str1: string, str2: string): number => {
@@ -178,7 +182,7 @@ export default function GlobeGallery() {
                         return dateB.getTime() - dateA.getTime();
                     });
                     
-                    setResponse({ ...result, blobs: sortedBlobs });
+                    setResponse({ ...result, blobs: sortedBlobs } as ModifiedBlobResponse);
                 }
             })
             .catch(err => {

@@ -35,15 +35,9 @@ const BinaryStatic: React.FC = () => {
       <style jsx>{`
         .static-text {
           display: flex;
-          // flex-direction: column;
-          // width: 100%;
-          // height: 100%;
           overflow: hidden;
-          // position: absolute;
           color: black;
-     
-          // font-size: 3px; /* Adjust font size for tiny letters */
-          // line-height: 1;
+          
         }
         
         .static-row {

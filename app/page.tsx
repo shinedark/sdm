@@ -48,10 +48,10 @@ export default function Home() {
     switch (activeSection) {
       case 'Home':
         return (
-          <>
+          <div>
             <BinaryStatic />
             <button
-              className="fixed top-4 right-8 w-24 h-12 bg-black text-white flex items-center justify-center rounded-full z-40"
+              className="editz fixed top-4 right-8 w-24 h-12   flex items-center justify-center border-black border-2 rounded-full z-40"
               onClick={handleNoiseClick}
             >
               {`NOISE`}
@@ -82,7 +82,7 @@ export default function Home() {
               <PlantToJeans isAnimating={isAnimating} />
             </div>
             <audio ref={audioRef} src="/music/elritmo.m4a" preload="auto" />
-          </>
+          </div>
         );
       case 'EL ARCHIVO':
         return <ElArchivo />;
@@ -96,9 +96,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen relative z-0">
-      <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
-      <main className="flex flex-1 items-center justify-center p-0 z-10 relative overflow-auto">
+    <div className=" flex flex-col min-h-screen relative z-0">
+      <Navigation  activeSection={activeSection} onSectionChange={setActiveSection} />
+      <main className=" flex flex-1 items-center justify-center p-0 z-10 relative overflow-auto">
         {renderSection()}
       </main>
       <Footer />

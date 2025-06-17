@@ -17,7 +17,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
   ];
 
   return (
-    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
+    <nav className=" fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
       <div className="flex space-x-16">
         {navigationItems.map(({ section, image }) => (
           <button
