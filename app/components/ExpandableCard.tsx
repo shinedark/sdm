@@ -107,7 +107,7 @@ export function ExpandableCard({
             </div>
             <div className="info-row">
               <span className="label">Doses:</span>
-              <span className="value">Due to the condition, the doses and days for some medicines are relative. Please ask the patient to determine the correct dose.</span>
+              <span className="value">{`Due to the condition, the doses and days for some medicines are relative. Please ask the patient to determine the correct dose.`}</span>
             </div>
           </div>
         </div>
