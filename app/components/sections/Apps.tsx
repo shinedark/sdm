@@ -51,7 +51,7 @@ const apps: App[] = [
 const AppCard: React.FC<{ app: App }> = ({ app }) => {
   return (
     <div
-      className="bg-white rounded-xl p-6 mb-8 mt-20 border border-gray-200 shadow-lg"
+      className="bg-white rounded-xl p-6 mb-8 mt-20 mb-20 border border-gray-200 shadow-lg"
     >
       <h2 className="text-3xl font-bold mb-4 text-gray-900">{app.title}</h2>
       <p className="text-gray-600 mb-6 leading-relaxed">{app.description}</p>
@@ -93,7 +93,7 @@ const AppCard: React.FC<{ app: App }> = ({ app }) => {
 
 const Apps: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white p-8">
+    <div className="min-h-screen bg-white p-8 mb-20 mt-20">
       <div className="max-w-4xl mx-auto ">
         <h1 className="text-4xl font-bold mb-8 mt-20 text-center text-gray-900">Mobile Apps</h1>
         <div className="space-y-8">

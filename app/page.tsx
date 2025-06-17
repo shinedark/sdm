@@ -48,7 +48,7 @@ export default function Home() {
     switch (activeSection) {
       case 'Home':
         return (
-          <div>
+          <div className="mb-20 mt-20">
             <BinaryStatic />
             <button
               className="editz fixed top-4 right-8 w-24 h-12   flex items-center justify-center border-black border-2 rounded-full z-40"

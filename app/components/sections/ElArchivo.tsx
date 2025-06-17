@@ -5,7 +5,7 @@ import GlobeGallery from '../GlobeGallery';
 
 const ElArchivo: React.FC = () => {
   return (
-    <div className="w-full h-screen overflow-hidden">
+    <div className="w-full h-screen overflow-hidden mb-20 mt-20">
       <style jsx>{`
         @keyframes fadeInOut {
           0% { opacity: 0; }

@@ -72,7 +72,7 @@ const projects: Project[] = [
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   return (
     <div
-      className="bg-white rounded-xl p-6 mb-8 mt-20 border border-gray-200 shadow-lg"
+      className="bg-white rounded-xl p-6 mb-8 mt-20 mb-20 border border-gray-200 shadow-lg"
     >
       <h2 className="text-3xl font-bold mb-4 text-gray-900">{project.title}</h2>
       <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
@@ -114,7 +114,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
 const Projects: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white text-black p-8">
+    <div className="min-h-screen bg-white text-black p-8 mb-20 mt-20">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-8  mt-20 text-center">Projects</h1>
         <div className="space-y-8">
