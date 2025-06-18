@@ -105,42 +105,7 @@ const folders: AudioFolder[] = [
 ];
 
 export default function GlobeGallery() {
-    const [response, setResponse] = useState<ModifiedBlobResponse | null>(null);
-    const [error, setError] = useState<boolean>(false);
-
-    useEffect(() => {
-        // Use the actual files from public/music
-        const mockFiles = [
-            { name: 'mix1.m4a', size: 380000, uploadedAt: '2024-06-01T12:00:00Z' },
-            { name: 'mix2.m4a', size: 410000, uploadedAt: '2024-06-02T12:00:00Z' },
-            { name: 'mix3.m4a', size: 690000, uploadedAt: '2024-06-03T12:00:00Z' },
-            { name: 'mix4.m4a', size: 360000, uploadedAt: '2024-06-04T12:00:00Z' },
-            { name: 'Hifi.m4a', size: 1050000, uploadedAt: '2024-06-05T12:00:00Z' },
-            { name: 'xxas.m4a', size: 970000, uploadedAt: '2024-06-06T12:00:00Z' },
-            { name: 'folias.m4a', size: 1000000, uploadedAt: '2024-06-07T12:00:00Z' },
-            { name: 'elrit.mov', size: 75000000, uploadedAt: '2024-06-08T12:00:00Z' },
-            { name: 'elritmo.m4a', size: 1200000, uploadedAt: '2024-06-09T12:00:00Z' },
-        ];
-        const blobsWithReleases = mockFiles.map((file) => {
-            const fileUrl = `/music/ARCHIVE/${file.name}`;
-            return {
-                pathname: file.name,
-                url: fileUrl,
-                downloadUrl: fileUrl,
-                size: file.size,
-                uploadedAt: file.uploadedAt,
-                title: file.name,
-                date: file.uploadedAt.split('T')[0],
-            };
-        });
-        setResponse({
-            blobs: blobsWithReleases,
-            hasMore: false,
-        } as unknown as ModifiedBlobResponse);
-    }, []);
-
-    if (error) return <div>Error loading images</div>;
-    if (!response) return <div>Loading...</div>;
+   
 
     return (
         <div className="w-full h-full overflow-y-auto">
