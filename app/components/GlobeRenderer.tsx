@@ -1,44 +1,87 @@
 import './GlobeRenderer.css'
-import type { list } from '@vercel/blob';
-type BlobResponse = Awaited<ReturnType<typeof list>>;
+import React, { useState } from 'react';
+import { useAudio } from '../context/audio-context';
 
-type BlobWithRelease = BlobResponse['blobs'][0] & {
-    title: string;
-    date: string;
-};
-
-type ModifiedBlobResponse = Omit<BlobResponse, 'blobs'> & {
-    blobs: BlobWithRelease[];
-};
-
-type GlobeRendererProps = {
-    response: ModifiedBlobResponse;
+interface AudioFile {
+    name: string;
+    url: string;
 }
 
-export default function GlobeRenderer({ response }: GlobeRendererProps) {
+interface GlobeRendererProps {
+    name: string;
+    imageUrl: string;
+    audioFiles: AudioFile[];
+}
+
+function formatTheName(name: string) {
+    const withoutPrefix = name.replace(/^.*?- /, '');
+    const withoutExtension = withoutPrefix.replace(/\.[^/.]+$/, '');
+    return withoutExtension
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+}
+
+export function GlobeRenderer({ name, imageUrl, audioFiles }: GlobeRendererProps) {
+    const { play } = useAudio();
+    const [isHovered, setIsHovered] = useState(false);
+    const [isListOpen, setIsListOpen] = useState(false);
+
+    function handleGlobeClick() {
+        setIsListOpen(open => !open);
+    }
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20 mb-20 ml-10 mr-10">
-            {response.blobs.map((blob) => (
-                <div
-                    key={`original-${blob.pathname}`}
-                    className="stage"
-                >
-                    <div className="ball">
-                        <div
-                            className="ball-texture"
-                            style={{
-                                backgroundImage: `url(${blob.url})`
-                            }}
-                        />
-                        <div className="shadow" />
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white p-2 rounded-b-lg text-center">
-                        <h3 className="text-sm font-bold">{blob.title}</h3>
-                        <p className="text-xs">{`Released: ${blob.date}`}</p>
-                    </div>
+        <div className="flex flex-col items-center w-full max-w-md mx-auto mt-16 mb-20 px-4">
+            {/* Globe/Album Art */}
+            <div
+                className="relative mb-6 cursor-pointer"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onClick={handleGlobeClick}
+                onTouchStart={handleGlobeClick}
+                tabIndex={0}
+                role="button"
+                aria-pressed={isListOpen}
+            >
+                <div className="ball">
+                    <div
+                        className="ball-texture"
+                        style={{
+                            backgroundImage: `url(${imageUrl})`
+                        }}
+                    />
+                    <div className="shadow" />
                 </div>
-            ))}
+            </div>
+            {/* Album Info */}
+            <div className="w-full text-center mb-6">
+                <h2 className="text-2xl font-bold text-white">{name}</h2>
+                {/* Add artist/year if available */}
+            </div>
+            {/* Track List: Show if hovered or open */}
+            {(isHovered || isListOpen) && (
+                <ul className="w-full bg-black/80 rounded-lg overflow-hidden shadow-lg">
+                    {audioFiles.map((file, idx) => (
+                        <li key={file.name} className="border-b border-white/10 last:border-b-0">
+                            <button
+                                className="w-full text-left px-4 py-3 text-white hover:bg-white/10 transition-colors font-medium"
+                                onClick={() => play({
+                                    id: file.url,
+                                    title: file.name,
+                                    url: file.url,
+                                    date: '',
+                                    isFavorite: false
+                                })}
+                            >
+                                {idx + 1}. {formatTheName(file.name)}
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
-} 
+}
+
+export default GlobeRenderer; 
