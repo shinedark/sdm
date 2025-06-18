@@ -17,17 +17,21 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
   ];
 
   return (
-    <nav className=" fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-      <div className="flex space-x-16">
+    <nav
+      className="z-50 fixed top-4 left-0 w-[43vw] md:top-4 md:left-1/2 md:w-auto md:transform md:-translate-x-1/2 md:fixed md:w-auto md:bg-transparent"
+    >
+      <div
+        className="flex flex-col md:flex-row md:space-x-16 space-y-4 md:space-y-0 fixed left-0 top-1/4 md:static md:top-auto md:left-auto md:transform-none bg-transparent md:bg-transparent p-2 md:p-0 w-full md:w-auto"
+      >
         {navigationItems.map(({ section, image }) => (
           <button
             key={section}
             onClick={() => onSectionChange(section)}
-            className={`w-20 h-20 bg-transparent flex items-center justify-center rounded-full transition-all duration-300 ${
+            className={`w-16 h-16 md:w-20 md:h-20 bg-transparent flex items-center justify-center rounded-full transition-all duration-300 ${
               activeSection === section ? 'ring-2 ring-black' : ''
             }`}
           >
-            <div className="relative w-20 h-20">
+            <div className="relative w-16 h-16 md:w-20 md:h-20">
               <Image
                 src={image}
                 alt={section}
