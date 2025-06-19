@@ -8,7 +8,7 @@ export async function GET() {
     //   groupId: '3002ea6f-6f9c-4fcd-b1eb-794faf218779',
     // });
     console.log('files');
-    return NextResponse.json({ 'files' });
+    return NextResponse.json({'files': 'files'});
   } catch (error) {
     return NextResponse.json({ error: (error as Error).message }, { status: 500 });
   }
