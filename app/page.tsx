@@ -11,6 +11,7 @@ import Navigation from './components/Navigation';
 import ElArchivo from './components/sections/ElArchivo';
 import Apps from './components/sections/Apps';
 import Projects from './components/sections/Projects';
+import { AudioControls } from './components/audio-controls/audio-controls';
 
 import './globals.css';
 
@@ -101,6 +102,9 @@ export default function Home() {
       <main className=" flex flex-1 items-center justify-center p-0 z-10 relative overflow-auto">
         {renderSection()}
       </main>
+      <div className="w-full bg-white border-t flex flex-col items-center px-2 py-2 shadow-lg sticky bottom-0 z-40">
+        <AudioControls />
+      </div>
       <Footer />
       {showVinyl && <Vinyl onClose={closeVinylOverlay} />}
     </div>

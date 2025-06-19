@@ -27,11 +27,11 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
           <button
             key={section}
             onClick={() => onSectionChange(section)}
-            className={`w-16 h-16 md:w-20 md:h-20 bg-transparent flex items-center justify-center rounded-full transition-all duration-300 ${
+            className={`w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-transparent flex items-center justify-center rounded-full transition-all duration-300 ${
               activeSection === section ? 'ring-2 ring-black' : ''
             }`}
           >
-            <div className="relative w-16 h-16 md:w-20 md:h-20">
+            <div className="relative w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20">
               <Image
                 src={image}
                 alt={section}

@@ -93,7 +93,7 @@ const AppCard: React.FC<{ app: App }> = ({ app }) => {
 
 const Apps: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white p-8 mb-20 mt-20">
+    <div className="min-h-screen bg-white p-8 mb-20 mt-20 pl-[10vw] md:pl-0">
       <div className="max-w-4xl mx-auto ">
         <h1 className="text-4xl font-bold mb-8 mt-20 text-center text-gray-900">Mobile Apps</h1>
         <div className="space-y-8">

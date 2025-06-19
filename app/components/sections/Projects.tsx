@@ -114,7 +114,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
 const Projects: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white text-black p-8 mb-20 mt-20">
+    <div className="min-h-screen bg-white text-black p-8 mb-20 mt-20 pl-[10vw] md:pl-0">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-8  mt-20 text-center">Projects</h1>
         <Documentary />
