@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-
+import Documentary from '../Documentary';
 
 interface Project {
   title: string;
@@ -117,6 +117,7 @@ const Projects: React.FC = () => {
     <div className="min-h-screen bg-white text-black p-8 mb-20 mt-20">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-8  mt-20 text-center">Projects</h1>
+        <Documentary />
         <div className="space-y-8">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} />
