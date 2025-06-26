@@ -18,7 +18,7 @@ const abouts: About[] = [
     title: 'HEALTH',
     description: 'Wheather is using calesthenics to stay in shape or golf to rewire the brain and build new neural pathways. Eating as clean as possible so the body can function at its best. Contact me to work as a guide for anyone going through this journey.',
     videoUrl: '/videos/pullup.mp4',
-    secondaryVideoUrl: '/videos/putt.mp4',
+    secondaryVideoUrl: '/videos/putt.mov',
     link: 'https://shinedark.github.io/guide/',
   },
   {
