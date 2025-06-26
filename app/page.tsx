@@ -78,7 +78,15 @@ export default function Home() {
               priority
             />
             <button
-              className="fixed top-50 right-3 bg-gray-900 text-white px-6 py-2 rounded-full font-bold shadow-lg transition-colors duration-300 z-50"
+              className="
+                fixed 
+                bottom-4 right-4
+                bg-gray-900 text-white 
+                px-6 py-2 
+                rounded-full font-bold shadow-lg 
+                transition-colors duration-300 
+                z-50
+              "
               onClick={toggleMedicalId}
             >
               Medical ID
