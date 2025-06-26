@@ -21,7 +21,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
       className="z-50 fixed top-4 left-0 w-[43vw] md:top-4 md:left-1/2 md:w-auto md:transform md:-translate-x-1/2 md:fixed md:w-auto md:bg-transparent"
     >
       <div
-        className="flex flex-col md:flex-row md:space-x-16 space-y-4 md:space-y-0 fixed left-0 top-1/4 md:static md:top-auto md:left-auto md:transform-none bg-transparent md:bg-transparent p-2 md:p-0 w-full md:w-auto"
+        className="flex flex-col md:flex-row md:space-x-16 space-y-4 md:space-y-0 fixed left-0 top-1/4 md:static md:top-auto md:left-auto md:transform-none bg-transparent md:bg-transparent p-2 md:p-0 md:w-auto"
       >
         {navigationItems.map(({ section, image }) => (
           <button
