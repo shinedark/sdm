@@ -12,7 +12,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
   const navigationItems = [
     { section: 'Home', image: '/images/home.png' },
     { section: 'EL ARCHIVO', image: '/images/elarchivo.png' },
-    { section: 'Apps', image: '/images/apps.png' },
+    { section: 'About', image: '/images/apps.png' },
     { section: 'Projects', image: '/images/projects.png' }
   ];
 

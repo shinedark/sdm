@@ -66,6 +66,41 @@ const projects: Project[] = [
       'JavaScript'
     ],
     link: 'https://shinedark.github.io/guide/'
+  },
+  {
+    title: 'Noise Machine Sampler',
+    description: 'Toy Mobile App',
+    features: [
+      '12 slots available to load',
+      'Each slot has 6 sounds to pick from',
+      'Search and preview samples before loading',
+      'Interactive slot loading system',
+      'Real-time sound preview functionality'
+    ],
+    techStack: [
+      'React Native',
+      'Expo'
+    ],
+    link: 'https://github.com/shinedark/NoiseMachineSampler'
+  },
+  {
+    title: 'Remastered AR Experience',
+    description: 'An augmented reality experience created for the promotion of the Remastered album. This interactive app brings the album artwork to life through AR technology.',
+    features: [
+      'Interactive AR album artwork visualization',
+      'Real-time 3D model rendering',
+      'Album promotion through immersive experience',
+      'Cross-platform compatibility',
+      'Interactive elements tied to album tracks'
+    ],
+    techStack: [
+      'React Native',
+      'AR Kit',
+      'AR Core',
+      'Expo',
+      'Three.js'
+    ],
+    link: 'https://github.com/shinedark/remastered'
   }
 ];
 

@@ -82,14 +82,14 @@ const Cube = forwardRef<HTMLDivElement, CubeProps>(({ isAnimating, onMouseEnter,
         </div>
       </div>
 
-      {!isAnimating && !isHovered && (
+      {/* {!isAnimating && !isHovered && (
         <div className="controls">
           <button onClick={() => handleRotation('up')}>Up</button>
           <button onClick={() => handleRotation('down')}>Down</button>
           <button onClick={() => handleRotation('left')}>Left</button>
           <button onClick={() => handleRotation('right')}>Right</button>
         </div>
-      )}
+      )} */}
     </div>
   );
 });

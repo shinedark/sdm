@@ -9,8 +9,10 @@ import WeedPlant from './components/WeedPlant';
 import PlantToJeans from './components/PlantToJeans';
 import Navigation from './components/Navigation';
 import ElArchivo from './components/sections/ElArchivo';
-import Apps from './components/sections/Apps';
+import About from './components/sections/About';
 import Projects from './components/sections/Projects';
+import { ExpandableCard } from './components/ExpandableCard';
+import FoodList from './components/FoodList';
 import { AudioControls } from './components/audio-controls/audio-controls';
 
 import './globals.css';
@@ -24,7 +26,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('Home');
   const elementRef = useRef(null);
   const audioRef = useRef<HTMLAudioElement>(null);
-
+  const [showMedicalId, setShowMedicalId] = useState(false);
   const handleNoiseClick = () => {
     if (audioRef.current) {
       if (audioRef.current.paused) {
@@ -45,11 +47,15 @@ export default function Home() {
     setShowVinyl(false);
   };
 
+  const toggleMedicalId = () => {
+    setShowMedicalId(!showMedicalId);
+  };
+
   const renderSection = () => {
     switch (activeSection) {
       case 'Home':
         return (
-          <div className="mb-20 mt-20">
+          <div className="mb-20 mt-20 w-full">
             <BinaryStatic />
             <button
               className="editz fixed top-4 right-8 w-24 h-12   flex items-center justify-center border-black border-2 rounded-full z-40"
@@ -65,12 +71,31 @@ export default function Home() {
             </button>
             <Image
               src={'/images/6.png'}
-              alt="Vinyl Icon"
+              alt="Medical ID"
               width={48}
               height={64}
               className="fixed top-20 left-20"
               priority
             />
+            <button
+              className="fixed top-50 right-3 bg-gray-900 text-white px-6 py-2 rounded-full font-bold shadow-lg transition-colors duration-300 z-50"
+              onClick={toggleMedicalId}
+            >
+              Medical ID
+            </button>
+            {showMedicalId && (
+              <ExpandableCard
+                imageUrl="/images/6.png"
+                imageAlt="Description of the image"
+                rightContent={
+                  <div>
+                    <h2 className="text-2xl text-black font-bold mb-4">{`Title`}</h2>
+                    <p className="text-black">{`Your content here`}</p>
+                  </div>
+                }
+                bottomContent={<FoodList />}
+              />
+            )}
             <Cube 
               isAnimating={isAnimating} 
               ref={elementRef}
@@ -87,8 +112,8 @@ export default function Home() {
         );
       case 'EL ARCHIVO':
         return <ElArchivo />;
-      case 'Apps':
-        return <Apps />;
+      case 'About':
+        return <About />;
       case 'Projects':
         return <Projects />;
       default:

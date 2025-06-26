@@ -140,7 +140,7 @@ export function ExpandableCard({
         .card {
           width: 75vw;
           height:50vh;
-          top: 25vh;
+          top: 2vh;
           z-index: 1000;
           position: relative;
           margin: 0 auto;
