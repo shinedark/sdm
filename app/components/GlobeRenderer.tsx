@@ -59,27 +59,7 @@ export function GlobeRenderer({ name, imageUrl, audioFiles }: GlobeRendererProps
                 <h2 className="text-2xl font-bold text-white">{name}</h2>
                 {/* Add artist/year if available */}
             </div>
-            {/* Track List: Show if hovered or open */}
-            {(isHovered || isListOpen) && (
-                <ul className="w-full bg-black/80 rounded-lg overflow-hidden shadow-lg">
-                    {audioFiles.map((file, idx) => (
-                        <li key={file.name} className="border-b border-white/10 last:border-b-0">
-                            <button
-                                className="w-full text-left px-4 py-3 text-white hover:bg-white/10 transition-colors font-medium"
-                                onClick={() => play({
-                                    id: file.url,
-                                    title: file.name,
-                                    url: file.url,
-                                    date: '',
-                                    isFavorite: false
-                                })}
-                            >
-                                {idx + 1}. {formatTheName(file.name)}
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            )}
+          
         </div>
     );
 }

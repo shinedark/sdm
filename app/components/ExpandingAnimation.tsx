@@ -22,7 +22,8 @@ const ExpandingAnimation: React.FC<ExpandingAnimationProps> = ({ isExpanded }) =
       {/* <GlobeGallery /> */}
      
       <div className="expanding-animation-content">
-        This is for no reason other than fun
+        
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/HxA_BKCzASE?si=FGRW7L5luL_Vuc_Q" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
       </div>
     </div>
   );
