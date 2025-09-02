@@ -32,14 +32,10 @@ jobs:
     - name: Build application with optimization
       run: npm run build:optimized
 
-    - name: Install Vercel CLI
-      run: npm install -g vercel
-
-    - name: Pull Vercel environment information
-      run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-
-    - name: Build project for Vercel
-      run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-
     - name: Deploy to Vercel
-      run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+      uses: amondnet/vercel-action@v25
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.ORG_ID }}
+        vercel-project-id: ${{ secrets.PROJECT_ID }}
+        working-directory: ./
