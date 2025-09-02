@@ -152,3 +152,4 @@ try {
   console.error('\n❌ Optimization failed:', error.message);
   process.exit(1);
 }
+
