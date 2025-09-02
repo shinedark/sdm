@@ -17,7 +17,7 @@ import { AudioControls } from './components/audio-controls/audio-controls';
 
 import './globals.css';
 
-const sdmWallet = process.env.NEXT_PUBLIC_SDM_WALLET_ADDRESS || '';
+// const sdmWallet = process.env.NEXT_PUBLIC_SDM_WALLET_ADDRESS || '';
 
 export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -78,36 +78,7 @@ export default function Home() {
               className="fixed top-20 left-20"
               priority
             />
-            {  !isAnimating && (
-            //    <button
-            //    className="fixed top-50 right-4 bg-gray-900 text-white px-6 py-2 rounded-full font-bold shadow-lg transition-colors duration-300 z-50"
-            //    onClick={toggleMedicalId}
-            //  >
-            //    Medical ID
-            //  </button>
-            )}
-           
-            {showMedicalId &&(
-              <div
-                className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40"
-                onClick={() => setShowMedicalId(false)}
-              >
-                <div onClick={e => e.stopPropagation()}>
-                  <ExpandableCard
-                    imageUrl="/images/6.png"
-                    imageAlt="Description of the image"
-                    rightContent={
-                      <div>
-                        <h2 className="text-2xl text-black font-bold mb-4">{`Title`}</h2>
-                        <p className="text-black">{`Your content here`}</p>
-                      </div>
-                    }
-                    bottomContent={<FoodList />}
-                  />
-                </div>
-              </div>
-            )}
-            { !showMedicalId && (
+
             <Cube 
               isAnimating={isAnimating} 
               ref={elementRef}
@@ -115,7 +86,7 @@ export default function Home() {
               onMouseLeave={() => setIsHovered(false)} 
               isHovered={isHovered} 
             />
-        )}
+        
             <div className="flex flex-row items-center space-around fixed w-full -z-10">
               <WeedPlant isAnimating={isAnimating} />
               <PlantToJeans isAnimating={isAnimating} />
