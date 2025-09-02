@@ -33,6 +33,9 @@ yarn-error.log*
 .vercel
 .vercel/
 
+# optimizer
+optimized-build-system/node_modules
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

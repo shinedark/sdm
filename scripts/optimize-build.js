@@ -15,7 +15,7 @@ console.log('=====================================\n');
 
 // Paths
 const nextBuildDir = '.next/static/chunks';
-const optimizerDir = '../optimized-build-system';
+const optimizerDir = './optimized-build-system';
 const tempBuildDir = 'build/static/js';
 
 try {
