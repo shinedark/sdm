@@ -70,27 +70,51 @@ try {
     process.exit(0);
   }
 
-  // 4. Run semantic optimization
-  console.log('\n🔧 Running semantic optimization...');
+  // 4. Run universal semantic optimization (JS + CSS + HTML)
+  console.log('\n🔧 Running universal semantic optimization...');
   
   const optimizerPath = path.resolve(optimizerDir);
   const buildPath = path.resolve(tempBuildDir);
+  const nextBuildPath = path.resolve('.next');
   
   try {
+    // First optimize JavaScript bundles (existing)
+    console.log('📦 Optimizing JavaScript bundles...');
     execSync(
       `cd "${optimizerPath}" && node scripts/universal-optimizer.js --build-dir "${buildPath}" --strategy max-aggression`,
       { stdio: 'inherit' }
     );
+    
+    // Then optimize CSS and HTML files
+    console.log('🎨 Optimizing CSS and HTML files...');
+    execSync(
+      `cd "${optimizerPath}" && node scripts/universal-semantic-optimizer.js "${nextBuildPath}" --extensions .css,.html`,
+      { stdio: 'inherit' }
+    );
+    
   } catch (error) {
     console.error('❌ Optimization failed:', error.message);
     process.exit(1);
   }
 
-  // 5. Copy optimized files back to Next.js build
-  console.log('\n📋 Copying optimized bundles back to Next.js build...');
+  // 5. Copy optimized files back to Next.js build and process CSS/HTML
+  console.log('\n📋 Processing optimized files...');
   
   let totalSavings = 0;
+  let cssHtmlSavings = 0;
   const optimizedFiles = [];
+  
+  // Check for CSS/HTML optimization results
+  const universalManifestPath = path.join('.next', 'universal-optimization-manifest.json');
+  if (fs.existsSync(universalManifestPath)) {
+    const universalManifest = JSON.parse(fs.readFileSync(universalManifestPath, 'utf-8'));
+    cssHtmlSavings = universalManifest.stats.sizeReduction;
+    
+    console.log(`🎨 CSS/HTML optimization results:`);
+    console.log(`   - Files processed: ${universalManifest.stats.totalFiles}`);
+    console.log(`   - Total optimizations: ${universalManifest.stats.totalOptimizations}`);
+    console.log(`   - Size reduction: ${(cssHtmlSavings / 1024).toFixed(2)}KB`);
+  }
   
   for (const bundle of bundlesToOptimize) {
     const optimizedFile = path.join(tempBuildDir, bundle.target.replace('.js', '.max-aggression.js'));
@@ -120,12 +144,24 @@ try {
     }
   }
 
-  // 6. Generate optimization report
+  // 6. Generate comprehensive optimization report
   const report = {
     timestamp: new Date().toISOString(),
-    totalFiles: optimizedFiles.length,
-    totalSavings: totalSavings,
-    totalSavingsKB: (totalSavings / 1024).toFixed(2),
+    optimization: {
+      javascript: {
+        files: optimizedFiles.length,
+        savings: totalSavings,
+        savingsKB: (totalSavings / 1024).toFixed(2)
+      },
+      cssHtml: {
+        savings: cssHtmlSavings,
+        savingsKB: (cssHtmlSavings / 1024).toFixed(2)
+      },
+      total: {
+        savings: totalSavings + cssHtmlSavings,
+        savingsKB: ((totalSavings + cssHtmlSavings) / 1024).toFixed(2)
+      }
+    },
     files: optimizedFiles
   };
 
@@ -137,16 +173,25 @@ try {
     fs.rmSync('build', { recursive: true });
   }
 
-  // 8. Success summary
-  console.log('\n🎉 Optimization Complete!');
-  console.log('========================');
-  console.log(`📁 Files optimized: ${optimizedFiles.length}`);
-  console.log(`💾 Total savings: ${(totalSavings/1024).toFixed(2)}KB`);
-  console.log(`📊 Average reduction: ${(optimizedFiles.reduce((acc, f) => acc + parseFloat(f.percentage), 0) / optimizedFiles.length).toFixed(2)}%`);
+  // 8. Comprehensive success summary
+  console.log('\n🎉 Universal Optimization Complete!');
+  console.log('==================================');
+  console.log(`📦 JavaScript files optimized: ${optimizedFiles.length}`);
+  console.log(`🎨 CSS/HTML files processed: ${cssHtmlSavings > 0 ? 'Yes' : 'No'}`);
+  console.log(`💾 JavaScript savings: ${(totalSavings/1024).toFixed(2)}KB`);
+  if (cssHtmlSavings > 0) {
+    console.log(`💾 CSS/HTML savings: ${(cssHtmlSavings/1024).toFixed(2)}KB`);
+  }
+  console.log(`💾 Total savings: ${((totalSavings + cssHtmlSavings)/1024).toFixed(2)}KB`);
+  
+  if (optimizedFiles.length > 0) {
+    console.log(`📊 Average JS reduction: ${(optimizedFiles.reduce((acc, f) => acc + parseFloat(f.percentage), 0) / optimizedFiles.length).toFixed(2)}%`);
+  }
+  
   console.log(`📋 Report saved: optimization-report.json`);
   console.log(`🔄 Backups created with .backup extension`);
   
-  console.log('\n✅ Your Next.js app is now optimized and ready for deployment!');
+  console.log('\n✅ Your Next.js app is now fully optimized (JS + CSS + HTML) and ready for deployment!');
 
 } catch (error) {
   console.error('\n❌ Optimization failed:', error.message);

@@ -1,8 +1,20 @@
 {
-  "timestamp": "2025-09-02T17:38:15.914Z",
-  "totalFiles": 1,
-  "totalSavings": 12049,
-  "totalSavingsKB": "11.77",
+  "timestamp": "2025-09-02T19:54:26.283Z",
+  "optimization": {
+    "javascript": {
+      "files": 1,
+      "savings": 12049,
+      "savingsKB": "11.77"
+    },
+    "cssHtml": {
+      "savings": 26242,
+      "savingsKB": "25.63"
+    },
+    "total": {
+      "savings": 38291,
+      "savingsKB": "37.39"
+    }
+  },
   "files": [
     {
       "name": "main-6685e5f800d773fb.js",
