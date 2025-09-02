@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-09-02T17:26:37.601Z",
+  "totalFiles": 1,
+  "totalSavings": 12049,
+  "totalSavingsKB": "11.77",
+  "files": [
+    {
+      "name": "main-6685e5f800d773fb.js",
+      "originalSize": 110196,
+      "optimizedSize": 98147,
+      "savings": 12049,
+      "percentage": "10.93"
+    }
+  ]
+}

@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:optimized": "next build && node scripts/optimize-build.js",
+    "optimize": "node scripts/optimize-build.js",
     "start": "next start",
     "lint": "next lint"
   },

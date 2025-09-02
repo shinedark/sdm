@@ -26,8 +26,8 @@ jobs:
     - name: Run linting
       run: npm run lint
 
-    - name: Build application
-      run: npm run build
+    - name: Build application with optimization
+      run: npm run build:optimized
 
     - name: Install Vercel CLI
       run: npm install -g vercel
