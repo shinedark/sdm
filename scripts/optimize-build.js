@@ -79,7 +79,24 @@ try {
     process.exit(0);
   }
 
-  // 4. Run universal semantic optimization (JS + CSS + HTML)
+  // 4. Create main-bundle.js for the optimizer (it expects this specific naming pattern)
+  if (bundlesToOptimize.length > 0) {
+    // Find the largest bundle to use as the main bundle
+    const largestBundle = bundlesToOptimize.reduce((prev, current) => 
+      (prev.size > current.size) ? prev : current
+    );
+    
+    const mainBundlePath = path.join(tempBuildDir, 'main-bundle.js');
+    const sourcePath = path.join(tempBuildDir, largestBundle.target);
+    
+    // Copy the largest bundle as main-bundle.js for the optimizer
+    if (fs.existsSync(sourcePath)) {
+      fs.copyFileSync(sourcePath, mainBundlePath);
+      console.log(`🎯 Created main-bundle.js from ${largestBundle.target} for optimization`);
+    }
+  }
+
+  // 5. Run universal semantic optimization (JS + CSS + HTML)
   console.log('\n🔧 Running universal semantic optimization...');
   
   const optimizerPath = path.resolve(optimizerDir);
