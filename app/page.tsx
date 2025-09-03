@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState, useRef, Suspense } from 'react';
 import Cube from './components/Cube';
 import Image from 'next/image';
@@ -14,7 +15,6 @@ import Projects from './components/sections/Projects';
 import { ExpandableCard } from './components/ExpandableCard';
 import FoodList from './components/FoodList';
 import { AudioControls } from './components/audio-controls/audio-controls';
-
 import './globals.css';
 
 // const sdmWallet = process.env.NEXT_PUBLIC_SDM_WALLET_ADDRESS || '';
@@ -35,65 +35,39 @@ export default function Home() {
       } else {
         setIsAnimating(false);
         audioRef.current.pause();
-
       }
     }
   };
-
   const toggleVinylOverlay = () => {
     setShowVinyl(!showVinyl);
   };
-
   const closeVinylOverlay = () => {
     setShowVinyl(false);
   };
-
   const toggleMedicalId = () => {
     setShowMedicalId(!showMedicalId);
   };
-
   const renderSection = () => {
     switch (activeSection) {
       case 'Home':
-        return (
-          <div className="mb-20 mt-20 w-full">
+        return <div className="mb-20 mt-20 w-full">
             <BinaryStatic />
-            <button
-              className="editz fixed top-4 right-8 w-24 h-12   flex items-center justify-center border-black border-2 rounded-full z-40"
-              onClick={handleNoiseClick}
-            >
+            <button className="editz fixed top-4 right-8 w-24 h-12   flex items-center justify-center border-black border-2 rounded-full z-40" onClick={handleNoiseClick}>
               {`NOISE`}
             </button>
-            <button
-              onClick={toggleVinylOverlay}
-              className="fixed top-4 left-8 w-24 h-12 bg-black text-white flex items-center justify-center rounded-full z-40"
-            >
+            {/* <button onClick={toggleVinylOverlay} className="fixed top-4 left-8 w-24 h-12 bg-black text-white flex items-center justify-center rounded-full z-40">
               {`VINYL`}
-            </button>
-            <Image
-              src={'/images/6.png'}
-              alt="Medical ID"
-              width={48}
-              height={64}
-              className="fixed top-20 left-20"
-              priority
-            />
+            </button> */}
+            <Image src={'/images/6.png'} alt="Medical ID" width={48} height={64} className="fixed top-20 left-20" priority />
 
-            <Cube 
-              isAnimating={isAnimating} 
-              ref={elementRef}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)} 
-              isHovered={isHovered} 
-            />
+            <Cube isAnimating={isAnimating} ref={elementRef} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} isHovered={isHovered} />
         
             <div className="flex flex-row items-center space-around fixed w-full -z-10">
               <WeedPlant isAnimating={isAnimating} />
               <PlantToJeans isAnimating={isAnimating} />
             </div>
             <audio ref={audioRef} src="/music/elritmo.m4a" preload="auto" />
-          </div>
-        );
+          </div>;
       case 'EL ARCHIVO':
         return <ElArchivo />;
       case 'About':
@@ -104,10 +78,8 @@ export default function Home() {
         return null;
     }
   };
-
-  return (
-    <div className=" flex flex-col min-h-screen relative z-0">
-      <Navigation  activeSection={activeSection} onSectionChange={setActiveSection} />
+  return <div className=" flex flex-col min-h-screen relative z-0">
+      <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
       <main className=" flex flex-1 items-center justify-center p-0 z-10 relative overflow-auto">
         {renderSection()}
       </main>
@@ -116,6 +88,5 @@ export default function Home() {
       </div>
       <Footer />
       {showVinyl && <Vinyl onClose={closeVinylOverlay} />}
-    </div>
-  );
+    </div>;
 }

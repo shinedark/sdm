@@ -2,10 +2,8 @@
 
 import Footer from '../components/Footer';
 import Image from 'next/image';
-
 export default function Vision() {
-    return (
-        <div className="flex flex-col min-h-screen relative pb-20">
+  return <div className="flex flex-col min-h-screen relative pb-20">
             <main className="flex-1 flex items-center justify-center p-8 relative z-10 bg-white">
                 <div className="text-black  bg-white mb-2">
                     <section className="text-center mb-6">
@@ -19,14 +17,7 @@ export default function Vision() {
                             Technology & Art
                         </h1>
                     </section>
-                    <Image
-                        src={'/images/xpost.jpg'}
-                        alt="Vinyl Icon"
-                        width={300}
-                        height={300}
-                        className="relative mx-auto w-[200px] md:w-[250px] lg:w-[300px] h-auto"
-                        priority
-                    />
+                    <Image src={'/images/xpost.jpg'} alt="Vinyl Icon" width={300} height={300} className="relative mx-auto w-[200px] md:w-[250px] lg:w-[300px] h-auto" priority />
                     <section className="space-y-6">
                         <div className="bg-white backdrop-blur-sm p-6 md:p-8 space-y-8">
                             <h2 className="text-2xl font-bold mb-4">Vision</h2>
@@ -64,19 +55,12 @@ export default function Vision() {
                         </div>
                     </section>
 
-                    <iframe
-                        style={{ border: '1px #FFFFFF hidden', marginBottom: '20px' }}
-                        src="https://shinedark.dev/"
-                        title="iFrame"
-                        width="100%"
-                        height="300px"
-                        scrolling="yes"
-                        frameBorder="no"
-                        allow=""
-                    />
+                    <iframe style={{
+          border: '1px #FFFFFF hidden',
+          marginBottom: '20px'
+        }} src="https://shinedark.dev/" title="iFrame" width="100%" height="300px" scrolling="yes" frameBorder="no" allow="" />
                 </div>
             </main>
             <Footer />
-        </div>
-    );
-} 
+        </div>;
+}

@@ -1,0 +1,92 @@
+{
+  "timestamp": "2025-09-03T01:08:31.791Z",
+  "type": "react-library-optimization",
+  "summary": {
+    "librariesAnalyzed": 6,
+    "librariesProcessed": 0,
+    "filesOptimized": 4,
+    "customBuildsCreated": 4,
+    "totalSizeReduction": 2733,
+    "totalSizeReductionMB": "0.00"
+  },
+  "libraries": {
+    "react": {
+      "size": 318101,
+      "sizeKB": "310.65",
+      "entryPoints": 6,
+      "buildFormats": [
+        "CommonJS",
+        "UMD"
+      ],
+      "optimizationScore": 55,
+      "estimatedReduction": "93.19KB"
+    },
+    "react-dom": {
+      "size": 4513549,
+      "sizeKB": "4407.76",
+      "entryPoints": 12,
+      "buildFormats": [
+        "CommonJS",
+        "UMD"
+      ],
+      "optimizationScore": 85,
+      "estimatedReduction": "2203.88KB"
+    },
+    "@vercel/blob": {
+      "size": 395778,
+      "sizeKB": "386.50",
+      "entryPoints": 6,
+      "buildFormats": [
+        "Distribution"
+      ],
+      "optimizationScore": 0,
+      "estimatedReduction": "0.00KB"
+    },
+    "@vercel/edge-config": {
+      "size": 173164,
+      "sizeKB": "169.11",
+      "entryPoints": 4,
+      "buildFormats": [
+        "Distribution"
+      ],
+      "optimizationScore": 0,
+      "estimatedReduction": "0.00KB"
+    },
+    "axios": {
+      "size": 2141088,
+      "sizeKB": "2090.91",
+      "entryPoints": 18,
+      "buildFormats": [
+        "Library",
+        "Distribution"
+      ],
+      "optimizationScore": 55,
+      "estimatedReduction": "418.18KB"
+    },
+    "ethers": {
+      "size": 16138924,
+      "sizeKB": "15760.67",
+      "entryPoints": 26,
+      "buildFormats": [
+        "Distribution"
+      ],
+      "optimizationScore": 30,
+      "estimatedReduction": "3152.13KB"
+    }
+  },
+  "optimizedBuilds": [],
+  "recommendations": [
+    {
+      "type": "custom-react",
+      "description": "Use custom ultra-optimized React build",
+      "impact": "High performance improvement",
+      "implementation": "Add webpack alias to custom-react/react.ultra.js"
+    },
+    {
+      "type": "replace-libraries",
+      "description": "Replace 4 libraries with optimized versions",
+      "impact": "2.67KB reduction",
+      "implementation": "Update webpack aliases to point to custom-builds/"
+    }
+  ]
+}

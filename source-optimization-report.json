@@ -1,0 +1,258 @@
+{
+  "timestamp": "2025-09-03T01:13:18.262Z",
+  "type": "source-level-optimization",
+  "stats": {
+    "filesProcessed": 0,
+    "importsRemoved": 0,
+    "identifiersOptimized": 0,
+    "deadCodeRemoved": 0,
+    "totalSizeReduction": 0,
+    "totalSizeReductionKB": "0.00",
+    "averageReduction": "0KB"
+  },
+  "settings": {
+    "sourceDirs": [
+      "app",
+      "src",
+      "components"
+    ],
+    "optimizeNodeModules": true,
+    "nodeModulesWhitelist": [
+      "@rainbow-me/rainbowkit",
+      "@react-three/fiber",
+      "@react-three/drei",
+      "three",
+      "ethers"
+    ],
+    "aggressiveOptimization": true,
+    "removeUnusedImports": true,
+    "treeShaking": true,
+    "preserveExports": true,
+    "preserveTypes": true,
+    "createBackups": true
+  },
+  "files": [
+    {
+      "path": "app/page.tsx",
+      "originalSize": 3704,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/layout.tsx",
+      "originalSize": 569,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/fonts.ts",
+      "originalSize": 303,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/vision/page.tsx",
+      "originalSize": 4820,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/context/audio-context.tsx",
+      "originalSize": 2535,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/store/page.tsx",
+      "originalSize": 2038,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/WeedPlant.tsx",
+      "originalSize": 2613,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/WeedPlant.module.css.d.ts",
+      "originalSize": 149,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/WalletBalance.tsx",
+      "originalSize": 3812,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/Vinyl.tsx",
+      "originalSize": 2404,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/TypingEffect.tsx",
+      "originalSize": 1259,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/Stream.tsx",
+      "originalSize": 2008,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/Store.tsx",
+      "originalSize": 0,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/ReleaseInfo.tsx",
+      "originalSize": 3549,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/PlantToJeans.tsx",
+      "originalSize": 4501,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/PlantToJeans.module.css.d.ts",
+      "originalSize": 270,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/Pics.tsx",
+      "originalSize": 816,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/Navigation.tsx",
+      "originalSize": 1561,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/Monsty.tsx",
+      "originalSize": 3506,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/Images.tsx",
+      "originalSize": 1139,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/ImageClip.tsx",
+      "originalSize": 1352,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/GlobeRenderer.tsx",
+      "originalSize": 1779,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/GlobeGallery.tsx",
+      "originalSize": 4070,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/Footer.tsx",
+      "originalSize": 2808,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/FoodList.tsx",
+      "originalSize": 6485,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/ExpandingAnimation.tsx",
+      "originalSize": 1081,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/ExpandableCard.tsx",
+      "originalSize": 7785,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/Documentary.tsx",
+      "originalSize": 295,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/Cube.tsx",
+      "originalSize": 3374,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/BinaryStatic.tsx",
+      "originalSize": 1850,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/about/page.tsx",
+      "originalSize": 7169,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/api/blobs/route.ts",
+      "originalSize": 322,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/sections/Projects.tsx",
+      "originalSize": 4851,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/sections/ElArchivo.tsx",
+      "originalSize": 823,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/sections/About.tsx",
+      "originalSize": 3433,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/audio-controls/audio-controls.tsx",
+      "originalSize": 3930,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/api/blobs/pinata-files/route.ts",
+      "originalSize": 474,
+      "components": [],
+      "unusedImports": []
+    }
+  ]
+}

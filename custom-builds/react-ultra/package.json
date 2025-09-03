@@ -1,0 +1,35 @@
+{
+  "name": "@sdm/react-ultra",
+  "version": "1.0.0",
+  "description": "Ultra-optimized React build with semantic optimization",
+  "main": "react-ultra.js",
+  "author": "SDM Semantic Optimizer",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "optimized",
+    "ultra",
+    "semantic",
+    "minified"
+  ],
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "_optimization": {
+    "type": "ultra-semantic",
+    "originalSize": 138615,
+    "optimizedSize": 138025,
+    "reduction": 590,
+    "reductionPercent": 0.42563936081953613,
+    "features": [
+      "Source map removal",
+      "License comment optimization",
+      "Ultra-compact formatting",
+      "Whitespace elimination",
+      "Bundle combination"
+    ],
+    "compatibility": "Full React 18 API compatibility",
+    "usage": "Drop-in replacement for React + ReactDOM"
+  }
+}

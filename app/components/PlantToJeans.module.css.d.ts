@@ -10,5 +10,4 @@ declare const styles: {
   jeansShape: string;
   jeansDetails: string;
 };
-
-export default styles; 
+export default styles;

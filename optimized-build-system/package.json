@@ -29,10 +29,11 @@
   "author": "Semantic Build Optimizer",
   "license": "MIT",
   "dependencies": {
+    "@babel/generator": "^7.24.7",
     "@babel/parser": "^7.24.7",
     "@babel/traverse": "^7.24.7",
-    "@babel/generator": "^7.24.7",
-    "@babel/types": "^7.24.7"
+    "@babel/types": "^7.24.7",
+    "glob": "^11.0.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.7",

@@ -1,0 +1,486 @@
+{
+  "timestamp": "2025-09-03T00:59:37.775Z",
+  "type": "node-modules-analysis",
+  "summary": {
+    "totalPackages": 24,
+    "unusedPackages": 8,
+    "optimizablePackages": 15,
+    "packagesOptimized": 1,
+    "totalSizeReduction": 5528330,
+    "totalSizeReductionMB": "5.27"
+  },
+  "packages": {
+    "@fortawesome/free-brands-svg-icons": {
+      "version": "6.6.0",
+      "sizeKB": "2124.82",
+      "sizeMB": "2.08",
+      "structure": {
+        "totalFiles": 1060,
+        "hasSourceMaps": false,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    },
+    "@fortawesome/free-solid-svg-icons": {
+      "version": "6.6.0",
+      "sizeKB": "5024.06",
+      "sizeMB": "4.91",
+      "structure": {
+        "totalFiles": 3914,
+        "hasSourceMaps": false,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    },
+    "@fortawesome/react-fontawesome": {
+      "version": "0.2.2",
+      "sizeKB": "36.92",
+      "sizeMB": "0.04",
+      "structure": {
+        "totalFiles": 6,
+        "hasSourceMaps": false,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    },
+    "@rainbow-me/rainbowkit": {
+      "version": "2.2.2",
+      "sizeKB": "3050.84",
+      "sizeMB": "2.98",
+      "structure": {
+        "totalFiles": 554,
+        "hasSourceMaps": false,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    },
+    "@react-three/drei": {
+      "version": "9.120.4",
+      "sizeKB": "1704.01",
+      "sizeMB": "1.66",
+      "structure": {
+        "totalFiles": 485,
+        "hasSourceMaps": false,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    },
+    "@react-three/fiber": {
+      "version": "8.17.10",
+      "sizeKB": "724.05",
+      "sizeMB": "0.71",
+      "structure": {
+        "totalFiles": 110,
+        "hasSourceMaps": false,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    },
+    "@vercel/blob": {
+      "version": "0.27.0",
+      "sizeKB": "386.50",
+      "sizeMB": "0.38",
+      "structure": {
+        "totalFiles": 24,
+        "hasSourceMaps": true,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    },
+    "@vercel/edge-config": {
+      "version": "1.4.0",
+      "sizeKB": "169.11",
+      "sizeMB": "0.17",
+      "structure": {
+        "totalFiles": 9,
+        "hasSourceMaps": true,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    },
+    "axios": {
+      "version": "1.7.7",
+      "sizeKB": "2090.91",
+      "sizeMB": "2.04",
+      "structure": {
+        "totalFiles": 86,
+        "hasSourceMaps": true,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    },
+    "ethers": {
+      "version": "6.11.1",
+      "sizeKB": "15760.67",
+      "sizeMB": "15.39",
+      "structure": {
+        "totalFiles": 1387,
+        "hasSourceMaps": true,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    },
+    "three": {
+      "version": "0.162.0",
+      "sizeKB": "4529.33",
+      "sizeMB": "4.42",
+      "structure": {
+        "totalFiles": 972,
+        "hasSourceMaps": false,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    },
+    "viem": {
+      "version": "2.22.8",
+      "sizeKB": "17651.24",
+      "sizeMB": "17.24",
+      "structure": {
+        "totalFiles": 8090,
+        "hasSourceMaps": true,
+        "hasTests": true,
+        "hasDocs": false
+      }
+    },
+    "wagmi": {
+      "version": "2.14.7",
+      "sizeKB": "975.09",
+      "sizeMB": "0.95",
+      "structure": {
+        "totalFiles": 444,
+        "hasSourceMaps": true,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    },
+    "postcss": {
+      "version": "8.4.40",
+      "sizeKB": "193.56",
+      "sizeMB": "0.19",
+      "structure": {
+        "totalFiles": 55,
+        "hasSourceMaps": false,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    },
+    "tailwindcss": {
+      "version": "3.4.7",
+      "sizeKB": "5491.99",
+      "sizeMB": "5.36",
+      "structure": {
+        "totalFiles": 252,
+        "hasSourceMaps": false,
+        "hasTests": false,
+        "hasDocs": false
+      }
+    }
+  },
+  "unusedPackages": [
+    "@fortawesome/free-solid-svg-icons",
+    "@rainbow-me/rainbowkit",
+    "@react-three/drei",
+    "@react-three/fiber",
+    "three",
+    "viem",
+    "wagmi",
+    "postcss"
+  ],
+  "optimizationOpportunities": {
+    "@fortawesome/free-brands-svg-icons": {
+      "currentSizeKB": "2124.82",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (2124.82KB)",
+          "potential": "High"
+        },
+        {
+          "type": "tree-shaking",
+          "description": "Only 8 members imported",
+          "potential": "High"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "importedMembers": [
+          "faSoundcloud",
+          "faMixcloud",
+          "faTwitch",
+          "faYoutube",
+          "faSpotify",
+          "faApple",
+          "faInstagram",
+          ""
+        ]
+      }
+    },
+    "@fortawesome/free-solid-svg-icons": {
+      "currentSizeKB": "5024.06",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (5024.06KB)",
+          "potential": "High"
+        }
+      ],
+      "usage": {
+        "importCount": 0,
+        "importedMembers": []
+      }
+    },
+    "@fortawesome/react-fontawesome": {
+      "currentSizeKB": "36.92",
+      "opportunities": [
+        {
+          "type": "tree-shaking",
+          "description": "Only 1 members imported",
+          "potential": "High"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "importedMembers": [
+          "FontAwesomeIcon"
+        ]
+      }
+    },
+    "@rainbow-me/rainbowkit": {
+      "currentSizeKB": "3050.84",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (3050.84KB)",
+          "potential": "High"
+        }
+      ],
+      "usage": {
+        "importCount": 0,
+        "importedMembers": []
+      }
+    },
+    "@react-three/drei": {
+      "currentSizeKB": "1704.01",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (1704.01KB)",
+          "potential": "High"
+        }
+      ],
+      "usage": {
+        "importCount": 0,
+        "importedMembers": []
+      }
+    },
+    "@react-three/fiber": {
+      "currentSizeKB": "724.05",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (724.05KB)",
+          "potential": "High"
+        }
+      ],
+      "usage": {
+        "importCount": 0,
+        "importedMembers": []
+      }
+    },
+    "@vercel/blob": {
+      "currentSizeKB": "386.50",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (386.50KB)",
+          "potential": "High"
+        },
+        {
+          "type": "source-maps",
+          "description": "Contains source maps (can be removed)",
+          "potential": "Medium"
+        },
+        {
+          "type": "tree-shaking",
+          "description": "Only 1 members imported",
+          "potential": "High"
+        }
+      ],
+      "usage": {
+        "importCount": 3,
+        "importedMembers": [
+          "list"
+        ]
+      }
+    },
+    "@vercel/edge-config": {
+      "currentSizeKB": "169.11",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (169.11KB)",
+          "potential": "High"
+        },
+        {
+          "type": "source-maps",
+          "description": "Contains source maps (can be removed)",
+          "potential": "Medium"
+        },
+        {
+          "type": "tree-shaking",
+          "description": "Only 1 members imported",
+          "potential": "High"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "importedMembers": [
+          "get"
+        ]
+      }
+    },
+    "axios": {
+      "currentSizeKB": "2090.91",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (2090.91KB)",
+          "potential": "High"
+        },
+        {
+          "type": "source-maps",
+          "description": "Contains source maps (can be removed)",
+          "potential": "Medium"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "importedMembers": []
+      }
+    },
+    "ethers": {
+      "currentSizeKB": "15760.67",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (15760.67KB)",
+          "potential": "High"
+        },
+        {
+          "type": "source-maps",
+          "description": "Contains source maps (can be removed)",
+          "potential": "Medium"
+        },
+        {
+          "type": "tree-shaking",
+          "description": "Only 1 members imported",
+          "potential": "High"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "importedMembers": [
+          "ethers"
+        ]
+      }
+    },
+    "three": {
+      "currentSizeKB": "4529.33",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (4529.33KB)",
+          "potential": "High"
+        }
+      ],
+      "usage": {
+        "importCount": 0,
+        "importedMembers": []
+      }
+    },
+    "viem": {
+      "currentSizeKB": "17651.24",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (17651.24KB)",
+          "potential": "High"
+        },
+        {
+          "type": "source-maps",
+          "description": "Contains source maps (can be removed)",
+          "potential": "Medium"
+        },
+        {
+          "type": "test-files",
+          "description": "Contains test files (can be removed)",
+          "potential": "Low"
+        }
+      ],
+      "usage": {
+        "importCount": 0,
+        "importedMembers": []
+      }
+    },
+    "wagmi": {
+      "currentSizeKB": "975.09",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (975.09KB)",
+          "potential": "High"
+        },
+        {
+          "type": "source-maps",
+          "description": "Contains source maps (can be removed)",
+          "potential": "Medium"
+        }
+      ],
+      "usage": {
+        "importCount": 0,
+        "importedMembers": []
+      }
+    },
+    "postcss": {
+      "currentSizeKB": "193.56",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (193.56KB)",
+          "potential": "High"
+        }
+      ],
+      "usage": {
+        "importCount": 0,
+        "importedMembers": []
+      }
+    },
+    "tailwindcss": {
+      "currentSizeKB": "5491.99",
+      "opportunities": [
+        {
+          "type": "large-package",
+          "description": "Large package (5491.99KB)",
+          "potential": "High"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "importedMembers": []
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "type": "remove-unused",
+      "description": "Remove 8 unused packages",
+      "command": "npm uninstall @fortawesome/free-solid-svg-icons @rainbow-me/rainbowkit @react-three/drei @react-three/fiber three viem wagmi postcss",
+      "impact": "High"
+    },
+    {
+      "type": "optimize-packages",
+      "description": "Optimize 15 packages",
+      "impact": "Medium"
+    }
+  ]
+}

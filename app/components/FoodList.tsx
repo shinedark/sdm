@@ -1,6 +1,5 @@
 const FoodList = () => {
-    return (
-      <div className="food-guide">
+  return <div className="food-guide">
         {/* IgG Sensitivities Section */}
         <section className="food-section">
           <h2 className="section-title">{`🚫 IgG Sensitivities (Class 1 or Higher)`}</h2>
@@ -196,8 +195,6 @@ const FoodList = () => {
             border-bottom: none;
           }
         `}</style>
-      </div>
-    );
-  };
-
+      </div>;
+};
 export default FoodList;

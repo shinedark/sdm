@@ -1,4 +1,103 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const nextConfig = {
+  // Production optimizations
+  experimental: {
+    optimizePackageImports: ['@vercel/blob', '@vercel/edge-config', 'axios', 'ethers']
+  },
+  
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    // 🚀 SDM CUSTOM REACT ULTRA INTEGRATION (commented out for now)
+    // Note: React Ultra build needs more work for full Next.js compatibility
+    // if (!dev && !isServer) {
+    //   const reactUltraPath = path.resolve(__dirname, 'custom-builds/react-ultra/react-ultra.js');
+    //   config.resolve.alias = {
+    //     ...config.resolve.alias,
+    //     'react': reactUltraPath,
+    //     'react-dom': reactUltraPath
+    //   };
+    //   console.log('⚛️  Using React Ultra build for production optimization');
+    // }
+    
+    // Enhanced bundle optimization
+    config.optimization = {
+      ...config.optimization,
+      usedExports: true,
+      sideEffects: false,
+      innerGraph: true,
+      
+      splitChunks: {
+        ...config.optimization.splitChunks,
+        chunks: 'all',
+        cacheGroups: {
+          ...config.optimization.splitChunks.cacheGroups,
+          
+          // Custom React Ultra chunk
+          reactUltra: {
+            test: /[\\/]custom-builds[\\/]react-ultra[\\/]/,
+            name: 'react-ultra',
+            chunks: 'all',
+            priority: 50,
+            enforce: true
+          },
+          
+          // Optimized vendor chunks
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+            priority: 10,
+            minChunks: 2
+          }
+        }
+      }
+    };
+    
+    return config;
+  },
+  
+  // Production compiler optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+    reactRemoveProperties: process.env.NODE_ENV === 'production' ? {
+      properties: ['^data-testid$', '^data-test.*$']
+    } : false
+  },
+  
+  // Image optimization
+  images: {
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 31536000,
+  },
+  
+  // Enhanced caching headers
+  async headers() {
+    return [
+      {
+        source: '/_next/static/chunks/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          }
+        ]
+      },
+      {
+        source: '/_next/static/css/:path*',
+        headers: [
+          {
+            key: 'Cache-Control', 
+            value: 'public, max-age=31536000, immutable'
+          }
+        ]
+      }
+    ];
+  }
+};
 
 export default nextConfig;

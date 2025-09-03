@@ -1,0 +1,18 @@
+{
+  "timestamp": "2025-09-03T01:08:31.791Z",
+  "optimizedLibraries": {},
+  "integrationInstructions": {},
+  "webpack": {
+    "alias": {},
+    "resolve": {}
+  },
+  "nextjs": {
+    "webpack": {}
+  },
+  "customReact": {
+    "path": "custom-builds/custom-react",
+    "usage": "import React from \"./custom-builds/custom-react/react.ultra.js\"",
+    "webpack": "alias: { \"react\": \"/Users/camilopineda/Desktop/sdcode/SDM/sdm/custom-builds/custom-react/react.ultra.js\" }",
+    "size": "Ultra-compact React build"
+  }
+}

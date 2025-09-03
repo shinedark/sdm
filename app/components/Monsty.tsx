@@ -1,19 +1,19 @@
-'use client'; // Ensure this is a Client Component
+'use client';
 
+// Ensure this is a Client Component
 import { useState, useEffect } from 'react';
 import ImageClip from './ImageClip';
 import { imageUrls } from './Images'; // Import the image array
 import ExpandingAnimation from './ExpandingAnimation';
-
 interface MonstyProps {
   isAnimating: boolean;
 }
-
-const Monsty: React.FC<MonstyProps> = ({ isAnimating }) => {
+const Monsty: React.FC<MonstyProps> = ({
+  isAnimating
+}) => {
   const [showPyramid, setShowPyramid] = useState(true);
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [isExpanded, setIsExpanded] = useState(false);
-
   useEffect(() => {
     // Function to randomly select unique images
     const selectUniqueImages = () => {
@@ -31,20 +31,13 @@ const Monsty: React.FC<MonstyProps> = ({ isAnimating }) => {
     setShowPyramid(false);
     setIsExpanded(true);
   };
-
   const handleHelloClick = () => {
     setShowPyramid(true);
     setIsExpanded(false);
   };
-
-  return (
-    <>
+  return <>
       <div className="flex min-h-full flex-col items-center justify-center p-4">
-        {showPyramid ? (
-          <div
-            className="flex flex-col items-center relative group cursor-pointer h-full w-full"
-            onClick={handleShapeClick}
-          >
+        {showPyramid ? <div className="flex flex-col items-center relative group cursor-pointer h-full w-full" onClick={handleShapeClick}>
             {/* Black Circle with White Mouth */}
             <div className="absolute top-[-2rem] left-1/2 w-12 h-12 bg-black rounded-full transform -translate-x-1/2 flex items-center justify-center">
               <div className="w-6 h-3 bg-white border-2 border-black border-dashed -translate-y-1/2">
@@ -57,35 +50,16 @@ const Monsty: React.FC<MonstyProps> = ({ isAnimating }) => {
 
             {/* Bottom Divs with Rhythm Animation */}
             <div className="flex space-x-2 mt-4">
-              {[...Array(3)].map((_, index) => (
-                <div
-                  key={index}
-                  className={`relative w-12 h-12 bg-black border-4 border-white border-solid shadow-custom ${isAnimating ? 'animate-rhythm' : ''
-                    }`}
-                >
-                  {isAnimating && selectedImages.length > 0 ? (
-                    <img
-                      src={selectedImages[index]}
-                      alt={`Selected image ${index}`}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 w-full h-full bg-black"></div> // Black cover when not animating
-                  )}
-                </div>
-              ))}
+              {[...Array(3)].map((_, index) => <div key={index} className={`relative w-12 h-12 bg-black border-4 border-white border-solid shadow-custom ${isAnimating ? 'animate-rhythm' : ''}`}>
+                  {isAnimating && selectedImages.length > 0 ? <img src={selectedImages[index]} alt={`Selected image ${index}`} className="absolute inset-0 w-full h-full object-cover" /> : <div className="absolute inset-0 w-full h-full bg-black"></div> // Black cover when not animating
+            }
+                </div>)}
             </div>
-          </div>
-        ) : (
-          <div
-            className="w-full h-full bg-black border-4 border-black border-dashed flex items-center justify-center cursor-pointer"
-            onClick={handleHelloClick}
-          >
+          </div> : <div className="w-full h-full bg-black border-4 border-black border-dashed flex items-center justify-center cursor-pointer" onClick={handleHelloClick}>
             <div className="text-xs">
               <ExpandingAnimation isExpanded={isExpanded} />
             </div>
-          </div>
-        )}
+          </div>}
       </div>
 
       {/* Styles for animation */}
@@ -109,8 +83,6 @@ const Monsty: React.FC<MonstyProps> = ({ isAnimating }) => {
           animation: rhythm 1s infinite;
         }
       `}</style>
-    </>
-  );
+    </>;
 };
-
 export default Monsty;

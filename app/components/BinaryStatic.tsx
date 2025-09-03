@@ -1,7 +1,7 @@
-'use client'; // Ensure this is a Client Component
+'use client';
 
+// Ensure this is a Client Component
 import React from 'react';
-
 const BinaryStatic: React.FC = () => {
   const text = "SHINE DARK";
   const letters = text.split(''); // Split text into individual letters
@@ -10,27 +10,18 @@ const BinaryStatic: React.FC = () => {
   const numRows = 30; // Number of rows
   const numCols = 6; // Number of columns
 
-  return (
-    <div className="absolute inset-0 flex items-center justify-center">
+  return <div className="absolute inset-0 flex items-center justify-center">
       <div className="static-text">
-        {[...Array(numRows)].map((_, rowIndex) => (
-          <div key={rowIndex} className="static-row">
+        {[...Array(numRows)].map((_, rowIndex) => <div key={rowIndex} className="static-row">
             {[...Array(numCols)].map((_, colIndex) => {
-              const letterIndex = (rowIndex * numCols + colIndex) % letters.length;
-              return (
-                <span
-                  key={colIndex}
-                  className="static-text-item"
-                  style={{
-                    animationDelay: `${(rowIndex * numCols + colIndex) * 0.05}s`, // Stagger animation start
-                  }}
-                >
+          const letterIndex = (rowIndex * numCols + colIndex) % letters.length;
+          return <span key={colIndex} className="static-text-item" style={{
+            animationDelay: `${(rowIndex * numCols + colIndex) * 0.05}s` // Stagger animation start
+          }}>
                   {letters[letterIndex]}
-                </span>
-              );
-            })}
-          </div>
-        ))}
+                </span>;
+        })}
+          </div>)}
       </div>
       <style jsx>{`
         .static-text {
@@ -62,8 +53,6 @@ const BinaryStatic: React.FC = () => {
           100% { transform: translateY(0); opacity: 1; }
         }
       `}</style>
-    </div>
-  );
+    </div>;
 };
-
 export default BinaryStatic;

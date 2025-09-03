@@ -2,7 +2,6 @@
 
 import { useState, useCallback } from 'react';
 import Image from "next/image";
-
 interface ExpandableCardProps {
   imageUrl: string;
   imageAlt: string;
@@ -11,7 +10,6 @@ interface ExpandableCardProps {
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
 }
-
 export function ExpandableCard({
   imageUrl,
   imageAlt,
@@ -22,30 +20,20 @@ export function ExpandableCard({
 }: ExpandableCardProps) {
   const [isBottomExpanded, setIsBottomExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-
   const handleMouseEnter = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     setIsHovered(true);
     onMouseEnter?.();
   }, [onMouseEnter]);
-
   const handleMouseLeave = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     setIsHovered(false);
     onMouseLeave?.();
   }, [onMouseLeave]);
-
   const handleClick = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
   }, []);
-
-  return (
-    <div 
-      className="card"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
-    >
+  return <div className="card" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick}>
       <div className="card-header">
         <div className="header-text">MEDICAL ID</div>
       </div>
@@ -54,14 +42,7 @@ export function ExpandableCard({
         {/* Left side - Photo */}
         <div className="photo-section">
           <div className="photo-container">
-            <Image
-              src={imageUrl}
-              alt={imageAlt}
-              fill
-              unoptimized
-              className="photo"
-              sizes="(max-width: auto) 100vw, 50vw"
-            />
+            <Image src={imageUrl} alt={imageAlt} fill unoptimized className="photo" sizes="(max-width: auto) 100vw, 50vw" />
           </div>
           <div className="signature-line">Signature</div>
         </div>
@@ -114,27 +95,20 @@ export function ExpandableCard({
       </div>x
 
       {/* Bottom expandable section */}
-      {bottomContent && (
-        <div className="expandable-section">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsBottomExpanded(!isBottomExpanded);
-            }}
-            className="expand-button"
-          >
+      {bottomContent && <div className="expandable-section">
+          <button onClick={e => {
+        e.stopPropagation();
+        setIsBottomExpanded(!isBottomExpanded);
+      }} className="expand-button">
             <h3 className="arrow">
               FULL LIST OF FOODS
             </h3>
           </button>
           
-          <div
-            className={`expandable-content ${isBottomExpanded ? 'expanded' : ''}`}
-          >
+          <div className={`expandable-content ${isBottomExpanded ? 'expanded' : ''}`}>
             {bottomContent}
           </div>
-        </div>
-      )}
+        </div>}
 
       <style jsx>{`
         .card {
@@ -292,6 +266,5 @@ export function ExpandableCard({
           padding: 8px;
         }
       `}</style>
-    </div>
-  );
-} 
+    </div>;
+}

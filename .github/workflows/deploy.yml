@@ -29,8 +29,11 @@ jobs:
     - name: Run linting
       run: npm run lint
 
-    - name: Build application with optimization
-      run: npm run build:optimized
+    - name: Create custom React Ultra build
+      run: npm run optimize:react-ultra
+
+    - name: Build application with ultimate optimization
+      run: npm run build:ultimate
 
     - name: Deploy to Vercel
       uses: amondnet/vercel-action@v25

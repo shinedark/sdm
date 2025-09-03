@@ -2,10 +2,8 @@
 
 import React from 'react';
 import GlobeGallery from '../GlobeGallery';
-
 const ElArchivo: React.FC = () => {
-  return (
-    <div className="w-full h-screen overflow-hidden mb-20 mt-20">
+  return <div className="w-full h-screen overflow-hidden mb-20 mt-20">
       <style jsx>{`
         @keyframes fadeInOut {
           0% { opacity: 0; }
@@ -20,16 +18,12 @@ const ElArchivo: React.FC = () => {
           transform: translate(-50%, -50%);
         }
       `}</style>
-      <h1 
-        className="text-4xl font-bold mb-8 text-center pt-8 fixed animated-heading" 
-      >
+      <h1 className="text-4xl font-bold mb-8 text-center pt-8 fixed animated-heading">
         {`EL ARCHIVO`}
       </h1>
       <div className="w-full h-[calc(100vh-8rem)]">
         <GlobeGallery />
       </div>
-    </div>
-  );
+    </div>;
 };
-
-export default ElArchivo; 
+export default ElArchivo;

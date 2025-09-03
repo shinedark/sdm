@@ -1,20 +1,19 @@
-'use client'; // Ensure this is a Client Component
+'use client';
 
+// Ensure this is a Client Component
 import { useState, useEffect } from 'react';
-
 interface TextProps {
   text: string;
 }
-
-
-const TypingEffect: React.FC<TextProps> = ({ text }) => {
+const TypingEffect: React.FC<TextProps> = ({
+  text
+}) => {
   const [displayedText, setDisplayedText] = useState('');
   const [index, setIndex] = useState(0);
-
   useEffect(() => {
     const interval = setInterval(() => {
-      setDisplayedText((prev) => prev + text[index]);
-      setIndex((prev) => (prev + 1) % text.length);
+      setDisplayedText(prev => prev + text[index]);
+      setIndex(prev => (prev + 1) % text.length);
 
       // Reset text if we reach the end
       if (index === text.length - 1) {
@@ -24,9 +23,7 @@ const TypingEffect: React.FC<TextProps> = ({ text }) => {
 
     return () => clearInterval(interval);
   }, [index, text]);
-
-  return (
-    <div className="typing-effect">
+  return <div className="typing-effect">
       <span>{displayedText}</span>
       <span className="cursor">|</span>
 
@@ -51,8 +48,6 @@ const TypingEffect: React.FC<TextProps> = ({ text }) => {
           }
         }
       `}</style>
-    </div>
-  );
+    </div>;
 };
-
 export default TypingEffect;

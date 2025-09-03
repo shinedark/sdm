@@ -1,9 +1,8 @@
 'use client';
-import Footer from '../components/Footer';
 
+import Footer from '../components/Footer';
 export default function About() {
-    return (
-        <div className="flex flex-col min-h-screen relative pb-20">
+  return <div className="flex flex-col min-h-screen relative pb-20">
             <main className="flex-1 flex items-center justify-center p-8 relative z-10 bg-white">
                 <div className="text-black bg-white mb-2">
                     <section className="text-center mb-6">
@@ -13,25 +12,23 @@ export default function About() {
                     </section>
 
                     <div className="bg-white backdrop-blur-sm p-6 md:p-8 space-y-8">
-                        <iframe
-                            title="Shine Dark - WHAT IS CRAZY"
-                            width="100%"
-                            height="300"
-                            loading="lazy"
-                            scrolling="no"
-                            frameBorder="no"
-                            className="mb-2"
-                            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1961782483&color=%23b0a8a4&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
-                        />
+                        <iframe title="Shine Dark - WHAT IS CRAZY" width="100%" height="300" loading="lazy" scrolling="no" frameBorder="no" className="mb-2" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1961782483&color=%23b0a8a4&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" />
 
-                        <div style={{ fontSize: '10px', color: '#cccccc', lineBreak: 'anywhere', wordBreak: 'normal', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', fontFamily: 'Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif', fontWeight: 100 }}>
-                            <a
-                                href="https://soundcloud.com/shinedark"
-                                title="Shine Dark"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{ color: '#cccccc', textDecoration: 'none' }}
-                            >
+                        <div style={{
+            fontSize: '10px',
+            color: '#cccccc',
+            lineBreak: 'anywhere',
+            wordBreak: 'normal',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+            fontFamily: 'Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif',
+            fontWeight: 100
+          }}>
+                            <a href="https://soundcloud.com/shinedark" title="Shine Dark" target="_blank" rel="noopener noreferrer" style={{
+              color: '#cccccc',
+              textDecoration: 'none'
+            }}>
                                 Shine Dark
                             </a> 
                         </div>
@@ -85,12 +82,7 @@ export default function About() {
                                 <div>
                                     <h2 className="text-2xl font-bold mb-4">Join Us</h2>
                                     <p className="text-gray-800 leading-relaxed text-lg">
-                                        Visit <a
-                                            href="https://shinedark.dev"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-blue-600 hover:text-blue-800 underline"
-                                        >
+                                        Visit <a href="https://shinedark.dev" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">
                                             shinedark.dev
                                         </a> to be part of this transformative project. Let&apos;s explore together how music can cultivate sustainability and how technology and art can awaken human potential.
                                     </p>
@@ -101,21 +93,13 @@ export default function About() {
 
                     <section className="space-y-6">
                         <div className="bg-white backdrop-blur-sm p-6 md:p-8">
-                            <iframe
-                                style={{ border: '1px #FFFFFF hidden' }}
-                                src="https://shinedark.dev/"
-                                title="iFrame"
-                                width="100%"
-                                height="300px"
-                                scrolling="yes"
-                                frameBorder="no"
-                                allow=""
-                            />
+                            <iframe style={{
+              border: '1px #FFFFFF hidden'
+            }} src="https://shinedark.dev/" title="iFrame" width="100%" height="300px" scrolling="yes" frameBorder="no" allow="" />
                         </div>
                     </section>
                 </div>
             </main>
             <Footer />
-        </div>
-    );
-} 
+        </div>;
+}

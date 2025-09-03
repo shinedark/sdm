@@ -1,10 +1,9 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import GlobeRenderer from './GlobeRenderer';
 import type { list } from '@vercel/blob';
-
 type BlobResponse = Awaited<ReturnType<typeof list>>;
-
 interface Release {
   name: string;
   date: string;
@@ -70,17 +69,14 @@ interface ReleaseWithImage extends Release {
   imageUrl: string;
   imageName: string;
 }
-
 type BlobWithRelease = BlobResponse['blobs'][0] & {
-    date: string;
-    title: string;
+  date: string;
+  title: string;
 };
-
 type ModifiedBlobResponse = Omit<BlobResponse, 'blobs'> & {
-    blobs: BlobWithRelease[];
-    hasMore: boolean;
+  blobs: BlobWithRelease[];
+  hasMore: boolean;
 };
-
 interface AudioFolder {
   name: string;
   imageUrl: string;
@@ -89,36 +85,29 @@ interface AudioFolder {
     url: string;
   }[];
 }
-
-const folders: AudioFolder[] = [
-  {
-    name: 'ARCHIVE',
-    imageUrl: '/music/ARCHIVE/archive.jpg',
-    audioFiles: [
-      { name: 'SHINE DARK - pampam.mp3', url: '/music/ARCHIVE/SHINE DARK - pampam.mp3' },
-      { name: 'SHINE DARK - mola.mp3', url: '/music/ARCHIVE/SHINE DARK - mola.mp3' },
-      { name: 'SHINE DARK - CLUB.mp3', url: '/music/ARCHIVE/SHINE DARK - CLUB.mp3' },
-      { name: 'SHINE DARK - ARCHIVE.mp3', url: '/music/ARCHIVE/SHINE DARK - ARCHIVE.mp3' },
-    ],
-  },
-  // Add more folders as needed
+const folders: AudioFolder[] = [{
+  name: 'ARCHIVE',
+  imageUrl: '/music/ARCHIVE/archive.jpg',
+  audioFiles: [{
+    name: 'SHINE DARK - pampam.mp3',
+    url: '/music/ARCHIVE/SHINE DARK - pampam.mp3'
+  }, {
+    name: 'SHINE DARK - mola.mp3',
+    url: '/music/ARCHIVE/SHINE DARK - mola.mp3'
+  }, {
+    name: 'SHINE DARK - CLUB.mp3',
+    url: '/music/ARCHIVE/SHINE DARK - CLUB.mp3'
+  }, {
+    name: 'SHINE DARK - ARCHIVE.mp3',
+    url: '/music/ARCHIVE/SHINE DARK - ARCHIVE.mp3'
+  }]
+}
+// Add more folders as needed
 ];
-
 export default function GlobeGallery() {
-   
-
-    return (
-        <div className="w-full h-full overflow-y-auto">
+  return <div className="w-full h-full overflow-y-auto">
             <div className="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {folders.map(folder => (
-                    <GlobeRenderer
-                        key={folder.name}
-                        name={folder.name}
-                        imageUrl={folder.imageUrl}
-                        audioFiles={folder.audioFiles}
-                    />
-                ))}
+                {folders.map(folder => <GlobeRenderer key={folder.name} name={folder.name} imageUrl={folder.imageUrl} audioFiles={folder.audioFiles} />)}
             </div>
-        </div>
-    );
+        </div>;
 }

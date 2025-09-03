@@ -1,40 +1,42 @@
-'use client'; // Ensure this is a Client Component
+'use client';
 
+// Ensure this is a Client Component
 import React, { useState, useEffect, forwardRef } from 'react';
 import './Cube.css'; // Import the CSS
 import Monsty from './Monsty';
-
 interface CubeProps {
   isAnimating: boolean;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
   isHovered: boolean;
 }
-
-const Cube = forwardRef<HTMLDivElement, CubeProps>(({ isAnimating, onMouseEnter, onMouseLeave, isHovered }, ref) => {
+const Cube = forwardRef<HTMLDivElement, CubeProps>(({
+  isAnimating,
+  onMouseEnter,
+  onMouseLeave,
+  isHovered
+}, ref) => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [selectedFace, setSelectedFace] = useState('front');
-
   const handleRotation = (direction: string) => {
     switch (direction) {
       case 'up':
-        setRotateX((prevX) => prevX - 90);
+        setRotateX(prevX => prevX - 90);
         break;
       case 'down':
-        setRotateX((prevX) => prevX + 90);
+        setRotateX(prevX => prevX + 90);
         break;
       case 'left':
-        setRotateY((prevY) => prevY - 90);
+        setRotateY(prevY => prevY - 90);
         break;
       case 'right':
-        setRotateY((prevY) => prevY + 90);
+        setRotateY(prevY => prevY + 90);
         break;
       default:
         break;
     }
   };
-
   const handleKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
       case 'ArrowUp':
@@ -53,7 +55,6 @@ const Cube = forwardRef<HTMLDivElement, CubeProps>(({ isAnimating, onMouseEnter,
         break;
     }
   };
-
   useEffect(() => {
     // Add event listener for keyboard controls
     window.addEventListener('keydown', handleKeyDown);
@@ -63,16 +64,11 @@ const Cube = forwardRef<HTMLDivElement, CubeProps>(({ isAnimating, onMouseEnter,
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
-
-  return (
-    <div 
-      ref={ref}
-      className="cube-container"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
+  return <div ref={ref} className="cube-container" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <div className={`scene ${isAnimating ? 'cube-bounce' : ''}`}>
-        <div className="cube" style={{ transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)` }}>
+        <div className="cube" style={{
+        transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+      }}>
           <div className={`cube__face cube__face--front ${selectedFace === 'front' ? 'selected' : ''}`}><Monsty isAnimating={isAnimating} key={1} /></div>
           <div className={`cube__face cube__face--back ${selectedFace === 'back' ? 'selected' : ''}`}><Monsty isAnimating={isAnimating} key={2} /></div>
           <div className={`cube__face cube__face--right ${selectedFace === 'right' ? 'selected' : ''}`}><Monsty isAnimating={isAnimating} key={3} /></div>
@@ -89,11 +85,8 @@ const Cube = forwardRef<HTMLDivElement, CubeProps>(({ isAnimating, onMouseEnter,
           <button onClick={() => handleRotation('left')}>Left</button>
           <button onClick={() => handleRotation('right')}>Right</button>
         </div>
-      )} */}
-    </div>
-  );
+       )} */}
+    </div>;
 });
-
 Cube.displayName = 'Cube';
-
 export default Cube;

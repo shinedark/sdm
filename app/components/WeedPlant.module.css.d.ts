@@ -4,5 +4,4 @@ declare const styles: {
   'leaves': string;
   'animate-growth': string;
 };
-
-export default styles; 
+export default styles;
