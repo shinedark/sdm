@@ -1,27 +1,19 @@
 {
-  "timestamp": "2025-09-03T01:00:16.967Z",
+  "timestamp": "2025-09-03T14:31:47.631Z",
   "optimization": {
     "javascript": {
-      "files": 1,
-      "savings": 12049,
-      "savingsKB": "11.77"
+      "files": 0,
+      "savings": 0,
+      "savingsKB": "0.00"
     },
     "cssHtml": {
-      "savings": 26242,
-      "savingsKB": "25.63"
+      "savings": 26187,
+      "savingsKB": "25.57"
     },
     "total": {
-      "savings": 38291,
-      "savingsKB": "37.39"
+      "savings": 26187,
+      "savingsKB": "25.57"
     }
   },
-  "files": [
-    {
-      "name": "main-6685e5f800d773fb.js",
-      "originalSize": 110196,
-      "optimizedSize": 98147,
-      "savings": 12049,
-      "percentage": "10.93"
-    }
-  ]
+  "files": []
 }

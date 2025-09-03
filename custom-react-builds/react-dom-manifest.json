@@ -1,0 +1,39 @@
+{
+  "timestamp": "2025-09-03T14:30:20.421Z",
+  "tool": "React Semantic Optimizer",
+  "version": "1.0.0",
+  "file": "react-dom.production.min.js",
+  "originalSize": 131685,
+  "optimizedSize": 130692,
+  "reduction": 0.7540722177924594,
+  "identifierMappings": {
+    "exports": "a",
+    "MSApp": "b",
+    "require": "c",
+    "queueMicrotask": "d",
+    "reportError": "e",
+    "https://reactjs.org/docs/error-decoder.html?invariant=": "spzbt66",
+    " for the full message or use the non-minified dev environment for full errors and additional helpful warnings.": "sli0g04",
+    "children dangerouslySetInnerHTML defaultValue defaultChecked innerHTML suppressContentEditableWarning suppressHydrationWarning style": "sxf0zz8",
+    "allowFullScreen async autoFocus autoPlay controls default defer disabled disablePictureInPicture disableRemotePlayback formNoValidate hidden loop noModule noValidate open playsInline readOnly required reversed scoped seamless itemScope": "s91lyz3",
+    "accent-height alignment-baseline arabic-form baseline-shift cap-height clip-path clip-rule color-interpolation color-interpolation-filters color-profile color-rendering dominant-baseline enable-background fill-opacity fill-rule flood-color flood-opacity font-family font-size font-size-adjust font-stretch font-style font-variant font-weight glyph-name glyph-orientation-horizontal glyph-orientation-vertical horiz-adv-x horiz-origin-x image-rendering letter-spacing lighting-color marker-end marker-mid marker-start overline-position overline-thickness paint-order panose-1 pointer-events rendering-intent shape-rendering stop-color stop-opacity strikethrough-position strikethrough-thickness stroke-dasharray stroke-dashoffset stroke-linecap stroke-linejoin stroke-miterlimit stroke-opacity stroke-width text-anchor text-decoration text-rendering underline-position underline-thickness unicode-bidi unicode-range units-per-em v-alphabetic v-hanging v-ideographic v-mathematical vector-effect vert-adv-y vert-origin-x vert-origin-y word-spacing writing-mode xmlns:xlink x-height": "s10x9q8",
+    "xlink:actuate xlink:arcrole xlink:role xlink:show xlink:title xlink:type": "s1hmy2k",
+    "mousedown mouseup touchcancel touchend touchstart auxclick dblclick pointercancel pointerdown pointerup dragend dragstart drop compositionend compositionstart keydown keypress keyup input textInput copy cut paste click change contextmenu reset submit": "sr821rl",
+    "abort auxClick cancel canPlay canPlayThrough click close contextMenu copy cut drag dragEnd dragEnter dragExit dragLeave dragOver dragStart drop durationChange emptied encrypted ended error gotPointerCapture input invalid keyDown keyPress keyUp load loadedData loadedMetadata loadStart lostPointerCapture mouseDown mouseMove mouseOut mouseOver mouseUp paste pause play playing pointerCancel pointerDown pointerMove pointerOut pointerOver pointerUp progress rateChange reset resize seeked seeking stalled submit suspend timeUpdate touchCancel touchEnd touchStart volumeChange scroll toggle touchMove waiting wheel": "sj47ixd",
+    "change click focusin focusout input keydown keyup selectionchange": "s3o8i4i",
+    "focusout contextmenu dragend focusin keydown keyup mousedown mouseup selectionchange": "spar3q2",
+    "compositionend focusout keydown keypress keyup mousedown": "s9p02f3",
+    "compositionstart focusout keydown keypress keyup mousedown": "swzj43q",
+    "compositionupdate focusout keydown keypress keyup mousedown": "stowwxt",
+    "abort canplay canplaythrough durationchange emptied encrypted ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange resize seeked seeking stalled suspend timeupdate volumechange waiting": "sn6oflu"
+  },
+  "identifierCount": 19,
+  "usageStats": {
+    "require": 2,
+    "MSApp": 3,
+    "queueMicrotask": 2,
+    "Infinity": 1,
+    "reportError": 2,
+    "exports": 12
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "timestamp": "2025-09-03T14:30:20.306Z",
+  "tool": "React Semantic Optimizer",
+  "version": "1.0.0",
+  "file": "react.production.min.js",
+  "originalSize": 6930,
+  "optimizedSize": 6455,
+  "reduction": 6.854256854256854,
+  "identifierMappings": {
+    "exports": "a",
+    "setState(...): takes an object of state variables to update or a function which returns an object of state variables.": "sfbppa",
+    "). If you meant to render a collection of children, use an array instead.": "s7q6ded"
+  },
+  "identifierCount": 3,
+  "usageStats": {
+    "exports": 36
+  }
+}

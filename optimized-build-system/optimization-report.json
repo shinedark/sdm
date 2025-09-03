@@ -1,30 +1,32 @@
 {
-  "timestamp": "2025-09-03T01:00:16.877Z",
+  "timestamp": "2025-09-03T14:31:47.544Z",
   "strategy": "Maximum Aggression",
   "results": {
-    "originalSize": 110196,
-    "optimizedSize": 98147,
-    "reduction": 10.934153689789103,
-    "processingTime": 99,
-    "savings": 12049
+    "originalSize": 172831,
+    "optimizedSize": 163342,
+    "reduction": 5.490334488604475,
+    "processingTime": 135,
+    "savings": 9489
   },
   "files": [
     {
       "type": "optimized",
-      "path": "/Users/camilopineda/Desktop/sdcode/SDM/sdm/build/static/js/main.max-aggression.js",
-      "size": 98147
+      "path": "/Users/camilopineda/Desktop/sdcode/SDM/sdm/build/static/js/main-bundle.max-aggression.js",
+      "size": 163342
     },
     {
       "type": "manifest",
       "path": "/Users/camilopineda/Desktop/sdcode/SDM/sdm/build/static/max-aggression-manifest.json",
-      "size": 30880
+      "size": 20411
     },
     {
       "type": "backup",
-      "path": "/Users/camilopineda/Desktop/sdcode/SDM/sdm/build/static/js/main.js.max-aggression.backup",
-      "size": 110196
+      "path": "/Users/camilopineda/Desktop/sdcode/SDM/sdm/build/static/js/main-bundle.js.max-aggression.backup",
+      "size": 172831
     }
   ],
   "errors": [],
-  "warnings": []
+  "warnings": [
+    "No main bundle files detected. Optimization may not be effective."
+  ]
 }

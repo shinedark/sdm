@@ -13,7 +13,10 @@
     "optimize:react": "node optimized-build-system/scripts/react-library-optimizer.js",
     "optimize:react-aggressive": "node optimized-build-system/scripts/react-library-optimizer.js --aggressive",
     "optimize:react-ultra": "node optimized-build-system/scripts/react-ultra-optimizer.js",
+    "optimize:react-custom": "node scripts/custom-react-replacer.js",
     "build:ultimate": "npm run optimize:source && npm run optimize:react-ultra && next build && node scripts/optimize-build.js",
+    "build:custom-react": "npm run optimize:react-custom && next build && node scripts/optimize-build.js",
+    "build:super-ultimate": "npm run optimize:source && npm run optimize:react-custom && next build && node scripts/optimize-build.js",
     "start": "next start",
     "lint": "next lint"
   },
@@ -30,6 +33,10 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@babel/generator": "^7.28.3",
+    "@babel/parser": "^7.28.3",
+    "@babel/traverse": "^7.28.3",
+    "@babel/types": "^7.28.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

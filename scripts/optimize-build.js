@@ -36,7 +36,9 @@ try {
   // 3. Find and copy main bundles
   const chunkFiles = fs.readdirSync(nextBuildDir);
   const mainBundles = chunkFiles.filter(file => 
-    (file.startsWith('main-') || file.includes('main-app') || file.startsWith('fd9d1056-')) && 
+    (file.startsWith('main-') || file.includes('main-app') || file.startsWith('fd9d1056-') || 
+     file.startsWith('framework-') || file.startsWith('23-') || file.startsWith('178-') ||
+     file.startsWith('polyfills-') || file.startsWith('vendors-')) && 
     file.endsWith('.js')
   );
 
@@ -51,7 +53,14 @@ try {
     
     // Only optimize bundles larger than 50KB
     if (stats.size > 50 * 1024) {
-      const targetName = bundle.startsWith('main-') ? 'main.js' : `${bundle.replace('.js', '')}.js`;
+      let targetName;
+      if (bundle.startsWith('main-')) {
+        targetName = 'main.js';
+      } else if (bundle.includes('main-app')) {
+        targetName = 'main-app.js';
+      } else {
+        targetName = bundle; // Keep original name for other chunks
+      }
       const targetPath = path.join(tempBuildDir, targetName);
       
       fs.copyFileSync(sourcePath, targetPath);

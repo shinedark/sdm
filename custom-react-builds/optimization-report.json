@@ -1,0 +1,42 @@
+{
+  "timestamp": "2025-09-03T14:30:20.425Z",
+  "tool": "Custom React Build Replacer",
+  "version": "1.0.0",
+  "results": [
+    {
+      "name": "react",
+      "originalSize": 6930,
+      "optimizedSize": 6455,
+      "reduction": 6.854256854256854,
+      "success": true,
+      "warnings": []
+    },
+    {
+      "name": "react-dom",
+      "originalSize": 131685,
+      "optimizedSize": 130692,
+      "reduction": 0.7540722177924594,
+      "success": true,
+      "warnings": []
+    },
+    {
+      "name": "react-combined",
+      "originalSize": 138615,
+      "optimizedSize": 137381,
+      "reduction": 0.89,
+      "success": true
+    }
+  ],
+  "combined": {
+    "name": "react-combined",
+    "originalSize": 138615,
+    "optimizedSize": 137381,
+    "reduction": 0.89,
+    "success": true
+  },
+  "totalSavings": {
+    "originalSize": 277230,
+    "optimizedSize": 274528,
+    "reduction": 0.9746419940121921
+  }
+}

@@ -58,6 +58,13 @@ const nextConfig = {
       }
     };
     
+    // 🎯 Custom React Build Integration (disabled for now due to JSX runtime issues)
+    // Uncomment to use custom optimized React builds
+    // config.resolve.alias = {
+    //   ...config.resolve.alias,
+    //   'react': path.resolve(__dirname, 'custom-react-builds/react.custom.js'),
+    //   'react-dom': path.resolve(__dirname, 'custom-react-builds/react-dom.custom.js'),
+    // };
     return config;
   },
   
