@@ -1,0 +1,620 @@
+'use client';
+
+import React, { useState, useCallback } from 'react';
+import AudioContextProvider, { useAudioContext } from '../components/audio/AudioContextProvider';
+import AudioInitializer from '../components/audio/AudioInitializer';
+import OscillatorNode, { OscillatorConfig } from '../components/audio/OscillatorNode';
+import Synthesizer, { SynthesizerConfig } from '../components/audio/Synthesizer';
+import AudioMixer, { MixerChannel } from '../components/audio/AudioMixer';
+import MIDISequencer, { MIDIPattern } from '../components/audio/MIDISequencer';
+import StepSequencer from '../components/audio/StepSequencer';
+import { PizzicatoProvider, usePizzicato } from '../components/audio/PizzicatoContext';
+import { ToneProvider, useTone } from '../components/audio/ToneContext';
+
+// Test component that uses the audio context
+const AudioTestApp: React.FC = () => {
+  const audioContext = useAudioContext();
+  const pizzicato = usePizzicato();
+  const tone = useTone();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentPattern, setCurrentPattern] = useState<string>('test-pattern');
+  const [activeNotes, setActiveNotes] = useState<any[]>([]);
+  const [assignedOscillators, setAssignedOscillators] = useState<{
+    [slotIndex: number]: string;
+  }>({});
+  const [oscillatorStates, setOscillatorStates] = useState<{
+    [oscId: string]: {
+      isPlaying: boolean;
+      frequency: number;
+      volume: number;
+    };
+  }>({});
+
+  // Sample oscillator config
+  const [oscillatorConfig, setOscillatorConfig] = useState<OscillatorConfig>({
+    type: 'sine',
+    frequency: 440,
+    detune: 0,
+    volume: 0.5,
+    attack: 0.1,
+    decay: 0.1,
+    sustain: 0.7,
+    release: 0.3
+  });
+
+  // Sample synthesizer config
+  const [synthesizerConfig, setSynthesizerConfig] = useState<SynthesizerConfig>({
+    oscillators: [{
+      type: 'sine',
+      frequency: 440,
+      detune: 0,
+      volume: 0.3,
+      attack: 0.1,
+      decay: 0.1,
+      sustain: 0.7,
+      release: 0.3
+    }, {
+      type: 'square',
+      frequency: 880,
+      detune: 0,
+      volume: 0.2,
+      attack: 0.05,
+      decay: 0.1,
+      sustain: 0.5,
+      release: 0.2
+    }],
+    masterVolume: 0.8,
+    reverb: {
+      enabled: false,
+      amount: 0.3
+    },
+    filter: {
+      enabled: false,
+      frequency: 1000,
+      resonance: 1,
+      type: 'lowpass'
+    }
+  });
+
+  // Sample mixer channels
+  const [mixerChannels, setMixerChannels] = useState<MixerChannel[]>([{
+    id: 'osc-1',
+    name: 'Oscillator 1',
+    volume: 0.7,
+    pan: 0,
+    mute: false,
+    solo: false,
+    effects: {
+      reverb: {
+        enabled: false,
+        amount: 0.3
+      },
+      delay: {
+        enabled: false,
+        time: 0.5,
+        feedback: 0.3
+      },
+      filter: {
+        enabled: false,
+        frequency: 1000,
+        resonance: 1
+      }
+    }
+  }, {
+    id: 'osc-2',
+    name: 'Oscillator 2',
+    volume: 0.5,
+    pan: 0.3,
+    mute: false,
+    solo: false,
+    effects: {
+      reverb: {
+        enabled: true,
+        amount: 0.5
+      },
+      delay: {
+        enabled: false,
+        time: 0.3,
+        feedback: 0.2
+      },
+      filter: {
+        enabled: true,
+        frequency: 800,
+        resonance: 2
+      }
+    }
+  }]);
+
+  // Sample MIDI patterns
+  const [midiPatterns] = useState<MIDIPattern[]>([{
+    id: 'test-pattern',
+    name: 'Test Pattern',
+    tempo: 120,
+    timeSignature: [4, 4],
+    length: 16,
+    loop: true,
+    notes: [{
+      note: 60,
+      velocity: 80,
+      startTime: 0,
+      duration: 1,
+      channel: 0
+    }, {
+      note: 64,
+      velocity: 80,
+      startTime: 2,
+      duration: 1,
+      channel: 0
+    }, {
+      note: 67,
+      velocity: 80,
+      startTime: 4,
+      duration: 1,
+      channel: 0
+    }, {
+      note: 72,
+      velocity: 80,
+      startTime: 8,
+      duration: 2,
+      channel: 0
+    }]
+  }, {
+    id: 'folas-pattern',
+    name: 'Folas Pattern',
+    tempo: 120,
+    timeSignature: [4, 4],
+    length: 8,
+    loop: true,
+    notes: [{
+      note: 48,
+      velocity: 90,
+      startTime: 0,
+      duration: 0.5,
+      channel: 0
+    }, {
+      note: 52,
+      velocity: 85,
+      startTime: 1,
+      duration: 0.5,
+      channel: 0
+    }, {
+      note: 55,
+      velocity: 88,
+      startTime: 2,
+      duration: 0.5,
+      channel: 0
+    }, {
+      note: 60,
+      velocity: 92,
+      startTime: 4,
+      duration: 1,
+      channel: 0
+    }]
+  }, {
+    id: 'bass-line',
+    name: 'Bass Line',
+    tempo: 120,
+    timeSignature: [4, 4],
+    length: 4,
+    loop: true,
+    notes: [{
+      note: 36,
+      velocity: 100,
+      startTime: 0,
+      duration: 1,
+      channel: 1
+    }, {
+      note: 36,
+      velocity: 80,
+      startTime: 2,
+      duration: 1,
+      channel: 1
+    }, {
+      note: 38,
+      velocity: 90,
+      startTime: 3,
+      duration: 0.5,
+      channel: 1
+    }]
+  }, {
+    id: 'hi-hat',
+    name: 'Hi-Hat',
+    tempo: 120,
+    timeSignature: [4, 4],
+    length: 2,
+    loop: true,
+    notes: [{
+      note: 42,
+      velocity: 60,
+      startTime: 0,
+      duration: 0.25,
+      channel: 2
+    }, {
+      note: 42,
+      velocity: 50,
+      startTime: 0.5,
+      duration: 0.25,
+      channel: 2
+    }, {
+      note: 42,
+      velocity: 60,
+      startTime: 1,
+      duration: 0.25,
+      channel: 2
+    }, {
+      note: 42,
+      velocity: 50,
+      startTime: 1.5,
+      duration: 0.25,
+      channel: 2
+    }]
+  }, {
+    id: 'kick-drum',
+    name: 'Kick Drum',
+    tempo: 120,
+    timeSignature: [4, 4],
+    length: 4,
+    loop: true,
+    notes: [{
+      note: 36,
+      velocity: 120,
+      startTime: 0,
+      duration: 0.5,
+      channel: 3
+    }, {
+      note: 36,
+      velocity: 100,
+      startTime: 2,
+      duration: 0.5,
+      channel: 3
+    }]
+  }, {
+    id: 'snare',
+    name: 'Snare',
+    tempo: 120,
+    timeSignature: [4, 4],
+    length: 4,
+    loop: true,
+    notes: [{
+      note: 38,
+      velocity: 110,
+      startTime: 1,
+      duration: 0.5,
+      channel: 4
+    }, {
+      note: 38,
+      velocity: 100,
+      startTime: 3,
+      duration: 0.5,
+      channel: 4
+    }]
+  }, {
+    id: 'melody-1',
+    name: 'Melody 1',
+    tempo: 120,
+    timeSignature: [4, 4],
+    length: 8,
+    loop: true,
+    notes: [{
+      note: 72,
+      velocity: 85,
+      startTime: 0,
+      duration: 1,
+      channel: 5
+    }, {
+      note: 76,
+      velocity: 80,
+      startTime: 1,
+      duration: 1,
+      channel: 5
+    }, {
+      note: 79,
+      velocity: 90,
+      startTime: 2,
+      duration: 1,
+      channel: 5
+    }, {
+      note: 84,
+      velocity: 95,
+      startTime: 4,
+      duration: 2,
+      channel: 5
+    }]
+  }, {
+    id: 'chord-progression',
+    name: 'Chord Progression',
+    tempo: 120,
+    timeSignature: [4, 4],
+    length: 16,
+    loop: true,
+    notes: [{
+      note: 60,
+      velocity: 70,
+      startTime: 0,
+      duration: 4,
+      channel: 6
+    }, {
+      note: 64,
+      velocity: 70,
+      startTime: 0,
+      duration: 4,
+      channel: 6
+    }, {
+      note: 67,
+      velocity: 70,
+      startTime: 0,
+      duration: 4,
+      channel: 6
+    }, {
+      note: 62,
+      velocity: 70,
+      startTime: 4,
+      duration: 4,
+      channel: 6
+    }, {
+      note: 65,
+      velocity: 70,
+      startTime: 4,
+      duration: 4,
+      channel: 6
+    }, {
+      note: 69,
+      velocity: 70,
+      startTime: 4,
+      duration: 4,
+      channel: 6
+    }]
+  }]);
+  const handlePlay = useCallback(() => {
+    setIsPlaying(true);
+  }, []);
+  const handleStop = useCallback(() => {
+    setIsPlaying(false);
+  }, []);
+  const handlePatternChange = useCallback((patternId: string) => {
+    setCurrentPattern(patternId);
+  }, []);
+  const handleNotePlay = useCallback((note: any) => {
+    console.log('Note played:', note);
+
+    // Add note to active notes for visual feedback
+    setActiveNotes(prev => [...prev, {
+      ...note,
+      id: Date.now() + Math.random()
+    }]);
+
+    // Convert MIDI note to frequency
+    const frequency = 440 * Math.pow(2, (note.note - 69) / 12);
+    const velocity = note.velocity / 127; // Normalize velocity
+
+    // Find which slot is currently playing and get its assigned oscillator
+    const currentSlotIndex = note.slotIndex || 0;
+    const assignedOscId = assignedOscillators[currentSlotIndex] || `osc-${currentSlotIndex + 1}`;
+
+    // Create or get the Pizzicato sound for this oscillator
+    let sound = pizzicato.getSound(assignedOscId);
+    if (!sound) {
+      // Create a new Pizzicato sound with ADSR envelope
+      const tempo = note.tempo || 120;
+      const noteDuration = note.duration * (60 / tempo);
+      const newSound = pizzicato.createSound(assignedOscId, frequency, {
+        type: 'sine',
+        volume: velocity * 0.5,
+        attack: 0.1,
+        decay: 0.2,
+        sustain: 0.7,
+        release: 0.3
+      });
+      if (newSound) {
+        sound = newSound;
+      }
+    }
+    if (sound) {
+      // Play the sound with proper ADSR envelope
+      const tempo = note.tempo || 120;
+      const noteDuration = note.duration * (60 / tempo);
+      pizzicato.playSound(assignedOscId, frequency, velocity, noteDuration);
+
+      // Update oscillator state for visual feedback
+      setOscillatorStates(prev => ({
+        ...prev,
+        [assignedOscId]: {
+          isPlaying: true,
+          frequency: frequency,
+          volume: velocity
+        }
+      }));
+
+      // Reset visual state after note duration
+      setTimeout(() => {
+        setOscillatorStates(prev => ({
+          ...prev,
+          [assignedOscId]: {
+            isPlaying: false,
+            frequency: frequency,
+            volume: 0
+          }
+        }));
+        setActiveNotes(prev => prev.filter(n => n.id !== note.id));
+      }, noteDuration * 1000);
+    }
+  }, [pizzicato, assignedOscillators]);
+  const handleChannelChange = useCallback((channelId: string, updates: Partial<MixerChannel>) => {
+    setMixerChannels(prev => prev.map(channel => channel.id === channelId ? {
+      ...channel,
+      ...updates
+    } : channel));
+  }, []);
+  const handleMasterVolumeChange = useCallback((volume: number) => {
+    audioContext.setMasterVolume(volume);
+  }, [audioContext]);
+  const handleOscillatorAssign = useCallback((slotIndex: number, oscillatorId: string) => {
+    setAssignedOscillators(prev => ({
+      ...prev,
+      [slotIndex]: oscillatorId
+    }));
+  }, []);
+  const handleStepToggle = useCallback((patternId: string, step: number, note: any) => {
+    console.log('Step toggled:', patternId, step, note);
+    // Handle step toggle logic here
+  }, []);
+  return <div className="min-h-screen bg-gray-900 text-white p-6">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl font-bold mb-8 text-center">Audio System Test</h1>
+        
+        {/* Audio Context Status */}
+        <div className="mb-8 p-4 bg-gray-800 rounded-lg">
+          <h2 className="text-xl font-semibold mb-4">Audio Context Status</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+            <div>
+              <span className="text-gray-400">Status:</span>
+              <div className={`font-medium ${audioContext.isInitialized ? 'text-green-400' : 'text-red-400'}`}>
+                {audioContext.isInitialized ? 'Initialized' : 'Not Initialized'}
+              </div>
+            </div>
+            <div>
+              <span className="text-gray-400">Suspended:</span>
+              <div className={`font-medium ${audioContext.isSuspended ? 'text-yellow-400' : 'text-green-400'}`}>
+                {audioContext.isSuspended ? 'Yes' : 'No'}
+              </div>
+            </div>
+            <div>
+              <span className="text-gray-400">Sample Rate:</span>
+              <div className="font-medium">{audioContext.sampleRate} Hz</div>
+            </div>
+            <div>
+              <span className="text-gray-400">Current Time:</span>
+              <div className="font-medium">{audioContext.currentTime.toFixed(2)}s</div>
+            </div>
+          </div>
+          
+          <div className="mt-4 flex space-x-4">
+            <button onClick={audioContext.resumeContext} disabled={!audioContext.isSuspended} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded">
+              Resume Context
+            </button>
+            <button onClick={audioContext.suspendContext} disabled={audioContext.isSuspended} className="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded">
+              Suspend Context
+            </button>
+          </div>
+        </div>
+
+        {/* Test Components */}
+        <div className="space-y-8">
+          {/* Dedicated Sequencer Oscillators */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Sequencer Oscillators</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {Array.from({
+              length: 8
+            }, (_, index) => {
+              const oscId = `osc-${index + 1}`;
+              const oscState = oscillatorStates[oscId] || {
+                isPlaying: false,
+                frequency: 440,
+                volume: 0
+              };
+              return <div key={oscId} className="p-4 bg-gray-800 rounded-lg">
+                    <h3 className="font-semibold mb-2">Oscillator {index + 1}</h3>
+                    <div className="text-sm text-gray-400 mb-2">
+                      Status: {oscState.isPlaying ? 'Playing' : 'Idle'}
+                    </div>
+                    <div className="text-sm text-gray-400 mb-2">
+                      Freq: {Math.round(oscState.frequency)}Hz
+                    </div>
+                    <div className="text-sm text-gray-400 mb-2">
+                      Vol: {Math.round(oscState.volume * 100)}%
+                    </div>
+                    <div className="w-full bg-gray-700 rounded-full h-2">
+                      <div className="bg-green-500 h-2 rounded-full transition-all duration-100" style={{
+                    width: `${oscState.volume * 100}%`
+                  }} />
+                    </div>
+                  </div>;
+            })}
+            </div>
+          </div>
+
+          {/* Single Oscillator Test */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Manual Oscillator Test</h2>
+            <OscillatorNode config={oscillatorConfig} isPlaying={isPlaying} onFrequencyChange={frequency => setOscillatorConfig(prev => ({
+            ...prev,
+            frequency
+          }))} onVolumeChange={volume => setOscillatorConfig(prev => ({
+            ...prev,
+            volume
+          }))} />
+          </div>
+
+          {/* Synthesizer Test */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Synthesizer Test</h2>
+            <Synthesizer config={synthesizerConfig} isPlaying={isPlaying} onConfigChange={setSynthesizerConfig} />
+          </div>
+
+          {/* Audio Mixer Test */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Audio Mixer Test</h2>
+            <AudioMixer channels={mixerChannels} masterVolume={audioContext.masterVolume} onChannelChange={handleChannelChange} onMasterVolumeChange={handleMasterVolumeChange} />
+          </div>
+
+          {/* Step Sequencer */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Step Sequencer</h2>
+            <StepSequencer patterns={midiPatterns} isPlaying={isPlaying} currentBeat={0} // This should come from the main sequencer
+          onPatternSelect={handlePatternChange} onStepToggle={handleStepToggle} onPlay={handlePlay} onStop={handleStop} onVolumeChange={volume => console.log('Volume changed:', volume)} stepsPerPattern={16} maxSlots={8} />
+          </div>
+
+          {/* MIDI Sequencer Test */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">MIDI Sequencer Test</h2>
+            <MIDISequencer patterns={midiPatterns} isPlaying={isPlaying} currentPattern={currentPattern} onPatternChange={handlePatternChange} onPlay={handlePlay} onStop={handleStop} onNotePlay={handleNotePlay} loopEnabled={true} maxSlots={8} assignedOscillators={assignedOscillators} onOscillatorAssign={handleOscillatorAssign} />
+          </div>
+        </div>
+
+        {/* Active Notes Display */}
+        <div className="mt-8 p-6 bg-gray-800 rounded-lg">
+          <h2 className="text-xl font-semibold mb-4">Active Notes</h2>
+          <div className="grid grid-cols-4 md:grid-cols-8 gap-2">
+            {activeNotes.map((note, index) => <div key={note.id} className="p-2 bg-green-600 rounded text-center text-sm">
+                <div className="font-bold">{note.note}</div>
+                <div className="text-xs">{Math.round(440 * Math.pow(2, (note.note - 69) / 12))}Hz</div>
+                <div className="text-xs">Vel: {note.velocity}</div>
+              </div>)}
+          </div>
+        </div>
+
+        {/* Global Controls */}
+        <div className="mt-8 p-6 bg-gray-800 rounded-lg">
+          <h2 className="text-xl font-semibold mb-4">Global Controls</h2>
+          <div className="flex items-center space-x-4">
+            <button onClick={isPlaying ? handleStop : handlePlay} className={`px-8 py-4 rounded-lg font-bold text-lg ${isPlaying ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'}`}>
+              {isPlaying ? 'STOP' : 'PLAY'}
+            </button>
+            
+            <div className="flex items-center space-x-2">
+              <label className="text-sm">Master Volume:</label>
+              <input type="range" min="0" max="1" step="0.01" value={audioContext.masterVolume} onChange={e => handleMasterVolumeChange(parseFloat(e.target.value))} className="w-32" />
+              <span className="text-sm w-12">
+                {(audioContext.masterVolume * 100).toFixed(0)}%
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>;
+};
+
+// Main page component with AudioContextProvider, PizzicatoProvider, and ToneProvider
+const AudioTestPage: React.FC = () => {
+  return <AudioContextProvider>
+      <PizzicatoProvider>
+        <ToneProvider>
+          <AudioInitializer>
+            <AudioTestApp />
+          </AudioInitializer>
+        </ToneProvider>
+      </PizzicatoProvider>
+    </AudioContextProvider>;
+};
+export default AudioTestPage;

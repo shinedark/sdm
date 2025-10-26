@@ -60,9 +60,9 @@ const Vinyl: React.FC<VinylProps> = ({
         <h1 className="text-2xl font-bold mb-4 text-center">EL ARCHIVO 1</h1>
         {/* Buy Button */}
         <div className="flex justify-center mb-8 ">
-          <a href="https://www.paypal.com/ncp/payment/RVBUJR3MTSYB2" target="_blank" rel="noopener noreferrer" className="w-full h-12 bg-black text-white flex items-center justify-center rounded-full">
-            Buy
-          </a>
+          <button className="w-full h-12 bg-black text-white flex items-center justify-center rounded-full">
+            Coming Soon
+          </button>
         </div>
 
         {/* Audio Previews */}

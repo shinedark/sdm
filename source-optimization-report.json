@@ -1,13 +1,13 @@
 {
-  "timestamp": "2025-09-03T01:13:18.262Z",
+  "timestamp": "2025-09-05T23:01:45.960Z",
   "type": "source-level-optimization",
   "stats": {
     "filesProcessed": 0,
     "importsRemoved": 0,
     "identifiersOptimized": 0,
     "deadCodeRemoved": 0,
-    "totalSizeReduction": 0,
-    "totalSizeReductionKB": "0.00",
+    "totalSizeReduction": 175,
+    "totalSizeReductionKB": "0.17",
     "averageReduction": "0KB"
   },
   "settings": {
@@ -34,7 +34,7 @@
   "files": [
     {
       "path": "app/page.tsx",
-      "originalSize": 3704,
+      "originalSize": 3619,
       "components": [],
       "unusedImports": []
     },
@@ -53,12 +53,6 @@
     {
       "path": "app/vision/page.tsx",
       "originalSize": 4820,
-      "components": [],
-      "unusedImports": []
-    },
-    {
-      "path": "app/context/audio-context.tsx",
-      "originalSize": 2535,
       "components": [],
       "unusedImports": []
     },
@@ -88,7 +82,7 @@
     },
     {
       "path": "app/components/Vinyl.tsx",
-      "originalSize": 2404,
+      "originalSize": 2324,
       "components": [],
       "unusedImports": []
     },
@@ -136,7 +130,7 @@
     },
     {
       "path": "app/components/Navigation.tsx",
-      "originalSize": 1561,
+      "originalSize": 1620,
       "components": [],
       "unusedImports": []
     },
@@ -213,20 +207,32 @@
       "unusedImports": []
     },
     {
+      "path": "app/context/audio-context.tsx",
+      "originalSize": 2535,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/audio-test/page.tsx",
+      "originalSize": 18287,
+      "components": [],
+      "unusedImports": []
+    },
+    {
       "path": "app/about/page.tsx",
       "originalSize": 7169,
       "components": [],
       "unusedImports": []
     },
     {
-      "path": "app/api/blobs/route.ts",
-      "originalSize": 322,
+      "path": "app/audio/page.tsx",
+      "originalSize": 1893,
       "components": [],
       "unusedImports": []
     },
     {
       "path": "app/components/sections/Projects.tsx",
-      "originalSize": 4851,
+      "originalSize": 4842,
       "components": [],
       "unusedImports": []
     },
@@ -249,8 +255,74 @@
       "unusedImports": []
     },
     {
-      "path": "app/api/blobs/pinata-files/route.ts",
-      "originalSize": 474,
+      "path": "app/components/audio/ToneEngine.tsx",
+      "originalSize": 9794,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/audio/ToneContext.tsx",
+      "originalSize": 4038,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/audio/Synthesizer.tsx",
+      "originalSize": 8754,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/audio/StepSequencer.tsx",
+      "originalSize": 6731,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/audio/PizzicatoEngine.tsx",
+      "originalSize": 5716,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/audio/PizzicatoContext.tsx",
+      "originalSize": 3780,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/audio/OscillatorNode.tsx",
+      "originalSize": 7768,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/audio/MIDISequencer.tsx",
+      "originalSize": 18548,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/audio/AudioMixer.tsx",
+      "originalSize": 12038,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/audio/AudioInitializer.tsx",
+      "originalSize": 2944,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/components/audio/AudioContextProvider.tsx",
+      "originalSize": 7646,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/api/blobs/route.ts",
+      "originalSize": 322,
       "components": [],
       "unusedImports": []
     }

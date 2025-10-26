@@ -17,6 +17,9 @@ const Navigation: React.FC<NavigationProps> = ({
     section: 'EL ARCHIVO',
     image: '/images/elarchivo.png'
   }, {
+    section: 'Audio',
+    image: '/images/game.png'
+  }, {
     section: 'About',
     image: '/images/apps.png'
   }, {

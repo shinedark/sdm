@@ -1,0 +1,138 @@
+[
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/sweet/matri.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[0]_layoutDictArray[0]_docwWindowState_udataBeatsMidiEditor",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[0].layoutDictArray[0].docwWindowState.udataBeatsMidiEditor",
+    "raw_data": {
+      "BEViewRange": "{0, 0}",
+      "BECatch": 0,
+      "BEUserData": "38012c0000000200f0010000000026099c010000000000000000000000000000000000000000000000002c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000029000000000000008090de0b0000000000000000a77f0000b01e000000000000800103000000000000000000007f00000c43ff000063610061001a001a001a001a0061001a00000000000000000000000000000000000000000000000001030705040206000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e0410000000000000000d007000000000000000000000000005007000000000000e041000100",
+      "BEVolume": 0.0,
+      "BEEditMode": 0,
+      "BEMetronome": 0,
+      "BERegionIndex": [
+        -1,
+        -1,
+        -1,
+        1
+      ],
+      "BECycle": 0
+    },
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  },
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/sweet/matri.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[0]_layoutDictArray[0]_docwWindowState_udataBeatsMidiEditor_BERegionIndex",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[0].layoutDictArray[0].docwWindowState.udataBeatsMidiEditor.BERegionIndex",
+    "raw_data": [
+      -1,
+      -1,
+      -1,
+      1
+    ],
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  },
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/sweet/matri.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[0]_layoutDictArray[0]_docwWindowState_udataBeatsAudioEditor_BEUserData_BERegionIndex",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[0].layoutDictArray[0].docwWindowState.udataBeatsAudioEditor.BEUserData.BERegionIndex",
+    "raw_data": [
+      -1,
+      -1,
+      -1,
+      1
+    ],
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  },
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/sweet/matri.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[0]_layoutDictArray[0]_docwWindowState_udataBeatsAudioEditor_BERegionIndex",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[0].layoutDictArray[0].docwWindowState.udataBeatsAudioEditor.BERegionIndex",
+    "raw_data": [
+      -1,
+      -1,
+      -1,
+      1
+    ],
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  },
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/sweet/matri.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[1]_layoutDictArray[0]_docwWindowState_udataBeatsMidiEditor",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[1].layoutDictArray[0].docwWindowState.udataBeatsMidiEditor",
+    "raw_data": {
+      "BECatch": 0,
+      "BEViewRange": "{0, 0}",
+      "BEEditMode": 0,
+      "BEVolume": 0.0,
+      "BEMetronome": 0,
+      "BERegionIndex": [
+        -1,
+        -1,
+        -1,
+        1
+      ],
+      "BECycle": 0
+    },
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  },
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/sweet/matri.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[1]_layoutDictArray[0]_docwWindowState_udataBeatsMidiEditor_BERegionIndex",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[1].layoutDictArray[0].docwWindowState.udataBeatsMidiEditor.BERegionIndex",
+    "raw_data": [
+      -1,
+      -1,
+      -1,
+      1
+    ],
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  },
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/sweet/matri.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[1]_layoutDictArray[0]_docwWindowState_udataBeatsAudioEditor_BERegionIndex",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[1].layoutDictArray[0].docwWindowState.udataBeatsAudioEditor.BERegionIndex",
+    "raw_data": [
+      -1,
+      -1,
+      -1,
+      1
+    ],
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  }
+]

@@ -13,12 +13,9 @@ import ElArchivo from './components/sections/ElArchivo';
 import About from './components/sections/About';
 import Projects from './components/sections/Projects';
 import { ExpandableCard } from './components/ExpandableCard';
-import FoodList from './components/FoodList';
+import Link from 'next/link';
 import { AudioControls } from './components/audio-controls/audio-controls';
 import './globals.css';
-
-// const sdmWallet = process.env.NEXT_PUBLIC_SDM_WALLET_ADDRESS || '';
-
 export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [showVinyl, setShowVinyl] = useState(false);
@@ -26,7 +23,6 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('Home');
   const elementRef = useRef(null);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [showMedicalId, setShowMedicalId] = useState(false);
   const handleNoiseClick = () => {
     if (audioRef.current) {
       if (audioRef.current.paused) {
@@ -44,24 +40,16 @@ export default function Home() {
   const closeVinylOverlay = () => {
     setShowVinyl(false);
   };
-  const toggleMedicalId = () => {
-    setShowMedicalId(!showMedicalId);
-  };
   const renderSection = () => {
     switch (activeSection) {
       case 'Home':
         return <div className="mb-20 mt-20 w-full">
             <BinaryStatic />
-            <button className="editz fixed top-4 right-8 w-24 h-12   flex items-center justify-center border-black border-2 rounded-full z-40" onClick={handleNoiseClick}>
+            <button className="editz fixed top-4 right-8 w-24 h-12 flex items-center justify-center border-black border-2 rounded-full z-40" onClick={handleNoiseClick}>
               {`NOISE`}
             </button>
-            {/* <button onClick={toggleVinylOverlay} className="fixed top-4 left-8 w-24 h-12 bg-black text-white flex items-center justify-center rounded-full z-40">
-              {`VINYL`}
-            </button> */}
             <Image src={'/images/6.png'} alt="Medical ID" width={48} height={64} className="fixed top-20 left-20" priority />
-
             <Cube isAnimating={isAnimating} ref={elementRef} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} isHovered={isHovered} />
-        
             <div className="flex flex-row items-center space-around fixed w-full -z-10">
               <WeedPlant isAnimating={isAnimating} />
               <PlantToJeans isAnimating={isAnimating} />
@@ -74,6 +62,15 @@ export default function Home() {
         return <About />;
       case 'Projects':
         return <Projects />;
+      case 'Audio':
+        return <div className="w-full h-full flex items-center justify-center">
+            <div className="text-center">
+              <h2 className="text-6xl md:text-8xl font-black text-gray-900 mb-6 transition-all duration-300 hover:scale-110 hover:text-gray-700 animate-pulse">
+                Audio Studio
+              </h2>
+              <p className="text-xl text-gray-600">Coming soon...</p>
+            </div>
+          </div>;
       default:
         return null;
     }

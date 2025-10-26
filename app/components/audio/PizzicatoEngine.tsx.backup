@@ -1,0 +1,231 @@
+'use client';
+
+import React, { useRef, useEffect, useState, useCallback } from 'react';
+import Pizzicato from 'pizzicato';
+
+export interface PizzicatoSound {
+  id: string;
+  sound: Pizzicato.Sound;
+  isPlaying: boolean;
+  frequency: number;
+  volume: number;
+  attack: number;
+  decay: number;
+  sustain: number;
+  release: number;
+}
+
+export interface PizzicatoEngineProps {
+  onSoundCreate?: (sound: PizzicatoSound) => void;
+  onSoundUpdate?: (soundId: string, updates: Partial<PizzicatoSound>) => void;
+  onSoundDestroy?: (soundId: string) => void;
+}
+
+const PizzicatoEngine: React.FC<PizzicatoEngineProps> = ({
+  onSoundCreate,
+  onSoundUpdate,
+  onSoundDestroy
+}) => {
+  const soundsRef = useRef<Map<string, PizzicatoSound>>(new Map());
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Initialize Pizzicato
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsInitialized(true);
+    }
+  }, []);
+
+  // Create a new sound with ADSR envelope
+  const createSound = useCallback((id: string, frequency: number, options: {
+    attack?: number;
+    decay?: number;
+    sustain?: number;
+    release?: number;
+    volume?: number;
+    type?: 'sine' | 'square' | 'sawtooth' | 'triangle';
+  } = {}) => {
+    if (!isInitialized) return null;
+
+    const {
+      attack = 0.1,
+      decay = 0.1,
+      sustain = 0.7,
+      release = 0.3,
+      volume = 0.5,
+      type = 'sine'
+    } = options;
+
+    try {
+      const sound = new Pizzicato.Sound({
+        source: 'wave',
+        options: {
+          type: type,
+          frequency: frequency,
+          volume: volume,
+          attack: attack,
+          release: release
+        }
+      });
+
+      const pizzicatoSound: PizzicatoSound = {
+        id,
+        sound,
+        isPlaying: false,
+        frequency,
+        volume,
+        attack,
+        decay,
+        sustain,
+        release
+      };
+
+      soundsRef.current.set(id, pizzicatoSound);
+      onSoundCreate?.(pizzicatoSound);
+      
+      return pizzicatoSound;
+    } catch (error) {
+      console.error('Failed to create Pizzicato sound:', error);
+      return null;
+    }
+  }, [isInitialized, onSoundCreate]);
+
+  // Play a sound with ADSR envelope
+  const playSound = useCallback((id: string, frequency: number, velocity: number = 1, duration: number = 1) => {
+    const soundData = soundsRef.current.get(id);
+    if (!soundData) return;
+
+    try {
+      // Update frequency and volume
+      soundData.sound.frequency = frequency;
+      soundData.sound.volume = velocity * soundData.volume;
+      
+      // Play the sound
+      soundData.sound.play();
+      soundData.isPlaying = true;
+      
+      // Update state
+      onSoundUpdate?.(id, {
+        isPlaying: true,
+        frequency,
+        volume: velocity * soundData.volume
+      });
+
+      // Stop after duration
+      setTimeout(() => {
+        soundData.sound.stop();
+        soundData.isPlaying = false;
+        onSoundUpdate?.(id, {
+          isPlaying: false,
+          volume: 0
+        });
+      }, duration * 1000);
+
+    } catch (error) {
+      console.error('Failed to play Pizzicato sound:', error);
+    }
+  }, [onSoundUpdate]);
+
+  // Stop a sound
+  const stopSound = useCallback((id: string) => {
+    const soundData = soundsRef.current.get(id);
+    if (!soundData) return;
+
+    try {
+      soundData.sound.stop();
+      soundData.isPlaying = false;
+      onSoundUpdate?.(id, {
+        isPlaying: false,
+        volume: 0
+      });
+    } catch (error) {
+      console.error('Failed to stop Pizzicato sound:', error);
+    }
+  }, [onSoundUpdate]);
+
+  // Update sound parameters
+  const updateSound = useCallback((id: string, updates: Partial<PizzicatoSound>) => {
+    const soundData = soundsRef.current.get(id);
+    if (!soundData) return;
+
+    try {
+      if (updates.frequency !== undefined) {
+        soundData.sound.frequency = updates.frequency;
+        soundData.frequency = updates.frequency;
+      }
+      
+      if (updates.volume !== undefined) {
+        soundData.sound.volume = updates.volume;
+        soundData.volume = updates.volume;
+      }
+
+      if (updates.attack !== undefined) {
+        soundData.attack = updates.attack;
+        soundData.sound.attack = updates.attack;
+      }
+
+      if (updates.release !== undefined) {
+        soundData.release = updates.release;
+        soundData.sound.release = updates.release;
+      }
+
+      onSoundUpdate?.(id, updates);
+    } catch (error) {
+      console.error('Failed to update Pizzicato sound:', error);
+    }
+  }, [onSoundUpdate]);
+
+  // Destroy a sound
+  const destroySound = useCallback((id: string) => {
+    const soundData = soundsRef.current.get(id);
+    if (!soundData) return;
+
+    try {
+      soundData.sound.stop();
+      soundsRef.current.delete(id);
+      onSoundDestroy?.(id);
+    } catch (error) {
+      console.error('Failed to destroy Pizzicato sound:', error);
+    }
+  }, [onSoundDestroy]);
+
+  // Get all sounds
+  const getAllSounds = useCallback(() => {
+    return Array.from(soundsRef.current.values());
+  }, []);
+
+  // Get a specific sound
+  const getSound = useCallback((id: string) => {
+    return soundsRef.current.get(id);
+  }, []);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      soundsRef.current.forEach((soundData) => {
+        try {
+          soundData.sound.stop();
+        } catch (error) {
+          console.error('Error stopping sound during cleanup:', error);
+        }
+      });
+      soundsRef.current.clear();
+    };
+  }, []);
+
+  // Expose methods through ref (if needed)
+  const engineRef = useRef({
+    createSound,
+    playSound,
+    stopSound,
+    updateSound,
+    destroySound,
+    getAllSounds,
+    getSound,
+    isInitialized
+  });
+
+  return null; // This is a headless component
+};
+
+export default PizzicatoEngine;

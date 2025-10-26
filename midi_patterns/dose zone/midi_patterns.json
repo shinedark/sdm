@@ -1,0 +1,109 @@
+[
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/2022 Album Mixtape/RELEASED/dose zone/dose zone.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[0]_layoutDictArray[0]_docwWindowState_udataBeatsMidiEditor",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[0].layoutDictArray[0].docwWindowState.udataBeatsMidiEditor",
+    "raw_data": {
+      "BEViewRange": "{0, 0}",
+      "BECatch": 0,
+      "BEUserData": {
+        "BECatch": 0,
+        "BEViewRange": "{0, 0}",
+        "BEEditMode": 0,
+        "BEVolume": 0.0,
+        "BEMetronome": 0,
+        "BERegionIndex": [
+          -1,
+          -1,
+          -1,
+          1
+        ],
+        "BECycle": 0
+      },
+      "BEVolume": 0.0,
+      "BEEditMode": 0,
+      "BEMetronome": 0,
+      "BERegionIndex": [
+        -1,
+        -1,
+        -1,
+        1
+      ],
+      "BECycle": 0
+    },
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  },
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/2022 Album Mixtape/RELEASED/dose zone/dose zone.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[0]_layoutDictArray[0]_docwWindowState_udataBeatsMidiEditor_BEUserData_BERegionIndex",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[0].layoutDictArray[0].docwWindowState.udataBeatsMidiEditor.BEUserData.BERegionIndex",
+    "raw_data": [
+      -1,
+      -1,
+      -1,
+      1
+    ],
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  },
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/2022 Album Mixtape/RELEASED/dose zone/dose zone.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[0]_layoutDictArray[0]_docwWindowState_udataBeatsMidiEditor_BERegionIndex",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[0].layoutDictArray[0].docwWindowState.udataBeatsMidiEditor.BERegionIndex",
+    "raw_data": [
+      -1,
+      -1,
+      -1,
+      1
+    ],
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  },
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/2022 Album Mixtape/RELEASED/dose zone/dose zone.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[0]_layoutDictArray[0]_docwWindowState_udataBeatsAudioEditor_BEUserData_BERegionIndex",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[0].layoutDictArray[0].docwWindowState.udataBeatsAudioEditor.BEUserData.BERegionIndex",
+    "raw_data": [
+      -1,
+      -1,
+      -1,
+      1
+    ],
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  },
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/2022 Album Mixtape/RELEASED/dose zone/dose zone.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[0]_layoutDictArray[0]_docwWindowState_udataBeatsAudioEditor_BERegionIndex",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[0].layoutDictArray[0].docwWindowState.udataBeatsAudioEditor.BERegionIndex",
+    "raw_data": [
+      -1,
+      -1,
+      -1,
+      1
+    ],
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  }
+]

@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import GlobeRenderer from './GlobeRenderer';
-import type { list } from '@vercel/blob';
-type BlobResponse = Awaited<ReturnType<typeof list>>;
+
 interface Release {
   name: string;
   date: string;
@@ -69,14 +68,6 @@ interface ReleaseWithImage extends Release {
   imageUrl: string;
   imageName: string;
 }
-type BlobWithRelease = BlobResponse['blobs'][0] & {
-  date: string;
-  title: string;
-};
-type ModifiedBlobResponse = Omit<BlobResponse, 'blobs'> & {
-  blobs: BlobWithRelease[];
-  hasMore: boolean;
-};
 interface AudioFolder {
   name: string;
   imageUrl: string;

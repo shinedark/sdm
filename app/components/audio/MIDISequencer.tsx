@@ -1,0 +1,466 @@
+'use client';
+
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+export interface MIDINote {
+  note: number; // MIDI note number (0-127)
+  velocity: number; // Note velocity (0-127)
+  startTime: number; // Start time in beats
+  duration: number; // Duration in beats
+  channel: number; // MIDI channel (0-15)
+}
+export interface MIDIPattern {
+  id: string;
+  name: string;
+  tempo: number; // BPM
+  timeSignature: [number, number]; // [numerator, denominator]
+  notes: MIDINote[];
+  length: number; // Pattern length in beats
+  loop: boolean;
+}
+export interface MIDISequencerProps {
+  patterns: MIDIPattern[];
+  isPlaying: boolean;
+  currentPattern?: string;
+  onPatternChange?: (patternId: string) => void;
+  onPlay?: () => void;
+  onStop?: () => void;
+  onNotePlay?: (note: MIDINote) => void;
+  className?: string;
+  loopEnabled?: boolean;
+  maxSlots?: number;
+  assignedOscillators?: {
+    [slotIndex: number]: string;
+  }; // Map slot index to oscillator ID
+  onOscillatorAssign?: (slotIndex: number, oscillatorId: string) => void;
+}
+const MIDISequencer: React.FC<MIDISequencerProps> = ({
+  patterns,
+  isPlaying,
+  currentPattern,
+  onPatternChange,
+  onPlay,
+  onStop,
+  onNotePlay,
+  className = '',
+  loopEnabled = true,
+  maxSlots = 8,
+  assignedOscillators = {},
+  onOscillatorAssign
+}) => {
+  const [midiAccess, setMidiAccess] = useState<MIDIAccess | null>(null);
+  const [midiInputs, setMidiInputs] = useState<MIDIInput[]>([]);
+  const [midiOutputs, setMidiOutputs] = useState<MIDIOutput[]>([]);
+  const [isMidiConnected, setIsMidiConnected] = useState(false);
+  const [currentBeat, setCurrentBeat] = useState(0);
+  const [selectedPattern, setSelectedPattern] = useState<string | null>(currentPattern || null);
+  const [patternSlots, setPatternSlots] = useState<(string | null)[]>(new Array(maxSlots).fill(null));
+  const [isLooping, setIsLooping] = useState(loopEnabled);
+  const [loopProgress, setLoopProgress] = useState(0);
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const sequencerIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const startTimeRef = useRef<number>(0);
+
+  // Initialize MIDI access
+  const initializeMIDI = useCallback(async () => {
+    try {
+      if (!navigator.requestMIDIAccess) {
+        console.warn('Web MIDI API not supported');
+        return;
+      }
+      const access = await navigator.requestMIDIAccess({
+        sysex: false
+      });
+      setMidiAccess(access);
+      setIsMidiConnected(true);
+
+      // List available MIDI devices
+      const inputs: MIDIInput[] = [];
+      const outputs: MIDIOutput[] = [];
+      access.inputs.forEach(input => {
+        inputs.push(input);
+      });
+      access.outputs.forEach(output => {
+        outputs.push(output);
+      });
+      setMidiInputs(inputs);
+      setMidiOutputs(outputs);
+
+      // Set up MIDI input handlers
+      access.inputs.forEach(input => {
+        input.onmidimessage = handleMIDIMessage;
+      });
+
+      // Handle MIDI device connection changes
+      access.addEventListener('statechange', handleMIDIConnectionChange);
+    } catch (error) {
+      console.error('Failed to initialize MIDI:', error);
+      setIsMidiConnected(false);
+    }
+  }, []);
+
+  // Handle MIDI messages from external devices
+  const handleMIDIMessage = useCallback((event: MIDIMessageEvent) => {
+    const data = event.data;
+    if (!data || data.length < 3) return;
+    const status = data[0];
+    const note = data[1];
+    const velocity = data[2];
+    const command = status & 0xf0;
+    const channel = status & 0x0f;
+    if (command === 0x90 && velocity > 0) {
+      // Note On
+      const midiNote: MIDINote = {
+        note,
+        velocity,
+        startTime: currentBeat,
+        duration: 1,
+        // Default duration
+        channel
+      };
+      onNotePlay?.(midiNote);
+    }
+  }, [currentBeat, onNotePlay]);
+
+  // Handle MIDI device connection changes
+  const handleMIDIConnectionChange = useCallback((event: MIDIConnectionEvent) => {
+    const port = event.port;
+    if (!port) return;
+    console.log(`MIDI ${port.type} ${port.state}: ${port.name}`);
+    if (port.state === 'connected') {
+      if (port.type === 'input') {
+        (port as MIDIInput).onmidimessage = handleMIDIMessage;
+      }
+    }
+  }, [handleMIDIMessage]);
+
+  // Initialize AudioContext
+  const initializeAudioContext = useCallback(async () => {
+    if (!audioContextRef.current) {
+      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+      if (audioContextRef.current.state === 'suspended') {
+        await audioContextRef.current.resume();
+      }
+    }
+  }, []);
+
+  // Start sequencer
+  const startSequencer = useCallback(() => {
+    if (!audioContextRef.current) return;
+    startTimeRef.current = audioContextRef.current.currentTime;
+    setCurrentBeat(0);
+    const LOOP_DURATION = 30; // 30 seconds standard loop length
+
+    const playBeat = () => {
+      if (!audioContextRef.current) return;
+      const elapsed = audioContextRef.current.currentTime - startTimeRef.current;
+
+      // Find the current pattern slot to play
+      const activeSlots = patternSlots.filter(slot => slot !== null);
+      if (activeSlots.length === 0) return;
+
+      // Calculate which pattern slot is currently playing based on 30-second loop
+      const slotDuration = LOOP_DURATION / activeSlots.length; // Each slot gets equal time
+      const currentSlotIndex = Math.floor(elapsed % LOOP_DURATION / slotDuration) % activeSlots.length;
+      const currentSlotPatternId = activeSlots[currentSlotIndex];
+      if (!currentSlotPatternId) return;
+      const currentPatternData = patterns.find(p => p.id === currentSlotPatternId);
+      if (!currentPatternData) return;
+
+      // Calculate beat within the current pattern based on its tempo
+      const beatDuration = 60 / currentPatternData.tempo; // Duration of one beat in seconds
+      const slotStartTime = currentSlotIndex * slotDuration;
+      const timeInSlot = elapsed % LOOP_DURATION - slotStartTime;
+      const beat = timeInSlot / beatDuration % currentPatternData.length;
+      setCurrentBeat(beat);
+
+      // Play notes that start at this beat
+      currentPatternData.notes.filter(note => Math.abs(note.startTime - beat) < 0.1) // Small tolerance for timing
+      .forEach(note => {
+        const noteWithTempo = {
+          ...note,
+          tempo: currentPatternData.tempo,
+          slotIndex: currentSlotIndex
+        };
+        onNotePlay?.(noteWithTempo);
+      });
+
+      // Update loop progress
+      setLoopProgress(elapsed % LOOP_DURATION / LOOP_DURATION);
+
+      // If not looping and we've reached the end of the 30-second loop, stop
+      if (!isLooping && elapsed >= LOOP_DURATION) {
+        stopSequencer();
+      }
+    };
+    sequencerIntervalRef.current = setInterval(playBeat, 16); // ~60fps
+    onPlay?.();
+  }, [patterns, patternSlots, onNotePlay, onPlay, isLooping]);
+
+  // Stop sequencer
+  const stopSequencer = useCallback(() => {
+    if (sequencerIntervalRef.current) {
+      clearInterval(sequencerIntervalRef.current);
+      sequencerIntervalRef.current = null;
+    }
+    setCurrentBeat(0);
+    onStop?.();
+  }, [onStop]);
+
+  // Handle play/stop
+  useEffect(() => {
+    if (isPlaying) {
+      startSequencer();
+    } else {
+      stopSequencer();
+    }
+  }, [isPlaying, startSequencer, stopSequencer]);
+
+  // Initialize on mount
+  useEffect(() => {
+    initializeMIDI();
+    initializeAudioContext();
+  }, [initializeMIDI, initializeAudioContext]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      stopSequencer();
+      if (midiAccess) {
+        midiAccess.removeEventListener('statechange', handleMIDIConnectionChange);
+      }
+    };
+  }, [midiAccess, stopSequencer, handleMIDIConnectionChange]);
+  const handlePatternSelect = useCallback((patternId: string) => {
+    setSelectedPattern(patternId);
+    onPatternChange?.(patternId);
+  }, [onPatternChange]);
+  const addPatternToSlot = useCallback((patternId: string, slotIndex: number) => {
+    if (slotIndex >= 0 && slotIndex < maxSlots) {
+      setPatternSlots(prev => {
+        const newSlots = [...prev];
+        newSlots[slotIndex] = patternId;
+        return newSlots;
+      });
+    }
+  }, [maxSlots]);
+  const removePatternFromSlot = useCallback((slotIndex: number) => {
+    if (slotIndex >= 0 && slotIndex < maxSlots) {
+      setPatternSlots(prev => {
+        const newSlots = [...prev];
+        newSlots[slotIndex] = null;
+        return newSlots;
+      });
+    }
+  }, [maxSlots]);
+  const clearAllSlots = useCallback(() => {
+    setPatternSlots(new Array(maxSlots).fill(null));
+  }, [maxSlots]);
+  const sendMIDINote = useCallback((note: MIDINote, outputIndex: number = 0) => {
+    if (midiOutputs[outputIndex]) {
+      const noteOn = [0x90 | note.channel, note.note, note.velocity];
+      const noteOff = [0x80 | note.channel, note.note, 0];
+      midiOutputs[outputIndex].send(noteOn);
+
+      // Schedule note off
+      setTimeout(() => {
+        midiOutputs[outputIndex].send(noteOff);
+      }, note.duration * 1000); // Convert beats to milliseconds (approximate)
+    }
+  }, [midiOutputs]);
+  const currentPatternData = patterns.find(p => p.id === selectedPattern);
+  return <div className={`midi-sequencer p-6 border rounded-lg bg-gray-900 text-white ${className}`}>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold">MIDI Sequencer</h2>
+        <div className="flex items-center space-x-4">
+          <div className={`w-3 h-3 rounded-full ${isMidiConnected ? 'bg-green-500' : 'bg-red-500'}`} />
+          <span className="text-sm">
+            MIDI: {isMidiConnected ? 'Connected' : 'Disconnected'} | 
+            {midiInputs.length} inputs, {midiOutputs.length} outputs
+          </span>
+        </div>
+      </div>
+
+      {/* Pattern Slots */}
+      <div className="mb-6">
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <h3 className="text-lg font-semibold">Pattern Slots ({maxSlots})</h3>
+            <p className="text-sm text-gray-400">30-second loop • Each slot gets {Math.round(30 / maxSlots * 10) / 10}s</p>
+          </div>
+          <div className="flex items-center space-x-4">
+            <label className="flex items-center space-x-2">
+              <input type="checkbox" checked={isLooping} onChange={e => setIsLooping(e.target.checked)} className="rounded" />
+              <span className="text-sm">Loop</span>
+            </label>
+            <button onClick={clearAllSlots} className="px-3 py-1 bg-red-600 hover:bg-red-700 rounded text-sm">
+              Clear All
+            </button>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-4 md:grid-cols-8 gap-2 mb-4">
+          {Array.from({
+          length: maxSlots
+        }, (_, index) => {
+          const slotPatternId = patternSlots[index];
+          const slotPattern = slotPatternId ? patterns.find(p => p.id === slotPatternId) : null;
+          return <div key={index} className={`p-3 border rounded text-center min-h-[80px] flex flex-col justify-center ${slotPattern ? 'border-green-500 bg-green-900/20' : 'border-gray-600 bg-gray-800'}`}>
+                <div className="text-xs text-gray-400 mb-1">Slot {index + 1}</div>
+                {slotPattern ? <div>
+                    <div className="font-medium text-sm">{slotPattern.name}</div>
+                    <div className="text-xs text-gray-400 mt-1">
+                      {slotPattern.tempo} BPM
+                    </div>
+                    <div className="text-xs text-blue-400 mt-1">
+                      OSC: {assignedOscillators[index] || 'None'}
+                    </div>
+                    <div className="flex flex-col gap-1 mt-2">
+                      <button onClick={() => removePatternFromSlot(index)} className="px-2 py-1 bg-red-600 hover:bg-red-700 rounded text-xs">
+                        Remove
+                      </button>
+                      <button onClick={() => onOscillatorAssign?.(index, `osc-${index + 1}`)} className="px-2 py-1 bg-blue-600 hover:bg-blue-700 rounded text-xs">
+                        Assign OSC
+                      </button>
+                    </div>
+                  </div> : <div className="text-gray-500 text-xs">Empty</div>}
+              </div>;
+        })}
+        </div>
+        
+        {/* Loop Progress */}
+        <div className="mt-4">
+          <div className="flex justify-between text-sm text-gray-400 mb-2">
+            <span>30-Second Loop Progress</span>
+            <span>{Math.round(loopProgress * 30)}s / 30s</span>
+          </div>
+          <div className="w-full bg-gray-700 rounded-full h-3">
+            <div className="bg-green-500 h-3 rounded-full transition-all duration-100" style={{
+            width: `${loopProgress * 100}%`
+          }} />
+          </div>
+        </div>
+      </div>
+
+      {/* Pattern Selection */}
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold mb-4">Available Patterns</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {patterns.map(pattern => <div key={pattern.id} className={`p-4 border rounded cursor-pointer transition-colors ${selectedPattern === pattern.id ? 'border-blue-500 bg-blue-900/20' : 'border-gray-600 hover:border-gray-500'}`} onClick={() => handlePatternSelect(pattern.id)}>
+              <h4 className="font-medium">{pattern.name}</h4>
+              <div className="text-sm text-gray-400 mt-2">
+                <div>Tempo: {pattern.tempo} BPM</div>
+                <div>Time: {pattern.timeSignature[0]}/{pattern.timeSignature[1]}</div>
+                <div>Length: {pattern.length} beats</div>
+                <div>Notes: {pattern.notes.length}</div>
+              </div>
+              <div className="mt-3 flex flex-wrap gap-1">
+                {Array.from({
+              length: maxSlots
+            }, (_, index) => <button key={index} onClick={e => {
+              e.stopPropagation();
+              addPatternToSlot(pattern.id, index);
+            }} className="px-2 py-1 bg-blue-600 hover:bg-blue-700 rounded text-xs">
+                    Slot {index + 1}
+                  </button>)}
+              </div>
+            </div>)}
+        </div>
+      </div>
+
+      {/* Current Pattern Info */}
+      {currentPatternData && <div className="mb-6 p-4 bg-gray-800 rounded">
+          <h3 className="text-lg font-semibold mb-4">Current Pattern: {currentPatternData.name}</h3>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <div>
+              <span className="text-sm text-gray-400">Tempo:</span>
+              <div className="font-medium">{currentPatternData.tempo} BPM</div>
+            </div>
+            <div>
+              <span className="text-sm text-gray-400">Time Signature:</span>
+              <div className="font-medium">{currentPatternData.timeSignature[0]}/{currentPatternData.timeSignature[1]}</div>
+            </div>
+            <div>
+              <span className="text-sm text-gray-400">Length:</span>
+              <div className="font-medium">{currentPatternData.length} beats</div>
+            </div>
+            <div>
+              <span className="text-sm text-gray-400">Notes:</span>
+              <div className="font-medium">{currentPatternData.notes.length}</div>
+            </div>
+          </div>
+
+          {/* Beat Progress */}
+          <div className="mb-4">
+            <div className="flex justify-between text-sm text-gray-400 mb-2">
+              <span>Beat Progress</span>
+              <span>{currentBeat.toFixed(1)} / {currentPatternData.length}</span>
+            </div>
+            <div className="w-full bg-gray-700 rounded-full h-2">
+              <div className="bg-blue-500 h-2 rounded-full transition-all duration-100" style={{
+            width: `${currentBeat / currentPatternData.length * 100}%`
+          }} />
+            </div>
+          </div>
+
+          {/* Pattern Visualization */}
+          <div className="mb-4">
+            <h4 className="text-sm font-medium mb-2">Pattern Visualization</h4>
+            <div className="grid grid-cols-16 gap-1">
+              {Array.from({
+            length: Math.min(16, currentPatternData.length)
+          }, (_, i) => {
+            const hasNote = currentPatternData.notes.some(note => Math.floor(note.startTime) === i);
+            const isCurrentBeat = Math.floor(currentBeat) === i;
+            return <div key={i} className={`h-8 rounded text-xs flex items-center justify-center ${isCurrentBeat ? 'bg-blue-500 text-white' : hasNote ? 'bg-green-500 text-white' : 'bg-gray-700'}`}>
+                    {i + 1}
+                  </div>;
+          })}
+            </div>
+          </div>
+        </div>}
+
+      {/* MIDI Device Info */}
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold mb-4">MIDI Devices</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h4 className="font-medium mb-2">Inputs ({midiInputs.length})</h4>
+            <div className="space-y-2">
+              {midiInputs.map((input, index) => <div key={input.id} className="p-2 bg-gray-800 rounded text-sm">
+                  <div className="font-medium">{input.name}</div>
+                  <div className="text-gray-400">
+                    {input.manufacturer} | {input.version}
+                  </div>
+                </div>)}
+            </div>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-2">Outputs ({midiOutputs.length})</h4>
+            <div className="space-y-2">
+              {midiOutputs.map((output, index) => <div key={output.id} className="p-2 bg-gray-800 rounded text-sm">
+                  <div className="font-medium">{output.name}</div>
+                  <div className="text-gray-400">
+                    {output.manufacturer} | {output.version}
+                  </div>
+                </div>)}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Controls */}
+      <div className="flex items-center space-x-4">
+        <button onClick={isPlaying ? onStop : onPlay} className={`px-6 py-3 rounded font-medium ${isPlaying ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'}`}>
+          {isPlaying ? 'Stop' : 'Play'}
+        </button>
+        
+        <button onClick={initializeMIDI} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">
+          Refresh MIDI
+        </button>
+      </div>
+    </div>;
+};
+export default MIDISequencer;

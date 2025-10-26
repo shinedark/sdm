@@ -1,0 +1,62 @@
+[
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/timelaps/timelaps.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[0]_layoutDictArray[0]_docwWindowState_udataBeatsMidiEditor",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[0].layoutDictArray[0].docwWindowState.udataBeatsMidiEditor",
+    "raw_data": {
+      "BEViewRange": "{0, 0}",
+      "BECatch": 0,
+      "BEUserData": "38012c000000020000010000000026099c010000000000000000000000000000000000000000000000002c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000009030000000000000d0d27f0e000000000000000000000000c0fe000000000000800195000000000000000000006000000c43ff000063610061001a001a001a001a0061001a00000000000000000000000000000000000000000000000001030705040206000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e0410000000000000000d007000000000000000000000000005007000000000000e041000100",
+      "BEVolume": 0.0,
+      "BEEditMode": 0,
+      "BEMetronome": 0,
+      "BERegionIndex": [
+        112,
+        -1,
+        -1,
+        1
+      ],
+      "BECycle": 0
+    },
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  },
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/timelaps/timelaps.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[0]_layoutDictArray[0]_docwWindowState_udataBeatsMidiEditor_BERegionIndex",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[0].layoutDictArray[0].docwWindowState.udataBeatsMidiEditor.BERegionIndex",
+    "raw_data": [
+      112,
+      -1,
+      -1,
+      1
+    ],
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  },
+  {
+    "source_file": "/Users/camilopineda/Desktop/SHINE DARK MIDI PARTY/Logic copy sep 2025/SDM/released/timelaps/timelaps.logicx/Alternatives/000/DisplayState.plist",
+    "pattern_name": "Pattern_screensetDictArray[0]_layoutDictArray[0]_docwWindowState_udataBeatsAudioEditor_BERegionIndex",
+    "pattern_type": "embedded_data",
+    "data_path": "screensetDictArray[0].layoutDictArray[0].docwWindowState.udataBeatsAudioEditor.BERegionIndex",
+    "raw_data": [
+      -1,
+      -1,
+      -1,
+      1
+    ],
+    "notes": [],
+    "channels": [],
+    "tempo": 120,
+    "time_signature": "4/4",
+    "extraction_status": "embedded_data_extracted"
+  }
+]

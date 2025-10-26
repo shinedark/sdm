@@ -1,6 +1,6 @@
 {
   "name": "axios-optimized",
-  "version": "1.7.7-optimized",
+  "version": "1.11.0-optimized",
   "description": "Promise based HTTP client for the browser and node.js (Semantically Optimized)",
   "main": "index.js",
   "exports": {
@@ -8,6 +8,10 @@
       "types": {
         "require": "./index.d.cts",
         "default": "./index.d.ts"
+      },
+      "react-native": {
+        "require": "./dist/browser/axios.cjs",
+        "default": "./dist/esm/axios.js"
       },
       "browser": {
         "require": "./dist/browser/axios.cjs",
@@ -143,12 +147,17 @@
     "./lib/platform/node/index.js": "./lib/platform/browser/index.js",
     "./lib/platform/node/classes/FormData.js": "./lib/helpers/null.js"
   },
+  "react-native": {
+    "./lib/adapters/http.js": "./lib/helpers/null.js",
+    "./lib/platform/node/index.js": "./lib/platform/browser/index.js",
+    "./lib/platform/node/classes/FormData.js": "./lib/helpers/null.js"
+  },
   "jsdelivr": "dist/axios.min.js",
   "unpkg": "dist/axios.min.js",
   "typings": "./index.d.ts",
   "dependencies": {
     "follow-redirects": "^1.15.6",
-    "form-data": "^4.0.0",
+    "form-data": "^4.0.4",
     "proxy-from-env": "^1.1.0"
   },
   "bundlesize": [
@@ -167,10 +176,10 @@
     "Justin Beckwith (https://github.com/JustinBeckwith)",
     "Martti Laine (https://github.com/codeclown)",
     "Xianming Zhong (https://github.com/chinesedfan)",
-    "Rikki Gibson (https://github.com/RikkiGibson)",
     "Remco Haszing (https://github.com/remcohaszing)",
-    "Yasu Flores (https://github.com/yasuf)",
-    "Ben Carp (https://github.com/carpben)"
+    "Rikki Gibson (https://github.com/RikkiGibson)",
+    "Ben Carp (https://github.com/carpben)",
+    "Yasu Flores (https://github.com/yasuf)"
   ],
   "sideEffects": false,
   "release-it": {
@@ -218,8 +227,8 @@
   },
   "_optimization": {
     "optimizedBy": "SDM Semantic Optimizer",
-    "originalSize": 2141088,
-    "timestamp": "2025-09-03T01:08:31.781Z",
+    "originalSize": 2177355,
+    "timestamp": "2025-09-05T22:53:02.830Z",
     "optimizations": [
       "Semantic minification",
       "Dead code elimination",

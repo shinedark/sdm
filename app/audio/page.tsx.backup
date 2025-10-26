@@ -1,0 +1,78 @@
+'use client';
+
+import React, { useState } from 'react';
+import StepSequencer from '../components/audio/StepSequencer';
+import { MIDIPattern } from '../components/audio/StepSequencer';
+
+export default function AudioPage() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentBeat, setCurrentBeat] = useState(0);
+
+  // Sample MIDI patterns for the StepSequencer
+  const midiPatterns: MIDIPattern[] = [
+    {
+      id: 'pattern-1',
+      name: 'Bass Line',
+      tempo: 120,
+      timeSignature: [4, 4],
+      length: 16,
+      notes: []
+    },
+    {
+      id: 'pattern-2',
+      name: 'Drum Beat',
+      tempo: 120,
+      timeSignature: [4, 4],
+      length: 16,
+      notes: []
+    },
+    {
+      id: 'pattern-3',
+      name: 'Melody',
+      tempo: 120,
+      timeSignature: [4, 4],
+      length: 16,
+      notes: []
+    }
+  ];
+
+  const handlePatternSelect = (patternId: string) => {
+    console.log('Pattern selected:', patternId);
+  };
+
+  const handleStepToggle = (patternId: string, step: number, note: any) => {
+    console.log('Step toggled:', patternId, step, note);
+  };
+
+  const handlePlay = () => {
+    setIsPlaying(true);
+    console.log('Play started');
+  };
+
+  const handleStop = () => {
+    setIsPlaying(false);
+    console.log('Play stopped');
+  };
+
+  const handleVolumeChange = (volume: number) => {
+    console.log('Volume changed:', volume);
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center p-6">
+      <StepSequencer
+        patterns={midiPatterns}
+        isPlaying={isPlaying}
+        currentBeat={currentBeat}
+        onPatternSelect={handlePatternSelect}
+        onStepToggle={handleStepToggle}
+        onPlay={handlePlay}
+        onStop={handleStop}
+        onVolumeChange={handleVolumeChange}
+        stepsPerPattern={16}
+        maxSlots={8}
+        className="max-w-4xl w-full"
+      />
+    </div>
+  );
+}

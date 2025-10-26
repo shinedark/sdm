@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState, useRef, Suspense } from 'react';
 import Cube from './components/Cube';
 import Image from 'next/image';
@@ -12,12 +13,9 @@ import ElArchivo from './components/sections/ElArchivo';
 import About from './components/sections/About';
 import Projects from './components/sections/Projects';
 import { ExpandableCard } from './components/ExpandableCard';
-import FoodList from './components/FoodList';
+import Link from 'next/link';
 import { AudioControls } from './components/audio-controls/audio-controls';
-
 import './globals.css';
-
-// const sdmWallet = process.env.NEXT_PUBLIC_SDM_WALLET_ADDRESS || '';
 
 export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -26,7 +24,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('Home');
   const elementRef = useRef(null);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [showMedicalId, setShowMedicalId] = useState(false);
+
   const handleNoiseClick = () => {
     if (audioRef.current) {
       if (audioRef.current.paused) {
@@ -35,7 +33,6 @@ export default function Home() {
       } else {
         setIsAnimating(false);
         audioRef.current.pause();
-
       }
     }
   };
@@ -48,66 +45,41 @@ export default function Home() {
     setShowVinyl(false);
   };
 
-  const toggleMedicalId = () => {
-    setShowMedicalId(!showMedicalId);
-  };
-
   const renderSection = () => {
     switch (activeSection) {
       case 'Home':
-        return (
-          <div className="mb-20 mt-20 w-full">
+        return <div className="mb-20 mt-20 w-full">
             <BinaryStatic />
-            <button
-              className="editz fixed top-4 right-8 w-24 h-12   flex items-center justify-center border-black border-2 rounded-full z-40"
-              onClick={handleNoiseClick}
-            >
+            <button className="editz fixed top-4 right-8 w-24 h-12 flex items-center justify-center border-black border-2 rounded-full z-40" onClick={handleNoiseClick}>
               {`NOISE`}
             </button>
-            <button
-              onClick={toggleVinylOverlay}
-              className="fixed top-4 left-8 w-24 h-12 bg-black text-white flex items-center justify-center rounded-full z-40"
-            >
-              {`VINYL`}
-            </button>
-            <Image
-              src={'/images/6.png'}
-              alt="Medical ID"
-              width={48}
-              height={64}
-              className="fixed top-20 left-20"
-              priority
-            />
-
-            <Cube 
-              isAnimating={isAnimating} 
-              ref={elementRef}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)} 
-              isHovered={isHovered} 
-            />
-        
+            <Image src={'/images/6.png'} alt="Medical ID" width={48} height={64} className="fixed top-20 left-20" priority />
+            <Cube isAnimating={isAnimating} ref={elementRef} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} isHovered={isHovered} />
             <div className="flex flex-row items-center space-around fixed w-full -z-10">
               <WeedPlant isAnimating={isAnimating} />
               <PlantToJeans isAnimating={isAnimating} />
             </div>
             <audio ref={audioRef} src="/music/elritmo.m4a" preload="auto" />
-          </div>
-        );
+          </div>;
       case 'EL ARCHIVO':
         return <ElArchivo />;
       case 'About':
         return <About />;
       case 'Projects':
         return <Projects />;
+      case 'Audio':
+        return <div className="w-full h-full flex items-center justify-center">
+            <Link href="/audio" className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105">
+              Enter Audio Studio
+            </Link>
+          </div>;
       default:
         return null;
     }
   };
 
-  return (
-    <div className=" flex flex-col min-h-screen relative z-0">
-      <Navigation  activeSection={activeSection} onSectionChange={setActiveSection} />
+  return <div className=" flex flex-col min-h-screen relative z-0">
+      <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
       <main className=" flex flex-1 items-center justify-center p-0 z-10 relative overflow-auto">
         {renderSection()}
       </main>
@@ -116,6 +88,5 @@ export default function Home() {
       </div>
       <Footer />
       {showVinyl && <Vinyl onClose={closeVinylOverlay} />}
-    </div>
-  );
+    </div>;
 }
