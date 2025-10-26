@@ -1,7 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, readFile, mkdir } from 'fs/promises';
-import { join } from 'path';
-import { existsSync } from 'fs';
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,44 +11,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create data directory if it doesn't exist
-    const dataDir = join(process.cwd(), 'data');
-    if (!existsSync(dataDir)) {
-      await mkdir(dataDir, { recursive: true });
-    }
+    // Log to console (Vercel logs are accessible in dashboard)
+    console.log('=== NEW EMAIL INTEREST ===');
+    console.log(`Email: ${email}`);
+    console.log(`Product: ${product}`);
+    console.log(`Price: ${price}`);
+    console.log(`Timestamp: ${new Date().toISOString()}`);
+    console.log('========================');
 
-    // Read existing emails
-    const emailsPath = join(dataDir, 'email-interests.json');
-    let interests: Array<{
-      email: string;
-      product: string;
-      price: string;
-      timestamp: string;
-    }> = [];
-
-    if (existsSync(emailsPath)) {
-      const data = await readFile(emailsPath, 'utf-8');
-      interests = JSON.parse(data);
-    }
-
-    // Add new interest
-    interests.push({
-      email,
-      product,
-      price,
-      timestamp: new Date().toISOString()
-    });
-
-    // Save updated list
-    await writeFile(emailsPath, JSON.stringify(interests, null, 2));
-
-    // TODO: Send email notification to you (owner)
-    // You can integrate SendGrid, Resend, or any email service here
-    console.log(`New interest: ${email} for ${product} at ${price}`);
+    // In production on Vercel, you would:
+    // 1. Use a database (Vercel Postgres, MongoDB, etc.)
+    // 2. Use an email service (Resend, SendGrid) to notify you
+    // 3. Use Vercel KV for quick storage
+    
+    // For now, logging to Vercel console which you can view in dashboard
+    // To get notified, add email service integration here
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Error saving email interest:', error);
+    console.error('Error processing email interest:', error);
     return NextResponse.json(
       { error: 'Failed to save email' },
       { status: 500 }
