@@ -66,8 +66,9 @@ const nextConfig = {
       }
     };
     
-    // 🎯 Custom React Build Integration (disabled for now due to JSX runtime issues)
-    // Uncomment to use custom optimized React builds
+    // 🎯 Custom React Build Integration - DISABLED (JSX runtime compatibility issues)
+    // The custom React builds don't include react/jsx-runtime needed by Next.js
+    // Keeping disabled until custom builds are updated with full JSX runtime support
     // config.resolve.alias = {
     //   ...config.resolve.alias,
     //   'react': path.resolve(__dirname, 'custom-react-builds/react.custom.js'),

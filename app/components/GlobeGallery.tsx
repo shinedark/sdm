@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import GlobeRenderer from './GlobeRenderer';
-
 interface Release {
   name: string;
   date: string;

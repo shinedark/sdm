@@ -52,4 +52,4 @@ module.exports = {
 - Drop-in replacement
 
 ## Generated
-2025-09-05T23:01:46.073Z by SDM Semantic Build Optimizer
+2025-11-01T20:10:34.866Z by SDM Semantic Build Optimizer

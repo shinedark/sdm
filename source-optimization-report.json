@@ -1,13 +1,13 @@
 {
-  "timestamp": "2025-09-05T23:01:45.960Z",
+  "timestamp": "2025-11-01T20:10:34.758Z",
   "type": "source-level-optimization",
   "stats": {
     "filesProcessed": 0,
     "importsRemoved": 0,
     "identifiersOptimized": 0,
     "deadCodeRemoved": 0,
-    "totalSizeReduction": 175,
-    "totalSizeReductionKB": "0.17",
+    "totalSizeReduction": 0,
+    "totalSizeReductionKB": "0.00",
     "averageReduction": "0KB"
   },
   "settings": {
@@ -34,7 +34,7 @@
   "files": [
     {
       "path": "app/page.tsx",
-      "originalSize": 3619,
+      "originalSize": 3707,
       "components": [],
       "unusedImports": []
     },
@@ -59,6 +59,18 @@
     {
       "path": "app/store/page.tsx",
       "originalSize": 2038,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/context/audio-context.tsx",
+      "originalSize": 2535,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/audio-test/page.tsx",
+      "originalSize": 18287,
       "components": [],
       "unusedImports": []
     },
@@ -100,7 +112,7 @@
     },
     {
       "path": "app/components/Store.tsx",
-      "originalSize": 0,
+      "originalSize": 9411,
       "components": [],
       "unusedImports": []
     },
@@ -160,7 +172,7 @@
     },
     {
       "path": "app/components/GlobeGallery.tsx",
-      "originalSize": 4070,
+      "originalSize": 3775,
       "components": [],
       "unusedImports": []
     },
@@ -207,14 +219,8 @@
       "unusedImports": []
     },
     {
-      "path": "app/context/audio-context.tsx",
-      "originalSize": 2535,
-      "components": [],
-      "unusedImports": []
-    },
-    {
-      "path": "app/audio-test/page.tsx",
-      "originalSize": 18287,
+      "path": "app/audio/page.tsx",
+      "originalSize": 6803,
       "components": [],
       "unusedImports": []
     },
@@ -225,26 +231,26 @@
       "unusedImports": []
     },
     {
-      "path": "app/audio/page.tsx",
-      "originalSize": 1893,
+      "path": "app/downloads/[token]/page.tsx",
+      "originalSize": 3722,
       "components": [],
       "unusedImports": []
     },
     {
       "path": "app/components/sections/Projects.tsx",
-      "originalSize": 4842,
+      "originalSize": 14466,
       "components": [],
       "unusedImports": []
     },
     {
       "path": "app/components/sections/ElArchivo.tsx",
-      "originalSize": 823,
+      "originalSize": 6989,
       "components": [],
       "unusedImports": []
     },
     {
       "path": "app/components/sections/About.tsx",
-      "originalSize": 3433,
+      "originalSize": 4272,
       "components": [],
       "unusedImports": []
     },
@@ -274,7 +280,7 @@
     },
     {
       "path": "app/components/audio/StepSequencer.tsx",
-      "originalSize": 6731,
+      "originalSize": 18086,
       "components": [],
       "unusedImports": []
     },
@@ -321,8 +327,26 @@
       "unusedImports": []
     },
     {
-      "path": "app/api/blobs/route.ts",
-      "originalSize": 322,
+      "path": "app/api/notify-interest/route.ts",
+      "originalSize": 1245,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/api/payments/create-order/route.ts",
+      "originalSize": 3245,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/api/payments/capture-order/route.ts",
+      "originalSize": 4100,
+      "components": [],
+      "unusedImports": []
+    },
+    {
+      "path": "app/api/downloads/verify/route.ts",
+      "originalSize": 2426,
       "components": [],
       "unusedImports": []
     }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { join } from 'path';
+
 interface Order {
   id: string;
   productId: string;
@@ -10,25 +11,32 @@ interface Order {
   customerEmail?: string;
   downloadToken?: string;
 }
+
 export async function POST(request: NextRequest) {
   try {
-    const {
-      orderId
-    } = await request.json();
+    const { orderId } = await request.json();
 
     // Get PayPal credentials
-    const clientId = process.env.NODE_ENV === 'production' ? process.env.PAYPAL_LIVE_CLIENT_ID : process.env.PAYPAL_SANDBOX_CLIENT_ID;
-    const clientSecret = process.env.NODE_ENV === 'production' ? process.env.PAYPAL_LIVE_CLIENT_SECRET : process.env.PAYPAL_SANDBOX_CLIENT_SECRET;
+    const clientId = process.env.NODE_ENV === 'production' 
+      ? process.env.PAYPAL_LIVE_CLIENT_ID 
+      : process.env.PAYPAL_SANDBOX_CLIENT_ID;
+    
+    const clientSecret = process.env.NODE_ENV === 'production' 
+      ? process.env.PAYPAL_LIVE_CLIENT_SECRET 
+      : process.env.PAYPAL_SANDBOX_CLIENT_SECRET;
+
     if (!clientId || !clientSecret) {
-      return NextResponse.json({
-        error: 'PayPal credentials not configured'
-      }, {
-        status: 500
-      });
+      return NextResponse.json(
+        { error: 'PayPal credentials not configured' },
+        { status: 500 }
+      );
     }
 
     // Capture the PayPal order
-    const paypalUrl = process.env.NODE_ENV === 'production' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com';
+    const paypalUrl = process.env.NODE_ENV === 'production' 
+      ? 'https://api-m.paypal.com' 
+      : 'https://api-m.sandbox.paypal.com';
+
     const captureResponse = await fetch(`${paypalUrl}/v2/checkout/orders/${orderId}/capture`, {
       method: 'POST',
       headers: {
@@ -37,14 +45,15 @@ export async function POST(request: NextRequest) {
         'PayPal-Request-Id': `capture-${Date.now()}-${Math.random().toString(36).substring(2, 15)}`
       }
     });
+
     const captureResult = await captureResponse.json();
+
     if (!captureResponse.ok) {
       console.error('PayPal capture error:', captureResult);
-      return NextResponse.json({
-        error: 'Failed to capture PayPal order'
-      }, {
-        status: 500
-      });
+      return NextResponse.json(
+        { error: 'Failed to capture PayPal order' },
+        { status: 500 }
+      );
     }
 
     // Extract order details
@@ -76,15 +85,14 @@ export async function POST(request: NextRequest) {
       customerEmail,
       downloadToken: downloadToken || undefined
     };
+
     const ordersPath = join(process.cwd(), 'data', 'orders.json');
     let orders: Order[] = [];
 
     // Create data directory if it doesn't exist
     const dataDir = join(process.cwd(), 'data');
     if (!existsSync(dataDir)) {
-      require('fs').mkdirSync(dataDir, {
-        recursive: true
-      });
+      require('fs').mkdirSync(dataDir, { recursive: true });
     }
 
     // Load existing orders
@@ -115,6 +123,7 @@ export async function POST(request: NextRequest) {
       customerEmail,
       downloadToken
     });
+
     return NextResponse.json({
       success: true,
       orderId,
@@ -123,12 +132,12 @@ export async function POST(request: NextRequest) {
       downloadToken,
       message: 'Order captured successfully'
     });
+
   } catch (error) {
     console.error('Error capturing order:', error);
-    return NextResponse.json({
-      error: 'Internal server error'
-    }, {
-      status: 500
-    });
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
   }
 }

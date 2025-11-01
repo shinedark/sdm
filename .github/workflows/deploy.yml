@@ -29,11 +29,8 @@ jobs:
     - name: Run linting
       run: npm run lint
 
-    - name: Create custom React builds
-      run: npm run optimize:react-custom
-
-    - name: Build application with custom React optimization
-      run: npm run build:custom-react
+    - name: Build application with ultimate optimization
+      run: npm run build:ultimate
 
     - name: Deploy to Vercel
       uses: amondnet/vercel-action@v25
